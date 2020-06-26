@@ -1,0 +1,20 @@
+@import '../src/styles/themes/boomerang';
+
+$carbon--theme: $carbon--theme--boomerang;
+$carbon-addons-bmrg--theme: boomerang;
+
+@import '../src/styles';
+
+body {
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+}
+
+.storybook-container {
+  background-color: white;
+  padding: 3rem;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

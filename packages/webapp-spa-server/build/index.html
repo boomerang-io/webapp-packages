@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Boomerang Webapp Server Test</title>
+    <meta name="description" content="Boomerang Webapp Server Test" />
+    <meta name="author" content="trbula@us.ibm.com" />
+  </head>
+
+  <body>
+    <main id="app">Welcome to Boomerang Webapp Server!</main>
+    <p id="header">Injected Data:</p>
+    <script>
+      var main = document.getElementById("header");
+      var child = main.appendChild(document.createElement("div"));
+      child.innerText = JSON.stringify(window._SERVER_DATA);
+    </script>
+  </body>
+</html>

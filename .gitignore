@@ -1,0 +1,16 @@
+# Dependency directory
+node_modules/
+
+# Config files
+.npmrc
+
+# Error files
+yarn-error.log
+
+# Editor
+.DS_Store
+*.swp
+.idea
+.vscode
+.project
+.settings

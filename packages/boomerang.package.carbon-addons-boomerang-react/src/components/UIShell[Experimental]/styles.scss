@@ -1,0 +1,45 @@
+// //  Use the carbon shell scss variables
+// $shell-header-bg-01: #242a2e;
+// $shell-side-nav-bg-01: #242a2e;
+
+// .bx--header {
+//   background: $shell-header-bg-01;
+// }
+
+// .bx--header__global {
+//   position: relative;
+// }
+
+// .bx--header__action[aria-label='Close sidenav menu'] {
+//   svg path {
+//     fill: white;
+//   }
+// }
+
+// .bx--side-nav__navigation.bx--side-nav {
+//   background: $shell-side-nav-bg-01;
+//   position: fixed;
+//   transform: translateX(-100%);
+//   transition: transform 0.11s cubic-bezier(0.2, 0, 1, 0.9);
+
+//   &.bx--side-nav--expanded.--hidden {
+//     transform: translateX(0%);
+//   }
+
+//   .bx--side-nav__footer {
+//     display: none;
+//   }
+// }
+
+// .bx--header__submenu.--user-dropdowns {
+//   padding: 0;
+//   margin: 0;
+//   svg:last-of-type {
+//     display: none;
+//   }
+
+//   .bx--header__menu {
+//     left: initial !important;
+//     right: 0;
+//   }
+// }

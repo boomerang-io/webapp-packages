@@ -1,0 +1,31 @@
+{
+  "name": "@boomerang-io/cra-template-boomerang",
+  "version": "0.0.1",
+  "keywords": [
+    "react",
+    "create-react-app",
+    "template",
+    "boomerang"
+  ],
+  "description": "The Boomerang template for Create React App.",
+  "main": "template.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.ibm.com/Boomerang-Lib/boomerang.package.create-react-app.git",
+    "directory": "packages/bcra-template"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.ibm.com/Boomerang-Lib/boomerang.package.create-react-app/issues"
+  },
+  "files": [
+    "template",
+    "template.json"
+  ],
+  "publishConfig": {
+    "registry": "https://tools.boomerangplatform.net/artifactory/api/npm/boomeranglib-npm/"
+  }
+}

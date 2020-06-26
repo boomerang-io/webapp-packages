@@ -1,0 +1,18 @@
+{
+  "name": "boomerang-webapp-express-server",
+  "version": "0.0.1",
+  "description": "Boomerang Webapp Express Server",
+  "scripts": {
+    "start": "boomerang-webapp-server serve",
+    "dev": "boomerang-webapp-server serve -p \".env.local\""
+  },
+  "contributors": [
+    {
+      "name": "Tim Bula",
+      "email": "timrbula@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "@boomerang-io/boomerang-webapp-server": "0.0.1"
+  }
+}
