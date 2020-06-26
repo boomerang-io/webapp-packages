@@ -1,4 +1,4 @@
-# boomerang.package.farmer
+# Farmer
 
 Frontend App Repo ManagER
 
