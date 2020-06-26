@@ -1,22 +1,18 @@
 # Boomerang Utilities
 
-A library of reusable React utilities built for the Boomerang platform.
-
-## Prereqs
-
-The library is hosted on the Boomerang platform Artifactory instance. You must first be [onboarded via Launchpad](https://launch.boomerangplatform.net/launchpad) to the platform with access to Artifactory. Once you have access configure your local npm to use it. Please read the section "Start Coding" on the [web dev docs](https://pages.github.ibm.com/GBS-AIC/engineering.doc/doc/engineering/02.webDevOnboarding).
+A library of reusable utilities built for the Boomerang platform.
 
 ## Install
 
 You will need either [npm](https://github.com/npm/npm) or [yarn](https://github.com/yarnpkg/yarn). Either command below will work.
 
 ```bash
-$ npm install @boomerang/boomerang-utilities
-$ yarn add @boomerang/boomerang-utilities
+$ npm install @boomerang-io/utils
+$ yarn add @boomerang-io/utils
 ```
 
 ## Use
 
 ```js
-import sortByProp from "@boomerang/boomerang-utilities/lib/sortByProp";
+import { isAccessibleEvent } from "@boomerang-io/utils";
 ```
