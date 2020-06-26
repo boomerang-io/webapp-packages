@@ -7,7 +7,7 @@ Provide a consistent way to deploy Boomerang React SPAs with client-side routing
 - Serve static assets
 - Client-side routing support for SPAs
 - Dynamic data and script injection into HTML document at run-time
-- Logging with [@boomerang-io/logger-middleware](https://github.com/boomerang-io/webapp-packages/packages/logger-middleware)
+- Logging with [@boomerang-io/logger-middleware](https://github.com/boomerang-io/webapp-packages/src/packages/logger-middleware)
 - Cloud native health checking with [Cloud Native Health Connect](@cloudnative/health-connect)
 - New Relic monitoring
 
