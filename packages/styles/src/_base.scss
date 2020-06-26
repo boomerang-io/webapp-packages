@@ -1,0 +1,14 @@
+$font-family: "IBM Plex Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: $font-family;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+}
