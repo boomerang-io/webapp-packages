@@ -1,4 +1,4 @@
-# Boomerang Node.js Logging Lib
+# Logger-Middleware
 
 A logger and a Connect/Express middleware for creating logging events in a standard format on the Boomerang platform. It is based on our Java Log4j configuration.
 
