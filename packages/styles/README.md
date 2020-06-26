@@ -1,4 +1,4 @@
-# Boomerang Styles
+Styles
 A package for including a css reset, IBM Design Language Color Library scss functions, and scss variables for fonts and colors
 
 ## What it does
