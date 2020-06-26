@@ -1,4 +1,4 @@
-# Boomerang Utilities
+# Utils
 
 A library of reusable utilities built for the Boomerang platform.
 
