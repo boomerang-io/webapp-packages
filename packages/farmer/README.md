@@ -1,4 +1,4 @@
-# boomerang.package.farmer
+# Farmer
 
 Frontend App Repo ManagER
 
@@ -7,7 +7,7 @@ Farmer will update all `package.json` and `package-lock.json` files in a directo
 ## Install & Use
 
 ```sh
-$ npm install -g @boomerang/farmer
+$ npm install -g @boomerang-io/farmer
 $ farmer <../relative/path/to/directory> <dependency> <version>
 ```
 

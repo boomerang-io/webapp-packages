@@ -1,4 +1,4 @@
-# Boomerang Webapp Server
+# Webapp SPA Server
 
 Provide a consistent way to deploy Boomerang React SPAs with client-side routing into an IBM Cloud Private environment.
 
@@ -7,7 +7,7 @@ Provide a consistent way to deploy Boomerang React SPAs with client-side routing
 - Serve static assets
 - Client-side routing support for SPAs
 - Dynamic data and script injection into HTML document at run-time
-- Logging with [@boomerang/boomerang-logging-middleware](https://github.ibm.com/Boomerang-Lib/boomerang.middleware.logging)
+- Logging with [@boomerang-io/logger-middleware](https://github.com/boomerang-io/webapp-packages/src/packages/logger-middleware)
 - Cloud native health checking with [Cloud Native Health Connect](@cloudnative/health-connect)
 - New Relic monitoring
 
