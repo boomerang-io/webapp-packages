@@ -1,6 +1,6 @@
 {
   "name": "@boomerang-io/styles",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./lib/boomerang.scss",
   "license": "UNLICENSED",
   "author": {
@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "build-scss": "cpx \"./src/**/*.scss\" ./lib",
-    "remove-lib": "rimraf ./lib",
+    "remove-lib": "npx rimraf ./lib",
     "prebuild": "npm run remove-lib",
     "build": "npm-run-all build-scss",
     "prepare": "npm run build"

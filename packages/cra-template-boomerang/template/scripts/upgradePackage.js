@@ -1,35 +1,33 @@
-'use strict';
+"use strict";
 
 /**
  * Makes the script crash on unhandled rejections instead of silently
  * ignoring them. In the future, promise rejections that are not handled will
  * terminate the Node.js process with a non-zero exit code.
  */
-process.on('unhandledRejection', err => {
+process.on("unhandledRejection", (err) => {
   throw err;
 });
 
-const chalk = require('chalk');
-const fs = require('fs-extra');
-const inquirer = require('inquirer');
-const path = require('path');
-const spawn = require('react-dev-utils/crossSpawn');
-const compareVersions = require('./utils/compareVersions');
-const sortObjectKeys = require('./utils/sortObjectKeys');
+const chalk = require("chalk");
+const fs = require("fs-extra");
+const inquirer = require("inquirer");
+const path = require("path");
+const spawn = require("react-dev-utils/crossSpawn");
 
 const fileNames = {
-  package: 'package.json',
-  templatePackage: 'template.json',
-  docker: 'Dockerfile',
-  eslintrc: 'eslintrc.js',
-  jsconfig: 'jsconfig.json',
-  travis: '.travis.yml',
-  yarnLock: 'yarn.lock',
-  craTemplate: '@boomerang/cra-template-boomerang',
+  package: "package.json",
+  templatePackage: "template.json",
+  docker: "Dockerfile",
+  eslintrc: "eslintrc.js",
+  jsconfig: "jsconfig.json",
+  travis: ".travis.yml",
+  yarnLock: "yarn.lock",
+  craTemplate: "@boomerang/cra-template-boomerang",
 };
 
-const appPath = path.resolve(__dirname, '..');
-const packagePath = path.join('..', fileNames.package);
+const appPath = path.resolve(__dirname, "..");
+const packagePath = path.join("..", fileNames.package);
 const appPackage = require(packagePath);
 const useYarn = fs.existsSync(path.join(appPath, fileNames.yarnLock));
 
@@ -39,25 +37,22 @@ let remove;
 let args;
 
 if (useYarn) {
-  command = 'yarnpkg';
-  remove = 'remove';
-  args = ['add'];
+  command = "yarnpkg";
+  remove = "remove";
+  args = ["add"];
 } else {
-  command = 'npm';
-  remove = 'uninstall';
-  args = ['install', '--save', bcraTemplateName].filter(e => e);
+  command = "npm";
+  remove = "uninstall";
+  args = ["install", "--save", bcraTemplateName].filter((e) => e);
 }
 
-let installProc = spawn.sync(command, args, { stdio: 'inherit' });
+let installProc = spawn.sync(command, args, { stdio: "inherit" });
 if (installProc.status !== 0) {
-  console.error(`\`${command} ${args.join(' ')}\` failed`);
+  console.error(`\`${command} ${args.join(" ")}\` failed`);
   return;
 }
 
-const templatePath = path.join(
-  require.resolve(bcraTemplateName, { paths: [appPath] }),
-  '..'
-);
+const templatePath = path.join(require.resolve(bcraTemplateName, { paths: [appPath] }), "..");
 
 const templateJsonPath = path.join(templatePath, fileNames.templatePackage);
 let templateJson = {};
@@ -71,11 +66,7 @@ if (fs.existsSync(jsconfigPath)) {
   appJsconfig = require(jsconfigPath);
 }
 
-const templateJsconfigJsonPath = path.join(
-  templatePath,
-  'template',
-  fileNames.jsconfig
-);
+const templateJsconfigJsonPath = path.join(templatePath, "template", fileNames.jsconfig);
 let templateJsconfig = {};
 if (fs.existsSync(templateJsconfigJsonPath)) {
   templateJsconfig = require(templateJsconfigJsonPath);
@@ -83,37 +74,35 @@ if (fs.existsSync(templateJsconfigJsonPath)) {
 
 const templatePackage = templateJson.package || {};
 
-const askUpdateSpecificScripts = async choices => {
+const askUpdateSpecificScripts = async (choices) => {
   const questions = [
     {
-      name: 'selectedScripts',
-      type: 'checkbox',
+      name: "selectedScripts",
+      type: "checkbox",
       message: `Select the scripts that you want to update. It will replace what you currently have.`,
       default: choices,
-      choices: choices.map(script => ({
+      choices: choices.map((script) => ({
         checked: true,
         value: script.name,
-        name: `${script.name} ${script.new ? '(new)' : ''}`,
+        name: `${script.name} ${script.new ? "(new)" : ""}`,
       })),
     },
   ];
   return await inquirer.prompt(questions);
 };
 
-const askUpdateSpecificDependencies = async choices => {
+const askUpdateSpecificDependencies = async (choices) => {
   const questions = [
     {
-      name: 'selectedDependencies',
-      type: 'checkbox',
+      name: "selectedDependencies",
+      type: "checkbox",
       message: `Select the dependencies that you want to update.`,
       default: choices,
-      choices: choices.map(dependency => ({
+      choices: choices.map((dependency) => ({
         checked: true,
         value: dependency.name,
         name: `${dependency.name} (${
-          dependency.version
-            ? dependency.version
-            : dependency.oldVersion + ' -> ' + dependency.newVersion
+          dependency.version ? dependency.version : dependency.oldVersion + " -> " + dependency.newVersion
         })`,
       })),
     },
@@ -121,17 +110,17 @@ const askUpdateSpecificDependencies = async choices => {
   return await inquirer.prompt(questions);
 };
 
-const askUpdateSpecificConfig = async choices => {
+const askUpdateSpecificConfig = async (choices) => {
   const questions = [
     {
-      name: 'selectedConfig',
-      type: 'checkbox',
+      name: "selectedConfig",
+      type: "checkbox",
       message: `Select the tooling config that you want to update. It will replace what you currently have.`,
       default: choices,
-      choices: choices.map(config => ({
+      choices: choices.map((config) => ({
         checked: true,
         value: config.name,
-        name: `${config.name} ${config.new ? '(new)' : ''}`,
+        name: `${config.name} ${config.new ? "(new)" : ""}`,
         type: config.type,
       })),
     },
@@ -139,17 +128,17 @@ const askUpdateSpecificConfig = async choices => {
   return await inquirer.prompt(questions);
 };
 
-const askUpdateJsconfig = async choices => {
+const askUpdateJsconfig = async (choices) => {
   const questions = [
     {
-      name: 'selectedJsconfig',
-      type: 'checkbox',
+      name: "selectedJsconfig",
+      type: "checkbox",
       message: `Select the jsconfig.json properties that you want to update. If you don't have the file in your project, one will be created.`,
       default: choices,
-      choices: choices.map(config => ({
+      choices: choices.map((config) => ({
         checked: true,
         value: config.name,
-        name: `${config.name} ${config.new ? '(new)' : ''}`,
+        name: `${config.name} ${config.new ? "(new)" : ""}`,
         type: config.type,
       })),
     },
@@ -175,7 +164,7 @@ const run = async () => {
    * Update or add scripts scripts
    */
   let potentialScripts = [];
-  Object.keys(templatePackage.scripts).forEach(script => {
+  Object.keys(templatePackage.scripts).forEach((script) => {
     if (!appPackage.scripts[script]) {
       potentialScripts.push({ name: script, new: true });
     } else if (templatePackage.scripts[script] !== appPackage.scripts[script]) {
@@ -186,12 +175,10 @@ const run = async () => {
   // Actually update things
   if (potentialScripts.length) {
     console.log();
-    const { selectedScripts } = await askUpdateSpecificScripts(
-      potentialScripts
-    );
+    const { selectedScripts } = await askUpdateSpecificScripts(potentialScripts);
     potentialScripts
-      .filter(script => selectedScripts.includes(script.name))
-      .forEach(script => {
+      .filter((script) => selectedScripts.includes(script.name))
+      .forEach((script) => {
         appPackage.scripts[script.name] = templatePackage.scripts[script.name];
         changedScripts.push(script);
       });
@@ -200,17 +187,14 @@ const run = async () => {
    * Update or add dependency
    */
   let potentialDependencies = [];
-  Object.keys(templatePackage.dependencies).forEach(dependency => {
+  Object.keys(templatePackage.dependencies).forEach((dependency) => {
     const templateVersion = templatePackage.dependencies[dependency];
     if (!appPackage.dependencies[dependency]) {
       potentialDependencies.push({
         name: dependency,
         version: templateVersion,
       });
-    } else if (
-      compareVersions(templateVersion, appPackage.dependencies[dependency]) ===
-      1
-    ) {
+    } else if (compareVersions(templateVersion, appPackage.dependencies[dependency]) === 1) {
       potentialDependencies.push({
         name: dependency,
         newVersion: templateVersion,
@@ -222,7 +206,7 @@ const run = async () => {
   /**
    * Update or add dev dependency
    */
-  Object.keys(templatePackage.devDependencies).forEach(dependency => {
+  Object.keys(templatePackage.devDependencies).forEach((dependency) => {
     const templateVersion = templatePackage.devDependencies[dependency];
     if (!appPackage.devDependencies[dependency]) {
       potentialDependencies.push({
@@ -230,12 +214,7 @@ const run = async () => {
         version: templateVersion,
         devDependency: true,
       });
-    } else if (
-      compareVersions(
-        templateVersion,
-        appPackage.devDependencies[dependency]
-      ) === 1
-    ) {
+    } else if (compareVersions(templateVersion, appPackage.devDependencies[dependency]) === 1) {
       potentialDependencies.push({
         name: dependency,
         newVersion: templateVersion,
@@ -248,18 +227,14 @@ const run = async () => {
   // Actually update things
   if (potentialDependencies.length) {
     console.log();
-    const { selectedDependencies } = await askUpdateSpecificDependencies(
-      potentialDependencies
-    );
+    const { selectedDependencies } = await askUpdateSpecificDependencies(potentialDependencies);
     potentialDependencies
-      .filter(dependency => selectedDependencies.includes(dependency.name))
-      .forEach(dependency => {
+      .filter((dependency) => selectedDependencies.includes(dependency.name))
+      .forEach((dependency) => {
         if (dependency.devDependency) {
-          appPackage.devDependencies[dependency.name] =
-            dependency.version || dependency.newVersion;
+          appPackage.devDependencies[dependency.name] = dependency.version || dependency.newVersion;
         } else {
-          appPackage.dependencies[dependency.name] =
-            dependency.version || dependency.newVersion;
+          appPackage.dependencies[dependency.name] = dependency.version || dependency.newVersion;
         }
         changedDependencies.push(dependency);
       });
@@ -294,10 +269,7 @@ const run = async () => {
           name: property,
           new: true,
         });
-      } else if (
-        JSON.stringify(templateConfig[property]) !==
-        JSON.stringify(appPackageConfig[property])
-      ) {
+      } else if (JSON.stringify(templateConfig[property]) !== JSON.stringify(appPackageConfig[property])) {
         potentialConfig.push({
           name: property,
           new: false,
@@ -308,11 +280,9 @@ const run = async () => {
     if (potentialConfig.length) {
       console.log();
       const { selectedConfig } = await askUpdateSpecificConfig(potentialConfig);
-      selectedConfig.forEach(property => {
+      selectedConfig.forEach((property) => {
         appPackage[property] = templatePackage[property];
-        changedConfig.push(
-          potentialConfig.find(config => selectedConfig.includes(config.name))
-        );
+        changedConfig.push(potentialConfig.find((config) => selectedConfig.includes(config.name)));
       });
     }
   }
@@ -328,10 +298,7 @@ const run = async () => {
           name: property,
           new: true,
         });
-      } else if (
-        JSON.stringify(templateJsconfig[property]) !==
-        JSON.stringify(appJsconfig[property])
-      ) {
+      } else if (JSON.stringify(templateJsconfig[property]) !== JSON.stringify(appJsconfig[property])) {
         potentialConfig.push({
           name: property,
           new: false,
@@ -342,11 +309,9 @@ const run = async () => {
     if (potentialConfig.length) {
       console.log();
       const { selectedJsconfig } = await askUpdateJsconfig(potentialConfig);
-      selectedJsconfig.forEach(property => {
+      selectedJsconfig.forEach((property) => {
         appJsconfig[property] = templateJsconfig[property];
-        changedJsconfig.push(
-          potentialConfig.find(config => selectedJsconfig.includes(config.name))
-        );
+        changedJsconfig.push(potentialConfig.find((config) => selectedJsconfig.includes(config.name)));
       });
     }
   }
@@ -374,105 +339,85 @@ const run = async () => {
     changedJsconfig.length === 0
   ) {
     console.log();
-    console.log(
-      chalk.magenta('Nothing for us to do here. Project upgrade complete.')
-    );
+    console.log(chalk.magenta("Nothing for us to do here. Project upgrade complete."));
   } else {
-    const addedDependencies = changedDependencies.filter(
-      dependency => !dependency.newVersion
-    );
-    const upgradedDependencies = changedDependencies.filter(dependency =>
-      Boolean(dependency.newVersion)
-    );
+    const addedDependencies = changedDependencies.filter((dependency) => !dependency.newVersion);
+    const upgradedDependencies = changedDependencies.filter((dependency) => Boolean(dependency.newVersion));
 
-    const addedScripts = changedScripts.filter(script => script.new);
-    const upgradedScripts = changedScripts.filter(script => !script.new);
+    const addedScripts = changedScripts.filter((script) => script.new);
+    const upgradedScripts = changedScripts.filter((script) => !script.new);
 
-    const addedConfig = changedConfig.filter(config => config.new);
-    const upgradedConfig = changedConfig.filter(config => !config.new);
+    const addedConfig = changedConfig.filter((config) => config.new);
+    const upgradedConfig = changedConfig.filter((config) => !config.new);
 
-    const addedJsconfig = changedJsconfig.filter(config => config.new);
-    const upgradedJsconfig = changedJsconfig.filter(config => !config.new);
+    const addedJsconfig = changedJsconfig.filter((config) => config.new);
+    const upgradedJsconfig = changedJsconfig.filter((config) => !config.new);
 
     // Log changes
     if (addedScripts.length > 0) {
       console.log();
-      console.log(`${chalk.blue('Added scripts:')}`);
-      addedScripts.forEach(script =>
-        console.log(`- ${chalk.cyan(script.name)}`)
-      );
+      console.log(`${chalk.blue("Added scripts:")}`);
+      addedScripts.forEach((script) => console.log(`- ${chalk.cyan(script.name)}`));
     }
 
     if (upgradedScripts.length > 0) {
       console.log();
-      console.log(`${chalk.blue('Updated scripts:')}`);
-      upgradedScripts.forEach(script =>
-        console.log(`- ${chalk.cyan(script.name)}`)
-      );
+      console.log(`${chalk.blue("Updated scripts:")}`);
+      upgradedScripts.forEach((script) => console.log(`- ${chalk.cyan(script.name)}`));
     }
 
     if (addedDependencies.length > 0) {
       console.log();
-      console.log(`${chalk.blue('Added dependencies:')}`);
-      addedDependencies.forEach(dependency =>
-        console.log(
-          `- ${chalk.cyan(`${dependency.name}@${dependency.version}`)}`
-        )
+      console.log(`${chalk.blue("Added dependencies:")}`);
+      addedDependencies.forEach((dependency) =>
+        console.log(`- ${chalk.cyan(`${dependency.name}@${dependency.version}`)}`)
       );
     }
 
     if (upgradedDependencies.length > 0) {
       console.log();
-      console.log(`${chalk.blue('Upgraded dependencies:')}`);
-      upgradedDependencies.forEach(dependency =>
+      console.log(`${chalk.blue("Upgraded dependencies:")}`);
+      upgradedDependencies.forEach((dependency) =>
         console.log(
-          `- ${chalk.yellow(dependency.name)} to ${chalk.green(
-            dependency.newVersion
-          )} from ${chalk.red(dependency.oldVersion)}`
+          `- ${chalk.yellow(dependency.name)} to ${chalk.green(dependency.newVersion)} from ${chalk.red(
+            dependency.oldVersion
+          )}`
         )
       );
     }
 
     if (addedConfig.length > 0) {
       console.log();
-      console.log(`${chalk.blue('Added tooling config:')}`);
-      addedConfig.forEach(config =>
-        console.log(`- ${chalk.cyan(config.name)}`)
-      );
+      console.log(`${chalk.blue("Added tooling config:")}`);
+      addedConfig.forEach((config) => console.log(`- ${chalk.cyan(config.name)}`));
     }
 
     if (upgradedConfig.length > 0) {
       console.log();
-      console.log(`${chalk.blue('Updated tooling config')}`);
-      upgradedConfig.forEach(config =>
-        console.log(`- ${chalk.cyan(config.name)}`)
-      );
+      console.log(`${chalk.blue("Updated tooling config")}`);
+      upgradedConfig.forEach((config) => console.log(`- ${chalk.cyan(config.name)}`));
     }
 
     if (addedJsconfig.length > 0) {
       console.log();
-      console.log(`${chalk.blue('Added jsconfig property')}`);
-      addedJsconfig.forEach(config =>
-        console.log(`- ${chalk.cyan(config.name)}`)
-      );
+      console.log(`${chalk.blue("Added jsconfig property")}`);
+      addedJsconfig.forEach((config) => console.log(`- ${chalk.cyan(config.name)}`));
     }
 
     if (upgradedJsconfig.length > 0) {
       console.log();
-      console.log(`${chalk.blue('Updated jsconfig property')}`);
-      upgradedJsconfig.forEach(config =>
-        console.log(`- ${chalk.cyan(config.name)}`)
-      );
+      console.log(`${chalk.blue("Updated jsconfig property")}`);
+      upgradedJsconfig.forEach((config) => console.log(`- ${chalk.cyan(config.name)}`));
     }
 
     console.log();
 
     // Update dependencies based on what package manager is being used
-    console.log('Installing packages. This might take a couple of minutes.');
+    console.log("Installing packages. This might take a couple of minutes.");
     if (useYarn) {
-      spawn.sync('yarn', ['--cwd', appPath, 'install'], { stdio: 'inherit' });
+      spawn.sync("yarn", ["--cwd", appPath, "install"], { stdio: "inherit" });
     } else {
-      spawn.sync('npm', ['--prefix', appPath, 'install'], { stdio: 'inherit' });
+      spawn.sync("npm", ["--prefix", appPath, "install"], { stdio: "inherit" });
     }
   }
 
@@ -481,10 +426,10 @@ const run = async () => {
   console.log();
 
   const uninstallProc = spawn.sync(command, [remove, bcraTemplateName], {
-    stdio: 'inherit',
+    stdio: "inherit",
   });
   if (uninstallProc.status !== 0) {
-    console.error(`\`${command} ${args.join(' ')}\` failed`);
+    console.error(`\`${command} ${args.join(" ")}\` failed`);
     return;
   }
 };
@@ -497,7 +442,7 @@ function sortObjectKeys(obj) {
   let ordered = {};
   Object.keys(obj)
     .sort()
-    .forEach(key => (ordered[key] = obj[key]));
+    .forEach((key) => (ordered[key] = obj[key]));
   return ordered;
 }
 
@@ -508,9 +453,9 @@ function indexOrEnd(str, q) {
 }
 
 function split(v) {
-  var c = v.replace(/^v/, '').replace(/\+.*$/, '');
-  var patchIndex = indexOrEnd(c, '-');
-  var arr = c.substring(0, patchIndex).split('.');
+  var c = v.replace(/^v/, "").replace(/\+.*$/, "");
+  var patchIndex = indexOrEnd(c, "-");
+  var arr = c.substring(0, patchIndex).split(".");
   arr.push(c.substring(patchIndex + 1));
   return arr;
 }
@@ -535,20 +480,12 @@ function compareVersions(v1, v2) {
   var sp2 = s2[s2.length - 1];
 
   if (sp1 && sp2) {
-    var p1 = sp1.split('.').map(tryParse);
-    var p2 = sp2.split('.').map(tryParse);
+    var p1 = sp1.split(".").map(tryParse);
+    var p2 = sp2.split(".").map(tryParse);
 
     for (i = 0; i < Math.max(p1.length, p2.length); i++) {
-      if (
-        p1[i] === undefined ||
-        (typeof p2[i] === 'string' && typeof p1[i] === 'number')
-      )
-        return -1;
-      if (
-        p2[i] === undefined ||
-        (typeof p1[i] === 'string' && typeof p2[i] === 'number')
-      )
-        return 1;
+      if (p1[i] === undefined || (typeof p2[i] === "string" && typeof p1[i] === "number")) return -1;
+      if (p2[i] === undefined || (typeof p1[i] === "string" && typeof p2[i] === "number")) return 1;
 
       if (p1[i] > p2[i]) return 1;
       if (p2[i] > p1[i]) return -1;
