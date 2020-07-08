@@ -5,7 +5,7 @@
       "analyze": "source-map-explorer server/build/static/js/main.*",
       "apiServer": "json-server -c api/json-server.json --watch api/db.json api/routes.json",
       "build": "react-scripts build",
-      "postbuild": "copyfiles build/**/* server",
+      "postbuild": "copyfiles build/**/*.* server",
       "cm": "git cz",
       "cypress": "cypress open",
       "cypress:run": "$(npm bin)/cypress run --config video=false",
