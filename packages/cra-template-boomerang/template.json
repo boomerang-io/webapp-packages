@@ -85,11 +85,11 @@
         "!**/*.spec.{js,jsx}",
         "!**/assets/**",
         "!**/apiServer/**",
-        "**/src/components/**/*.{js,jsx}",
-        "**/src/features/**/*.{js,jsx}",
-        "**/src/hooks/**/*.{js,jsx}",
-        "**/src/state/**/*.{js,jsx}",
-        "**/src/utils/**/*.{js,jsx}"
+        "**/src/Components/**/*.{js,jsx}",
+        "**/src/Features/**/*.{js,jsx}",
+        "**/src/Hooks/**/*.{js,jsx}",
+        "**/src/State/**/*.{js,jsx}",
+        "**/src/Utils/**/*.{js,jsx}"
       ]
     },
     "commitlint": {
