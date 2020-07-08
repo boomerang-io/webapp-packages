@@ -84,8 +84,8 @@
     "jest": {
       "collectCoverageFrom": [
         "!**/*.spec.{js,jsx}",
-        "!**/assets/**",
-        "!**/apiServer/**",
+        "!**/Assets/**",
+        "!**/ApiServer/**",
         "**/src/Components/**/*.{js,jsx}",
         "**/src/Features/**/*.{js,jsx}",
         "**/src/Hooks/**/*.{js,jsx}",
