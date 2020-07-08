@@ -1,6 +1,6 @@
 # cra-template-boomerang
 
-This is the official base template for the Boomerang fork of [Create React App](https://github.com/facebook/create-react-app).
+This is the official base template for the Boomerang projects for [Create React App](https://github.com/facebook/create-react-app).
 
 If you don't specify this template (for example, `--template cra-template-boomerang`), the default CRA template will be used by default.
 
