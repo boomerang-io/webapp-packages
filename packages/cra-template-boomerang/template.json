@@ -41,6 +41,8 @@
       "react-query": "1.5.8"
     },
     "devDependencies": {
+      "@commitlint/cli": "8.1.0",
+      "@commitlint/config-conventional": "8.1.0",
       "@cypress/webpack-preprocessor": "^5.4.1",
       "@testing-library/cypress": "^6.0.0",
       "@testing-library/jest-dom": "^5.10.1",
