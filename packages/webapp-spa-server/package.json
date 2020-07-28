@@ -1,21 +1,28 @@
 {
   "name": "@boomerang-io/webapp-spa-server",
-  "version": "0.0.4",
   "description": "Webapp Server for React-based SPA w/ client-side routing",
-  "license": "N/A",
-  "repository": "git@github.com:boomerang-io/",
-  "scripts": {
-    "start": "node tester.js",
-    "dev": "nodemon --exec npm run-script start"
+  "version": "0.0.4",
+  "author": {
+    "name": "Tim Bula",
+    "email": "timrbula@gmail.com"
   },
-  "contributors": [
-    {
-      "name": "Tim Bula",
-      "email": "trbula@us.ibm.com"
-    }
-  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:boomerang-io/webapp-packages",
+    "directory": "packages/webapp-spa-server"
+  },
+  "homepage": "https://github.com/boomerang-io/webapp-packages",
+  "bugs": {
+    "url": "https://github.com/boomerang-io/webapp-packages/issues"
+  },
   "bin": {
     "boomerang-webapp-server": "./cli.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec npm run-script start",
+    "start": "node tester.js"
   },
   "dependencies": {
     "@boomerang-io/logger-middleware": "0.0.1",
@@ -33,5 +40,10 @@
   "devDependencies": {
     "nodemon": "1.18.10"
   },
-  "gitHead": "34ccc15c5589fe31ec56bfa634b5d6b736a7b143"
+  "keywords": [
+    "express",
+    "node",
+    "server",
+    "spa"
+  ]
 }

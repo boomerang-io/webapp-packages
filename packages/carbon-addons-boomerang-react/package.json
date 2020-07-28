@@ -1,20 +1,36 @@
 {
-  "name": "@boomerang/carbon-addons-boomerang-react",
+  "name": "@boomerang-io/carbon-addons-boomerang-react",
+  "description": "Carbon Addons for Boomerang apps",
+  "version": "0.0.2",
+  "author": {
+    "name": "Tim Bula",
+    "email": "timrbula@gmail.com"
+  },
+  "license": "Apache-2",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:boomerang-io/webapp-packages",
+    "directory": "packages/carbon-addons-boomerang-react"
+  },
+  "homepage": "https://carbon-addons-boomerang-react.netlify.app",
+  "bugs": {
+    "url": "https://github.com/boomerang-io/webapp-packages/issues"
+  },
   "main": "lib/index.js",
   "module": "es/index.js",
-  "sideEffects": false,
-  "version": "0.0.2",
-  "license": "Apache-2",
   "files": [
     "lib/**/*",
     "es/**/*",
     "umd/**/*",
     "styles/**/*"
   ],
-  "bugs": {
-    "url": "https://github.com/Boomerang-Lib/boomerang.package.carbon-addons-boomerang-react/issues"
-  },
-  "homepage": "https://pages.github.ibm.com/Boomerang-Lib/boomerang.package.carbon-addons-boomerang-react/",
+  "keywords": [
+    "react",
+    "carbon",
+    "components",
+    "boomerang",
+    "storybook"
+  ],
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn build:pre && rollup -c",
     "build:pre": "rimraf lib styles es umd docs",
@@ -31,39 +47,6 @@
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage",
     "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail"
-  },
-  "stylelint": {
-    "extends": "stylelint-config-recommended-scss",
-    "plugins": [
-      "stylelint-scss"
-    ],
-    "ignoreFiles": [
-      "**/*.js"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx}": [
-      "npm run-script lint",
-      "npm run-script test:staged"
-    ],
-    "*.{scss,css}": [
-      "yarn lint:stylelint"
-    ],
-    "*.{scss,css,js,md,jsx,json}": [
-      "yarn format",
-      "git add"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "dependencies": {
     "@carbon/elements": "^10.12.0",
@@ -113,10 +96,10 @@
     "@storybook/addon-options": "^5.3.9",
     "@storybook/addon-storyshots": "^5.3.9",
     "@storybook/addon-storysource": "^5.3.9",
-    "@storybook/theming": "^5.3.18",
     "@storybook/addons": "^5.3.9",
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.9",
+    "@storybook/theming": "^5.3.18",
     "@testing-library/dom": "^6.10.1",
     "@testing-library/jest-dom": "^5.7.0",
     "@testing-library/react": "^9.5.0",
@@ -181,6 +164,40 @@
       "last 1 version",
       "> 1%",
       "ie 11"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "npm run-script lint",
+      "npm run-script test:staged"
+    ],
+    "*.{scss,css}": [
+      "yarn lint:stylelint"
+    ],
+    "*.{scss,css,js,md,jsx,json}": [
+      "yarn format",
+      "git add"
+    ]
+  },
+  "sideEffects": false,
+  "stylelint": {
+    "extends": "stylelint-config-recommended-scss",
+    "plugins": [
+      "stylelint-scss"
+    ],
+    "ignoreFiles": [
+      "**/*.js"
     ]
   }
 }
