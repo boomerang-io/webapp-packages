@@ -97,6 +97,6 @@
     "*.{js,json,css,md}": [
       "prettier --print-width 120 --write"
     ]
-  }
+  },
   "private": true
 }
