@@ -3,19 +3,7 @@
     "module": "commonjs",
     "target": "es2020",
     "allowSyntheticDefaultImports": false,
-    "baseUrl": "./src",
-    "paths": {
-      "ApiServer": ["apiServer/*"],
-      "Assets/*": ["assets/*"],
-      "Components/*": ["components/*"],
-      "Config/*": ["config/*"],
-      "Constants/*": ["constants/*"],
-      "Features/*": ["features/*"],
-      "Hooks/*": ["hooks/*"],
-      "State/*": ["state/*"],
-      "Styles/*": ["styles/*"],
-      "Utils/*": ["utils/*"]
-    }
+    "baseUrl": "./src"
   },
   "exclude": ["dist", "node_modules", "public", "server"]
 }

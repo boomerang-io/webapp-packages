@@ -63,7 +63,28 @@ export const BASE_SERVICE_STATUS_URL = determineUrl(
   '/status'
 );
 
-export const RequestStatuses = {
-  Failure: 'failure',
-  Success: 'success',
+export const serviceUrl = { 
+  resourceUserProfile: () => `${BASE_SERVICE_USERS_URL}/profile`,
+  resourceNavigation: () => `${BASE_SERVICE_USERS_URL}/navigation`,
+}
+
+export const cancellableResolver = ({ url, method, body, ...config }) => {
+  // Create a new CancelToken source for this request
+  const source = CancelToken.source();
+  const promise = axios({
+    ...config,
+    method,
+    url,
+    data: body,
+    cancelToken: source.token,
+  });
+  return { promise, cancel: () => source.cancel("cancel") };
 };
+
+export const resolver = {
+  query: (url) => () => axios.get(url).then((response) => response.data),
+  postMutation: (request) => axios.post(request),
+  patchMutation: (request) => axios.patch(request),
+  putMutation: (request) => axios.put(request) 
+}
+
