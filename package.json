@@ -98,4 +98,5 @@
       "prettier --print-width 120 --write"
     ]
   }
+  "private": true
 }
