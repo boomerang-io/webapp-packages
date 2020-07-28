@@ -1,31 +1,33 @@
 {
   "name": "@boomerang-io/cra-template-boomerang",
-  "version": "0.0.2",
-  "keywords": [
-    "react",
-    "create-react-app",
-    "template",
-    "boomerang"
-  ],
   "description": "The Boomerang template for Create React App.",
-  "main": "template.json",
-  "repository": {
-    "type": "git",
-    "url": "https://github.ibm.com/Boomerang-Lib/boomerang.package.create-react-app.git",
-    "directory": "packages/bcra-template"
+  "version": "0.0.2",
+  "author": {
+    "name": "Tim Bula",
+    "email": "timrbula@gmail.com"
   },
-  "license": "MIT",
+  "license": "Apache-2",
   "engines": {
     "node": ">=10"
   },
-  "bugs": {
-    "url": "https://github.ibm.com/Boomerang-Lib/boomerang.package.create-react-app/issues"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:boomerang-io/webapp-packages",
+    "directory": "packages/cra-template-boomerang"
   },
+  "homepage": "https://github.com/boomerang-io/webapp-packages",
+  "bugs": {
+    "url": "https://github.com/boomerang-io/webapp-packages/issues"
+  },
+  "main": "template.json",
   "files": [
     "template",
     "template.json"
   ],
-  "publishConfig": {
-    "registry": "https://tools.boomerangplatform.net/artifactory/api/npm/boomeranglib-npm/"
-  }
+  "keywords": [
+    "boomerang",
+    "create-react-app",
+    "react",
+    "template"
+  ]
 }

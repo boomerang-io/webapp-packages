@@ -1,46 +1,42 @@
 {
   "name": "@boomerang-io/styles",
+  "description": "Reset, colors, variables and other styles for Boomerang web apps",
   "version": "0.0.2",
-  "main": "./lib/boomerang.scss",
-  "license": "UNLICENSED",
   "author": {
     "name": "Tim Bula",
-    "email": "trbula@us.ibm.com"
+    "email": "timrbula@gmail.com"
   },
-  "contributors": [
-    {
-      "name": "Tim Bula",
-      "email": "trbula@us.ibm.com"
-    },
-    {
-      "name": "Isabela Kawabata",
-      "email": "isakawa@br.ibm.com"
-    },
-    {
-      "name": "Lucas Grimauth",
-      "email": "lgevan@br.ibm.com"
-    }
-  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:boomerang-io/webapp-packages",
+    "directory": "packages/styles"
+  },
+  "homepage": "https://github.com/boomerang-io/webapp-packages",
+  "bugs": {
+    "url": "https://github.com/boomerang-io/webapp-packages/issues"
+  },
+  "main": "./lib/boomerang.scss",
   "files": [
     "lib"
   ],
-  "keywords": [
-    "scss"
-  ],
   "scripts": {
-    "build-scss": "cpx \"./src/**/*.scss\" ./lib",
-    "remove-lib": "npx rimraf ./lib",
-    "prebuild": "npm run remove-lib",
     "build": "npm-run-all build-scss",
-    "prepare": "npm run build"
-  },
-  "devDependencies": {
-    "cpx": "1.5.0",
-    "npm-run-all": "^4.1.1"
+    "build-scss": "cpx \"./src/**/*.scss\" ./lib",
+    "prebuild": "npm run remove-lib",
+    "prepare": "npm run build",
+    "remove-lib": "npx rimraf ./lib"
   },
   "dependencies": {
     "ibm-design-colors": "^2.0.4",
     "normalize-scss": "^7.0.1",
     "rimraf": "^2.6.2"
-  }
+  },
+  "devDependencies": {
+    "cpx": "1.5.0",
+    "npm-run-all": "^4.1.1"
+  },
+  "keywords": [
+    "scss"
+  ]
 }

@@ -8,9 +8,7 @@
     "publish": {
       "conventionalCommits": true,
       "message": "chore(release): release packages",
-      "registry": "https://tools.boomerangplatform.net/artifactory/api/npm/boomeranglib-npm/",
-      "verifyAccess": false,
-      "gitRemote": "origin"
+      "verifyAccess": false
     }
   }
 }

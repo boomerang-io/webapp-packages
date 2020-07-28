@@ -1,37 +1,27 @@
 {
   "name": "@boomerang-io/logger-middleware",
-  "version": "0.0.1",
   "description": "Boomerang logging middleware for logging consistently on the Boomerang platform",
-  "main": "src/index.js",
-  "engines": {
-    "node": ">=8"
+  "version": "0.0.1",
+  "author": {
+    "name": "Tim Bula",
+    "email": "timrbula@gmail.com"
   },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:boomerang-io/webapp-packages",
+    "directory": "packages/logger-middleware"
+  },
+  "homepage": "https://github.com/boomerang-io/webapp-packages",
+  "bugs": {
+    "url": "https://github.com/boomerang-io/webapp-packages/issues"
+  },
+  "main": "src/index.js",
   "scripts": {
     "precommit": "lint-staged",
     "test": "jest",
     "test:watch": "nodemon --exec npm test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.ibm.com:Boomerang/boomerang.nodejs.logging.git"
-  },
-  "author": "Boomerang Engineering",
-  "contributors": [
-    {
-      "name": "Tim Bula",
-      "email": "trbula@us.ibm.com"
-    }
-  ],
-  "publishConfig": {
-    "registry": "https://tools.boomerangplatform.net/artifactory/api/npm/boomeranglib-npm/"
-  },
-  "keywords": [
-    "boomerang",
-    "node",
-    "middleware",
-    "log4js",
-    "logging"
-  ],
   "dependencies": {
     "app-root-path": "3.0.0",
     "log4js": "^6.1.2"
@@ -45,6 +35,13 @@
     "prettier": "^2.0.0",
     "supertest": "^4.0.0"
   },
+  "keywords": [
+    "boomerang",
+    "log4js",
+    "logging",
+    "middleware",
+    "node"
+  ],
   "lint-staged": {
     "*.{js,json,css,md}": [
       "prettier --write",
@@ -53,5 +50,8 @@
     "src/**/*.{js,jsx}": [
       "npm run-script test"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://tools.boomerangplatform.net/artifactory/api/npm/boomeranglib-npm/"
   }
 }

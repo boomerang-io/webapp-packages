@@ -1,8 +1,27 @@
 {
   "name": "@boomerang-io/farmer",
   "description": "Frontend App Repo ManagER",
-  "repository": "git@github.ibm.com:Boomerang-Lib/boomerang.carbon.utilities.git",
   "version": "0.0.1",
+  "author": {
+    "name": "Tim Bula",
+    "email": "timrbula@gmail.com"
+  },
+  "license": "Apache-2",
+  "engines": {
+    "node": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:boomerang-io/webapp-packages",
+    "directory": "packages/farmer"
+  },
+  "homepage": "https://github.com/boomerang-io/webapp-packages",
+  "bugs": {
+    "url": "https://github.com/boomerang-io/webapp-packages/issues"
+  },
+  "bin": {
+    "farmer": "./index.js"
+  },
   "dependencies": {
     "bluebird": "^3.5.2",
     "chalk": "^2.4.1",
@@ -11,8 +30,9 @@
     "minimist": "^1.2.0",
     "simple-git": "^1.121.0"
   },
-  "bin": {
-    "farmer": "./index.js"
-  },
-  "gitHead": "34ccc15c5589fe31ec56bfa634b5d6b736a7b143"
+  "keywords": [
+    "javascript",
+    "cli",
+    "tooling"
+  ]
 }

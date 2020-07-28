@@ -1,15 +1,18 @@
 {
-  "name": "boomerang.carbon.utilities",
+  "name": "webapp-packages",
   "version": "0.0.0",
-  "repository": "git@github.ibm.com:Boomerang-Lib/boomerang.carbon.utilities.git",
+  "description": "Monorepo for Boomerang webapp packages",
   "author": "Timothy Bula <timrbula@gmail.com>",
-  "private": true,
   "license": "MIT",
+  "repository": "git@github.com:boomerang-io/webapp-packages.git",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "changed": "lerna changed",
-    "release": "lerna publish",
     "lint": "eslint packages",
     "prettier": "prettier --write \"**/*.{js,json,md,yml}\"",
+    "release": "lerna publish",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
@@ -18,42 +21,16 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
-    "body-parser": "^1.19.0",
     "chalk": "^4.0.0",
-    "compression": "^1.7.4",
-    "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "eslint": "^7.1.0",
-    "express": "^4.17.1",
-    "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lerna": "^3.22.0",
     "lerna-changelog": "^1.0.1",
     "lodash": "^4.17.15",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.5",
-    "rimraf": "^3.0.2",
-    "webpack": "^4.43.0",
-    "yargs": "^15.3.1"
-  },
-  "publishConfig": {
-    "registry": "https://tools.boomerangplatform.net/artifactory/api/npm/boomeranglib-npm/"
-  },
-  "workspaces": [
-    "packages/*"
-  ],
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": "eslint packages --fix",
-    "*.{js,json,css,md}": [
-      "prettier --print-width 120 --write"
-    ]
+    "prettier": "^2.0.5"
   },
   "commitlint": {
     "extends": [
@@ -78,15 +55,6 @@
       ]
     }
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "packages/**/*.{js}",
-      "!**/node_modules/**"
-    ],
-    "roots": [
-      "packages/"
-    ]
-  },
   "eslintConfig": {
     "globals": {
       "Atomics": "readonly",
@@ -108,5 +76,26 @@
     "rules": {
       "no-process-exit": "off"
     }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "packages/**/*.{js}",
+      "!**/node_modules/**"
+    ],
+    "roots": [
+      "packages/"
+    ]
+  },
+  "lint-staged": {
+    "*.js": "eslint packages --fix",
+    "*.{js,json,css,md}": [
+      "prettier --print-width 120 --write"
+    ]
   }
 }
