@@ -1,6 +1,6 @@
-# Carbon Addons Boomerang React
+# Carbon Addons Boomerang React [![Netlify Status](https://api.netlify.com/api/v1/badges/ebf40744-c9a5-4c91-a43d-e885b7e2da88/deploy-status)](https://app.netlify.com/sites/carbon-addons-boomerang-react/deploys)
 
-[Carbon](https://www.carbondesignsystem.com/) addon components for Boomerang written in React
+[Carbon](https://www.carbondesignsystem.com/) addon components for Boomerang written in React. View the [Storybook](https://carbon-addons-boomerang-react.netlify.app/).
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ yarn add @boomerang/carbon-addons-boomerang-react
 
 ## 3.0 Release
 
-As of version 3.0, the team has decided to make major changes to our boomerang carbon add-ons. We have decided to follow a design change that is similar to that of the IOT team. With version 3.0, the styles and react components will be included in one package `@boomerang/carbon-addons-boomerang-react`. Also for added ease, we will now export our custom components along with the unmodified components from carbon-components-react.
+As of version 3.0, the team has decided to make major changes to our boomerang carbon add-ons. We have decided to follow a design change that is similar to that of the IOT team. With version 3.0, the styles and react components will be included in one package `@boomerang-io/carbon-addons-boomerang-react`. Also for added ease, we will now export our custom components along with the unmodified components from carbon-components-react.
 
 - add ES Modules, CommonJS and UMD module formats to support wider range of component use cases
 - include component styles with components to improve authoring and consuming DX
@@ -70,7 +70,7 @@ We use [react-toastify](https://github.com/fkhadra/react-toastify) to create not
 
 ## 📚 Docs
 
-You can find more information about how to use each Component by checking out our [Storybook](https://pages.github.ibm.com/Boomerang-Lib/boomerang.package.carbon-addons-boomerang-react).
+You can find more information about how to use each Component by checking out our [Storybook](https://carbon-addons-boomerang-react.netlify.app/).
 
 ## 🤲 Contributing
 
