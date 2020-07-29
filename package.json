@@ -10,10 +10,7 @@
   ],
   "scripts": {
     "changed": "lerna changed",
-    "format": "lerna run format",
-    "lint": "lerna run lint",
-    "release": "lerna publish",
-    "test": "lerna run test"
+    "release": "lerna publish"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",
@@ -56,21 +53,6 @@
     "hooks": {
       "pre-commit": "lerna run --concurrency 1 --stream precommit --since HEAD --exclude-dependents"
     }
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "packages/**/*.{js}",
-      "!**/node_modules/**"
-    ],
-    "roots": [
-      "packages/"
-    ]
-  },
-  "lint-staged": {
-    "*.js": "eslint packages --fix",
-    "*.{js,json,css,md}": [
-      "prettier --print-width 120 --write"
-    ]
   },
   "private": true
 }
