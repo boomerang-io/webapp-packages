@@ -4,8 +4,11 @@ import cx from 'classnames';
 import { settings } from 'carbon-components';
 import { Button } from 'carbon-components-react';
 import {
+  ArrowUpRight16,
   Chat16,
   Debug20,
+  Forum16,
+  HelpDesk16,
   Group20,
   Information16,
   Launch16,
@@ -28,6 +31,8 @@ const iconMapping = {
   information: <Information16 fill={iconFill} className={iconClassName} />,
   locked: <Locked16 fill={iconFill} className={iconClassName} />,
   launch: <Launch16 fill={iconFill} className={iconClassName} />,
+  support: <HelpDesk16 fill={iconFill} className={iconClassName} />,
+  forum: <Forum16 fill={iconFill} className={iconClassName} />,
 };
 
 HeaderMenuLink.propTypes = {
@@ -59,6 +64,8 @@ HeaderMenuLink.propTypes = {
     'information',
     'locked',
     'launch',
+    'forum',
+    'support',
   ]),
   /**
    *
@@ -89,7 +96,14 @@ function HeaderMenuLink({ className, href, iconName, style, text, ...rest }) {
       <Button className={`${prefix}--bmrg-header-menu-item`} href={href} role="link" {...rest}>
         <div className={`${prefix}--bmrg-header-menu-item__content`}>
           <div className={`${prefix}--bmrg-header-menu-item__img`}>{iconMapping[iconName]}</div>
-          <h1 className={`${prefix}--bmrg-header-menu-item__text`}>{text}</h1>
+          <span className={`${prefix}--bmrg-header-menu-item__text`}>
+            {text}
+            <ArrowUpRight16
+              fill={iconFill}
+              className={iconClassName}
+              style={{ height: '0.75rem' }}
+            />
+          </span>
         </div>
       </Button>
     </div>

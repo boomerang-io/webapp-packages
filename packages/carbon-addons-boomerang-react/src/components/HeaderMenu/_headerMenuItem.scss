@@ -38,7 +38,9 @@
   }
 
   .#{$prefix}--bmrg-header-menu-item__text {
+    align-items: center;
     color: $bmrg-secondary-color;
+    display: flex;
     font-size: rem(14px);
     font-weight: 500;
     line-height: rem(18px);

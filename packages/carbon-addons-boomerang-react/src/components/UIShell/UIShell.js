@@ -135,7 +135,14 @@ function UIShell({
             <ReportBug baseServiceUrl={baseServiceUrl} key="Report Bug" />
           ),
           baseServiceUrl && features && features['support.enabled'] && (
-            <HeaderMenuLink href={`${baseLaunchEnvUrl}/launchpad/support`} text="Support Center" />
+            <HeaderMenuLink
+              href={`${baseLaunchEnvUrl}/launchpad/support`}
+              iconName="support"
+              text="Support Center"
+            />
+          ),
+          platform && platform.communityUrl && (
+            <HeaderMenuLink href={platform.communityUrl} iconName="forum" text="Community" />
           ),
         ].filter(Boolean)}
         profileChildren={[
@@ -156,7 +163,9 @@ function UIShell({
           baseServiceUrl && (
             <PrivacyStatement key="Privacy Statement" baseServiceUrl={baseServiceUrl} />
           ),
-          platform && <SignOut signOutLink={platform.signOutUrl} key="Sign Out" />,
+          platform && platform.signOutUrl && (
+            <SignOut signOutLink={platform.signOutUrl} key="Sign Out" />
+          ),
         ].filter(Boolean)}
         renderRightPanel={renderRightPanel}
         skipToContentProps={skipToContentProps}

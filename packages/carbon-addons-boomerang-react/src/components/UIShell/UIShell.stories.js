@@ -57,7 +57,8 @@ storiesOf('UIShell', module)
           platform: {
             name: text('platform.name', 'IBM Boomerang Platform'),
             version: text('platform.version', '5.0.0'),
-            signOutUrl: 'ibm.com',
+            signOutUrl: 'https://ibm.com',
+            communityUrl: 'https://developer.ibm.com',
           },
         }}
         onTutorialClick={action('Tutorial')}
@@ -102,6 +103,7 @@ storiesOf('UIShell', module)
             name: text('platform.name', 'IBM Boomerang Platform'),
             version: text('platform.version', '5.0.0'),
             signOutUrl: 'ibm.com',
+            communityUrl: 'https://developer.ibm.com',
           },
         }}
         onTutorialClick={action('Tutorial')}
@@ -147,6 +149,7 @@ storiesOf('UIShell', module)
             name: text('platform.name', 'IBM Boomerang Platform'),
             version: text('platform.version', '5.0.0'),
             signOutUrl: 'ibm.com',
+            communityUrl: 'https://developer.ibm.com',
           },
         }}
         onTutorialClick={action('Tutorial')}
@@ -191,6 +194,7 @@ storiesOf('UIShell', module)
               name: text('platform.name', 'IBM Boomerang Platform'),
               version: text('platform.version', '5.0.0'),
               signOutUrl: 'ibm.com',
+              communityUrl: 'https://developer.ibm.com',
             },
           }}
           renderSidenav={({ isOpen }) => (
@@ -259,6 +263,7 @@ storiesOf('UIShell', module)
             name: text('platform.name', 'IBM Boomerang Platform'),
             version: text('platform.version', '5.0.0'),
             signOutUrl: 'ibm.com',
+            communityUrl: 'https://developer.ibm.com',
           },
         }}
         onTutorialClick={action('Tutorial')}
