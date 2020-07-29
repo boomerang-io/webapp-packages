@@ -17,6 +17,7 @@ function getUserPermissionList({ platformRole, teamRoles }) {
   }
 
   // add team role permissions
+  // eslint-disable-next-line no-unused-vars
   for (let role of teamRoles) {
     const roleRermissionList = featurePermissionsMap[TeamRoles[role]];
     if (Array.isArray(roleRermissionList)) {

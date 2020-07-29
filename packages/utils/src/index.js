@@ -10,7 +10,7 @@ export { default as thunkRequestFactory } from "./thunkRequestFactory";
 
 // export hooks
 export { default as useCountdown } from "./hooks/useCountdown";
-export { default as userInterval } from "./hooks/userInterval";
+export { default as useInterval } from "./hooks/useInterval";
 export { default as useIsModalOpen } from "./hooks/useIsModalOpen";
 export { default as useMutationObserver } from "./hooks/useMutationObserver";
 export { default as useParseQueryString } from "./hooks/useParseQueryString";

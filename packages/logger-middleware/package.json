@@ -28,8 +28,6 @@
   },
   "devDependencies": {
     "express": "^4.16.3",
-    "husky": "^4.2.5",
-    "jest": "^25.3.0",
     "lint-staged": "^10.0.0",
     "nodemon": "^2.0.0",
     "prettier": "^2.0.0",
