@@ -19,12 +19,12 @@ import axios from "axios";
  *	failure: fetchAppsOverviewFailure
  * };
  *
- * const fetchApi = requestGenerator(fetchActionCreators);
+ * const fetchApi = requestFactory(fetchActionCreators);
  * const fetchAppsOverview = url => dispatch => dispatch(fetchApi.request({ method: "get", url }));
  * // fecthAppsOverview is called with param url and dispatch the fetchApi method request with the url
  * const cancelFetchAppsOverview = () => dispatch => dispatch(fecthApi.cancelRequest());
  */
-const requestGenerator = actions => {
+const thunkRequestFactory = actions => {
   const CancelToken = axios.CancelToken;
   let cancel;
 
@@ -65,4 +65,4 @@ const requestGenerator = actions => {
   };
 };
 
-export default requestGenerator;
+export default thunkRequestFactory;
