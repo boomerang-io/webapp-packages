@@ -50,7 +50,7 @@
 
     &[disabled] {
       cursor: initial;
-      opacity: 0.3;
+      opacity: 0.5;
     }
     &:focus {
       @include focus-outline($bmrg-secondary-color);
@@ -205,6 +205,7 @@
     color: $bmrg-secondary-color;
     font-size: 0.875rem;
     text-align: center;
+    text-decoration: none;
     width: 100%;
     &:focus {
       @include focus-outline($bmrg-secondary-color);

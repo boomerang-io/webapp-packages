@@ -143,10 +143,6 @@ $breakpoints: (
     text-decoration: none;
     transition: all $carbon-motion--timing--productive $carbon-motion--easing--productive;
 
-    &:hover {
-      text-decoration: underline !important;
-    }
-
     &.--is-active {
       background: $bmrg-header-active-background-color;
       color: $bmrg-header-active-text-color;
