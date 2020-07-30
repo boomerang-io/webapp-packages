@@ -428,7 +428,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     a.#{$prefix}--side-nav__link:not(.#{$prefix}--side-nav__link--current):not([aria-current='page']):hover,
   .#{$prefix}--side-nav a.#{$prefix}--header__menu-item:hover,
   .#{$prefix}--side-nav .#{$prefix}--header__menu-title[aria-expanded='true']:hover {
-    color: $bmrg-secondary-color;
+    color: $bmrg-header-active-text-color;
     // TODO: sync color
     background-color: $shell-side-nav-bg-04;
   }
@@ -440,7 +440,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     .#{$prefix}--side-nav__menu-item
     > .#{$prefix}--side-nav__link:hover
     > span {
-    color: $bmrg-secondary-color;
+    color: $bmrg-header-active-text-color;
   }
 
   .#{$prefix}--side-nav__item--large {
@@ -467,7 +467,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   }
 
   .#{$prefix}--side-nav__submenu:hover {
-    color: $bmrg-secondary-color;
+    color: $bmrg-header-active-text-color;
     background-color: $shell-side-nav-bg-04;
   }
 
@@ -503,7 +503,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   }
 
   .#{$prefix}--side-nav__item--active .#{$prefix}--side-nav__submenu:hover {
-    color: $bmrg-secondary-color;
+    color: $bmrg-header-active-text-color;
     background-color: $shell-side-nav-bg-04;
   }
 
@@ -523,7 +523,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   }
 
   .#{$prefix}--side-nav__item--active .#{$prefix}--side-nav__submenu-title {
-    color: $bmrg-secondary-color;
+    color: $bmrg-header-active-text-color;
     font-weight: 600;
   }
 

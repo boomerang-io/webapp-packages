@@ -51,7 +51,7 @@ $breakpoints: (
         outline: none;
         padding: 0 1rem;
         background-color: $bmrg-header-nav-color;
-        border: rem(4px) solid $bmrg-secondary-color;
+        border: rem(2px) solid $bmrg-header-active-text-color;
       }
     }
   }
@@ -132,7 +132,7 @@ $breakpoints: (
 
   .#{$prefix}--bmrg-header-list__link {
     align-items: center;
-    border: rem(1px) solid transparent;
+    border: rem(2px) solid transparent;
     color: $bmrg-secondary-color;
     display: flex;
     font-size: rem(14px);
@@ -141,6 +141,11 @@ $breakpoints: (
     padding: 0 rem(14px);
     text-decoration: none;
     transition: all $carbon-motion--timing--productive $carbon-motion--easing--productive;
+
+    &:hover {
+      background-color: $bmrg-header-hover-background-color;
+      color: $bmrg-header-active-text-color;
+    }
 
     &.--is-active {
       box-shadow: inset 0px -3px 0px 0px $bmrg-header-active-background-color;
@@ -151,8 +156,7 @@ $breakpoints: (
       }
     }
     &:focus {
-      border: rem(1px) solid $bmrg-secondary-color;
-      color: $bmrg-header-active-text-color;
+      border: rem(2px) solid $bmrg-header-active-text-color;
       outline: 0;
 
       &:active {
@@ -163,14 +167,14 @@ $breakpoints: (
 
   .#{$prefix}--bmrg-header-list__btn {
     align-items: center;
-    border: rem(1px) solid transparent;
+    border: rem(2px) solid transparent;
     cursor: pointer;
     display: flex;
     height: 100%;
     padding: rem(14px);
     transition: all $carbon-motion--timing--productive $carbon-motion--easing--productive;
     &:focus {
-      border: rem(1px) solid $bmrg-secondary-color;
+      border: rem(2px) solid $bmrg-header-active-text-color;
       outline: none;
     }
 
@@ -180,20 +184,17 @@ $breakpoints: (
       width: rem(20px);
     }
 
-    &:focus {
+    &:hover {
+      background-color: $bmrg-header-hover-background-color;
+      border: rem(2px) solid $bmrg-header-hover-background-color;
       svg {
         fill: $bmrg-header-active-text-color;
       }
     }
 
-    &:hover {
-      background-color: $bmrg-header-hover-background-color;
-      border: rem(1px) solid $bmrg-header-hover-background-color;
-    }
-
     &[aria-expanded='true'] {
       background: $bmrg-header-menu-options-accent-color;
-      border: rem(1px) solid $bmrg-header-menu-options-accent-color;
+      border: rem(2px) solid $bmrg-header-menu-options-accent-color;
       svg {
         fill: $bmrg-header-hover-background-color;
       }

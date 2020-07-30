@@ -7,20 +7,21 @@
     border-radius: 0;
     cursor: pointer;
     padding: 0;
+    outline: 2px solid transparent;
+    outline-offset: -2px;
 
     &:hover {
       background: $bmrg-header-hover-background-color;
-      border: rem(1px) solid $bmrg-header-hover-background-color;
+      span {
+        color: $bmrg-header-active-text-color;
+      }
     }
     &:active {
-      background-color: $bmrg-header-menu-options-active-background-color;
-      border: none;
-      outline: none;
+      background: $bmrg-header-hover-background-color;
     }
 
     &:focus {
-      background-color: $bmrg-tertiary-color;
-      border: rem(1px) solid $bmrg-secondary-color !important;
+      outline: rem(2px) solid $bmrg-header-active-text-color !important;
       box-shadow: none;
     }
   }
