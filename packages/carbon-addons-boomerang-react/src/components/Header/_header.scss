@@ -135,30 +135,27 @@ $breakpoints: (
     border: rem(1px) solid transparent;
     color: $bmrg-secondary-color;
     display: flex;
-    font-size: rem(13px);
-    font-weight: 500;
+    font-size: rem(14px);
     height: 100%;
-    line-height: rem(17px);
+    line-height: rem(18px);
     padding: 0 rem(14px);
     text-decoration: none;
     transition: all $carbon-motion--timing--productive $carbon-motion--easing--productive;
 
     &.--is-active {
-      background: $bmrg-header-active-background-color;
+      box-shadow: inset 0px -3px 0px 0px $bmrg-header-active-background-color;
       color: $bmrg-header-active-text-color;
       &:hover,
       &:focus {
-        background: $bmrg-header-active-background-color;
         color: $bmrg-header-active-text-color;
       }
     }
     &:focus {
       border: rem(1px) solid $bmrg-secondary-color;
-      color: $bmrg-secondary-color;
+      color: $bmrg-header-active-text-color;
       outline: 0;
 
       &:active {
-        background: $bmrg-header-active-background-color;
         color: $bmrg-header-active-text-color;
       }
     }
@@ -179,6 +176,8 @@ $breakpoints: (
 
     svg {
       fill: $bmrg-secondary-color;
+      height: rem(20px);
+      width: rem(20px);
     }
 
     &:hover {
