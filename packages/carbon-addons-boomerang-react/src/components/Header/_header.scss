@@ -180,6 +180,12 @@ $breakpoints: (
       width: rem(20px);
     }
 
+    &:focus {
+      svg {
+        fill: $bmrg-header-active-text-color;
+      }
+    }
+
     &:hover {
       background-color: $bmrg-header-hover-background-color;
       border: rem(1px) solid $bmrg-header-hover-background-color;
@@ -289,7 +295,7 @@ $breakpoints: (
     margin-right: 1.3rem;
 
     svg {
-      fill: $bmrg-secondary-color;
+      fill: $bmrg-header-active-text-color;
     }
 
     .bar1 {
