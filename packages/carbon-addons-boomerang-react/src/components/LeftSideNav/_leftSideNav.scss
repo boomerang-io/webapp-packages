@@ -156,9 +156,9 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     transition: all $carbon-motion--timing--productive $carbon-motion--easing--productive;
 
     &:focus {
-      border-bottom: rem(2px) solid $bmrg-secondary-color;
-      border-right: rem(2px) solid $bmrg-secondary-color;
-      border-top: rem(2px) solid $bmrg-secondary-color;
+      border-bottom: rem(2px) solid $bmrg-accent-color;
+      border-right: rem(2px) solid $bmrg-accent-color;
+      border-top: rem(2px) solid $bmrg-accent-color;
       outline: 0;
     }
   }
