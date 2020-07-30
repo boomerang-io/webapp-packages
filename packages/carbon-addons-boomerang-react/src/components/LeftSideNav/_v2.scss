@@ -1,12 +1,11 @@
-/* stylelint-disable */
+//
+// Copyright IBM Corp. 2016, 2018
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
 
-/// Get a `rem` value based for a number of mini-units.
-/// @param {Number} $count
-/// @returns {Number} In rem
-/// @group ui-shell
-@function mini-units($count) {
-  @return 0.5rem * $count;
-}
+@import '../../globals/scss/colors';
 
 //----------------------------------------------------------------------------
 // Header tokens
@@ -15,13 +14,140 @@
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-header-bg-01: $carbon--gray-100 !default;
+$shell-header-bg-01: $carbon--gray-100;
+
+/// Header menu trigger hover, Header nav link hover
+/// @type Color
+/// @access private
+/// @group ui-shell
+/// TODO needs color var gray-100-hover
+$shell-header-bg-02: #2c2c2c;
+
+/// Header action active background
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-bg-03: $carbon--gray-80;
+
+/// Header submenu link hover
+/// @type Color
+/// @access private
+/// @group ui-shell
+/// TODO needs color var gray-90-hover
+$shell-header-bg-04: #353535;
+
+/// Header nav link active and focus background
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-bg-05: $carbon--gray-70;
+
+/// Header nav link submenu
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-bg-06: $carbon--gray-90;
+
+/// Header border bottom
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-border-01: $carbon--gray-80;
+
+/// Header focus
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-focus: $carbon--white-0;
 
 /// Primary text in header, Title text
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-header-text-01: $bmrg-secondary-color !default;
+$shell-header-text-01: $carbon--gray-10;
+
+/// Secondary text in header, Menu item nav text
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-text-02: $carbon--gray-30;
+
+/// Header menu trigger
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-icon-01: $carbon--gray-10;
+
+/// Header bar icons
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-icon-02: $carbon--white-0;
+
+/// Header bar icons
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-icon-03: $carbon--gray-30;
+
+/// Item link
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-header-link: $carbon--blue-60;
+
+//----------------------------------------------------------------------------
+// Header Panel tokens
+//----------------------------------------------------------------------------
+
+/// Header-panel background
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-panel-bg-01: $carbon--gray-100;
+
+/// Panel item hover background
+/// @type Color
+/// @access private
+/// @group ui-shell
+/// TODO needs color var gray-100-hover
+$shell-panel-bg-02: #2c2c2c;
+
+/// Panel item focus and active background
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-panel-bg-03: $carbon--gray-80;
+
+/// Panel item link selected background
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-panel-bg-04: $carbon--gray-90;
+
+/// Panel border
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-panel-border: $carbon--gray-80;
+
+/// Header panel text
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-panel-text-01: $carbon--gray-30;
+
+/// Header panel secondary text
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-panel-text-02: $carbon--gray-10;
+
+/// Header panel focus border
+/// @type Color
+/// @access private
+/// @group ui-shell
+$shell-panel-focus: $carbon--white-0;
 
 //----------------------------------------------------------------------------
 // Side nav tokens
@@ -30,7 +156,7 @@ $shell-header-text-01: $bmrg-secondary-color !default;
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-bg-01: $bmrg-primary-color !default;
+$shell-side-nav-bg-01: $carbon--white-0;
 
 /// Selected category background
 /// Select L2 flatted item background
@@ -39,24 +165,29 @@ $shell-side-nav-bg-01: $bmrg-primary-color !default;
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-bg-02: $bmrg-header-active-background-color !default;
+/// TODO waiting for updated color
+$shell-side-nav-bg-02: $carbon--gray-80;
 
 /// Selected L2 nested item
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-bg-03: $bmrg-secondary-color !default;
+/// TODO waiting for updated color
+$shell-side-nav-bg-03: $ibm-color__gray-70;
 
 /// Side nav item hover background
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-bg-04: $bmrg-header-hover-background-color !default;
+/// TODO needs color var gray-90-hover
+$shell-side-nav-bg-04: #e5e5e5;
+
 /// Side nav menu item hover background
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-bg-05: $bmrg-primary-color !default;
+/// TODO needs color var gray-80-hover
+$shell-side-nav-bg-05: #dcdcdc;
 
 /// Primary text in side-nav
 /// L2 Flatten item text
@@ -65,26 +196,27 @@ $shell-side-nav-bg-05: $bmrg-primary-color !default;
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-text-01: $bmrg-secondary-color !default;
+/// TODO waiting for updated color
+$shell-side-nav-text-01: $ibm-color__gray-70;
 
 /// Secondary text in side nav
 /// L2 Category label
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-text-02: $ibm-color__gray-30 !default;
+$shell-side-nav-text-02: $ibm-color__gray-30;
 
 /// Side-nav icon color
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-icon-01: $bmrg-secondary-color !default;
+$shell-side-nav-icon-01: $ibm-color__gray-70;
 
 /// Item highlight bar
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-accent-01: $bmrg-secondary-color !default;
+$shell-side-nav-accent-01: $ibm-color__blue-60;
 
 /// Helper to add in text overflow styles to a particular node. Useful if we
 /// don't want to have display-inline: block from the text helper classes
@@ -137,32 +269,10 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
 /// UI shell side nav
 /// @access private
 /// @group ui-shell
-@mixin leftSideNav {
+@mixin carbon-side-nav {
   //----------------------------------------------------------------------------
   // Side-nav > Panel
   //----------------------------------------------------------------------------.
-
-  // Custom styles
-  .#{$prefix}--bmrg-left-side-nav-container {
-    position: fixed;
-    left: 0;
-    top: 3rem;
-    height: 100%;
-    width: mini-units(32);
-    background-color: $bmrg-primary-color;
-    border-bottom: rem(2px) solid transparent;
-    border-right: rem(2px) solid transparent;
-    border-top: rem(2px) solid transparent;
-    transition: all $carbon-motion--timing--productive $carbon-motion--easing--productive;
-
-    &:focus {
-      border-bottom: rem(2px) solid $bmrg-secondary-color;
-      border-right: rem(2px) solid $bmrg-secondary-color;
-      border-top: rem(2px) solid $bmrg-secondary-color;
-      outline: 0;
-    }
-  }
-
   .#{$prefix}--side-nav {
     position: fixed;
     top: 0;
@@ -181,7 +291,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   }
 
   .#{$prefix}--side-nav--ux {
-    //top: $spacing-09;
+    top: $spacing-09;
     width: mini-units(32);
 
     @include carbon--breakpoint-down('lg') {
@@ -357,7 +467,6 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
 
   .#{$prefix}--side-nav__select:focus {
     @include focus-outline('outline');
-    outline-color: $bmrg-accent-color;
   }
 
   //----------------------------------------------------------------------------
@@ -381,7 +490,6 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
 
   .#{$prefix}--side-nav__toggle:focus {
     @include focus-outline('outline');
-    outline-color: $bmrg-accent-color;
   }
 
   //----------------------------------------------------------------------------
@@ -428,7 +536,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     a.#{$prefix}--side-nav__link:not(.#{$prefix}--side-nav__link--current):not([aria-current='page']):hover,
   .#{$prefix}--side-nav a.#{$prefix}--header__menu-item:hover,
   .#{$prefix}--side-nav .#{$prefix}--header__menu-title[aria-expanded='true']:hover {
-    color: $bmrg-secondary-color;
+    color: $ibm-color__gray-100;
     // TODO: sync color
     background-color: $shell-side-nav-bg-04;
   }
@@ -440,7 +548,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     .#{$prefix}--side-nav__menu-item
     > .#{$prefix}--side-nav__link:hover
     > span {
-    color: $bmrg-secondary-color;
+    color: $ibm-color__gray-100;
   }
 
   .#{$prefix}--side-nav__item--large {
@@ -467,17 +575,17 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   }
 
   .#{$prefix}--side-nav__submenu:hover {
-    color: $bmrg-secondary-color;
+    color: $ibm-color__gray-100;
     background-color: $shell-side-nav-bg-04;
   }
 
   .#{$prefix}--side-nav__submenu:focus {
     @include focus-outline('outline');
-    outline-color: $bmrg-accent-color;
   }
 
   .#{$prefix}--side-nav__submenu-title {
     @include text-overflow();
+
     text-align: left;
   }
 
@@ -498,18 +606,19 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     > svg {
     transform: rotate(180deg);
   }
+
   .#{$prefix}--side-nav__item--large .#{$prefix}--side-nav__submenu {
     height: mini-units(6);
   }
 
   .#{$prefix}--side-nav__item--active .#{$prefix}--side-nav__submenu:hover {
-    color: $bmrg-secondary-color;
+    color: $ibm-color__gray-100;
     background-color: $shell-side-nav-bg-04;
   }
 
   .#{$prefix}--side-nav__item--active .#{$prefix}--side-nav__submenu[aria-expanded='false'] {
     position: relative;
-    color: $bmrg-secondary-color;
+    color: $ibm-color__gray-100;
     background-color: $shell-side-nav-bg-04;
     &::before {
       position: absolute;
@@ -517,13 +626,13 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
       bottom: 0;
       left: 0;
       width: 4px;
-      background-color: $bmrg-accent-color;
+      background-color: $shell-side-nav-accent-01;
       content: '';
     }
   }
 
   .#{$prefix}--side-nav__item--active .#{$prefix}--side-nav__submenu-title {
-    color: $bmrg-secondary-color;
+    color: $ibm-color__gray-100;
     font-weight: 600;
   }
 
@@ -551,18 +660,14 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   .#{$prefix}--side-nav__menu a.#{$prefix}--side-nav__link--current,
   .#{$prefix}--side-nav__menu a.#{$prefix}--side-nav__link[aria-current='page'],
   a.#{$prefix}--side-nav__link--current {
-    background-color: #07192b;
+    background-color: $ibm-color__gray-20;
 
     > span {
-      color: $bmrg-secondary-color;
+      color: $ibm-color__gray-100;
       font-weight: 600;
     }
   }
 
-  a.#{$prefix}--side-nav__link--current > span.#{$prefix}--side-nav__link-text {
-    color: $bmrg-secondary-color;
-    font-weight: 600;
-  }
   //----------------------------------------------------------------------------
   // Side-nav > Link
   //----------------------------------------------------------------------------
@@ -573,6 +678,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     + .#{$prefix}--header__menu {
     @include focus-outline('reset');
     @include type-style('productive-heading-01');
+
     position: relative;
     display: flex;
     align-items: center;
@@ -582,6 +688,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     transition: color $duration--fast-02, background-color $duration--fast-02,
       outline $duration--fast-02;
   }
+
   .#{$prefix}--side-nav__item--large a.#{$prefix}--side-nav__link {
     height: mini-units(6);
   }
@@ -589,9 +696,10 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   a.#{$prefix}--side-nav__link > .#{$prefix}--side-nav__link-text,
   .#{$prefix}--side-nav a.#{$prefix}--header__menu-item .#{$prefix}--text-truncate-end {
     @include text-overflow();
+
     color: $shell-side-nav-text-01;
     font-size: rem(14px);
-    line-height: rem(20px);
+    line-height: 1.25rem;
     letter-spacing: 0.1px;
     user-select: none;
   }
@@ -599,18 +707,17 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   a.#{$prefix}--side-nav__link:focus,
   .#{$prefix}--side-nav a.#{$prefix}--header__menu-item:focus {
     @include focus-outline('outline');
-    outline-color: $bmrg-accent-color;
   }
 
   a.#{$prefix}--side-nav__link[aria-current='page'],
   a.#{$prefix}--side-nav__link--current {
     font-weight: 600;
-    background-color: #07192b;
+    background-color: $shell-side-nav-bg-04;
   }
 
   a.#{$prefix}--side-nav__link[aria-current='page'] .#{$prefix}--side-nav__link-text,
   a.#{$prefix}--side-nav__link--current .#{$prefix}--side-nav__link-text {
-    color: $bmrg-secondary-color;
+    color: $ibm-color__gray-100;
   }
 
   a.#{$prefix}--side-nav__link[aria-current='page']::before,
@@ -620,7 +727,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     bottom: 0;
     left: 0;
     width: 4px;
-    background-color: $bmrg-accent-color;
+    background-color: $shell-side-nav-accent-01;
     content: '';
   }
 
@@ -737,7 +844,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
     }
 
     a.#{$prefix}--header__menu-item:hover {
-      color: $bmrg-secondary-color;
+      color: $ibm-color__gray-100;
       background-color: $shell-side-nav-bg-04;
     }
   }
@@ -753,8 +860,8 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   }
 }
 
-@include exports('leftSideNav') {
+@include exports('carbon-side-nav') {
   @if feature-flag-enabled('ui-shell') {
-    @include leftSideNav;
+    @include carbon-side-nav;
   }
 }
