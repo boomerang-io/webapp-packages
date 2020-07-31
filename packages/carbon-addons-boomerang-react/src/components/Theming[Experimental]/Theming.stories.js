@@ -7,6 +7,7 @@ import {
   Button,
   ComboBox,
   Checkbox,
+  DataTableSkeleton,
   Dropdown,
   MultiSelect,
   OverflowMenu,
@@ -53,6 +54,7 @@ storiesOf('Theming', module).add('default', () => {
         </AccordionItem>
         <AccordionItem title="Section 3 title" />
       </Accordion>
+      <DataTableSkeleton />
       <Divider />
       <fieldset className="bx--fieldset">
         <legend className="bx--label">Checkbox heading</legend>

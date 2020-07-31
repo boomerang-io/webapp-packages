@@ -145,7 +145,7 @@
     }
 
     // DataTable Overrides
-    .#{$prefix}--data-table
+    .#{$prefix}--data-table:not(.#{$prefix}--skeleton)
       th:first-of-type:not(.#{$prefix}--table-expand):not(.#{$prefix}--table-column-checkbox) {
       padding-left: 0;
     }
