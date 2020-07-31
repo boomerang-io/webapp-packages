@@ -40,13 +40,6 @@ const HeaderListItem = (props) => {
           {children}
         </a>
       )}
-      {newNotifications && (
-        <div
-          className={cx(`${prefix}--bmrg-header-list__notification-circle`, {
-            '--is-active': ariaExpanded,
-          })}
-        />
-      )}
     </div>
   );
 };

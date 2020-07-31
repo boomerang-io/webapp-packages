@@ -50,7 +50,7 @@
 
     &[disabled] {
       cursor: initial;
-      opacity: 0.3;
+      opacity: 0.5;
     }
     &:focus {
       @include focus-outline($bmrg-secondary-color);
@@ -195,19 +195,26 @@
   .#{$prefix}--bmrg-notifications__notifications-footer {
     display: flex;
     justify-content: center;
-    padding: 0.5rem;
+    margin-top: 0.5rem;
     box-sizing: content-box;
-    height: 2rem;
     align-items: center;
   }
 
   .#{$prefix}--bmrg-notifications__notifications-redirect-link {
     color: $bmrg-secondary-color;
     font-size: 0.875rem;
+    outline: rem(2px) solid transparent;
+    outline-offset: rem(-2px);
     text-align: center;
+    text-decoration: none;
+    padding: 0.625rem;
     width: 100%;
+    &:hover {
+      color: $bmrg-header-active-text-color;
+      background: $bmrg-header-hover-background-color;
+    }
     &:focus {
-      @include focus-outline($bmrg-secondary-color);
+      outline: rem(2px) solid $bmrg-header-active-text-color;
     }
   }
 }

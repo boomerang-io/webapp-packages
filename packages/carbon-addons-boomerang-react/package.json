@@ -40,6 +40,7 @@
     "lint": "yarn lint:javascript && yarn lint:stylelint",
     "lint:javascript": "eslint 'src/**/*.{js,jsx}'",
     "lint:stylelint": "stylelint './src/**/*.scss' --syntax scss --ignorePath .gitignore",
+    "precommit": "lint-staged",
     "prepublishOnly": "yarn build",
     "publish-npm": "yarn semantic-release",
     "start": "yarn --max_old_space_size=16384 storybook",
@@ -49,8 +50,8 @@
     "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail"
   },
   "dependencies": {
-    "@carbon/elements": "^10.12.0",
-    "@carbon/themes": "^10.12.0",
+    "@carbon/elements": "10.12.0",
+    "@carbon/themes": "10.12.0",
     "@stomp/stompjs": "^5.4.2",
     "@tippyjs/react": "^4.0.2",
     "carbon-icons": "7.0.7",
@@ -74,8 +75,8 @@
     "yup": "^0.27.0"
   },
   "peerDependencies": {
-    "carbon-components": "^10.12.0",
-    "carbon-components-react": "^7.12.0",
+    "carbon-components": "10.12.0",
+    "carbon-components-react": "7.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -84,8 +85,6 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@carbon/icons-react": "^10.9.1",
-    "@commitlint/cli": "^7.2.1",
-    "@commitlint/config-conventional": "^7.1.2",
     "@ibma/aat": "https://able.ibm.com/tools/dist/aat.tgz",
     "@storybook/addon-a11y": "^5.3.9",
     "@storybook/addon-actions": "^5.3.9",
@@ -116,7 +115,6 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
     "faker": "^4.1.0",
-    "husky": "^1.3.1",
     "jest-axe": "^3.4.0",
     "lint-staged": "^8.1.0",
     "mock-socket": "^9.0.3",
@@ -165,17 +163,6 @@
       "> 1%",
       "ie 11"
     ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
