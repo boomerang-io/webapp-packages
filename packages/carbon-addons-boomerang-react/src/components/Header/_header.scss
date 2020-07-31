@@ -174,7 +174,8 @@ $breakpoints: (
     display: flex;
     height: 100%;
     padding: rem(14px);
-    transition: all $carbon-motion--timing--productive $carbon-motion--easing--productive;
+    transition: color $carbon-motion--timing--productive $carbon-motion--easing--productive,
+      background $carbon-motion--timing--productive $carbon-motion--easing--productive;
     &:focus {
       border: rem(2px) solid $bmrg-header-active-text-color;
       outline: none;
@@ -184,11 +185,11 @@ $breakpoints: (
       fill: $bmrg-secondary-color;
       height: rem(20px);
       width: rem(20px);
+      transition: fill $carbon-motion--timing--productive $carbon-motion--easing--productive;
     }
 
     &:hover {
       background-color: $bmrg-header-hover-background-color;
-      border: rem(2px) solid $bmrg-header-hover-background-color;
       svg {
         fill: $bmrg-header-active-text-color;
       }
@@ -257,20 +258,6 @@ $breakpoints: (
     border-left: rgba(251, 252, 252, 0.2);
     border-style: solid;
     border-left-width: 0.125rem;
-  }
-
-  .#{$prefix}--bmrg-header-list__notification-circle {
-    background: $bmrg-header-notification-icon;
-    border-radius: 50%;
-    height: rem(8px);
-    position: absolute;
-    right: rem(8px);
-    top: rem(8px);
-    width: rem(8px);
-
-    &.--is-active {
-      background: $bmrg-header-active-text-color;
-    }
   }
 
   .#{$prefix}--bmrg-header__app-menu-wrapper > :first-child {
