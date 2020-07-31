@@ -8,3 +8,14 @@ export const APP_ROOT =
   window._SERVER_DATA && window._SERVER_DATA.APP_ROOT
     ? window._SERVER_DATA.APP_ROOT
     : '';
+
+    export const AppPath = {
+      Root: "/",
+      Error: "/error",
+    };
+    
+    export const appLink = {
+      root: () => "/",
+      error: () => "/error"
+    };
+    

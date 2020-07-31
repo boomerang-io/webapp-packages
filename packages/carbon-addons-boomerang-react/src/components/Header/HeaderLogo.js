@@ -6,38 +6,33 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 const HeaderLogo = (props) => {
-  const { className, companyName, navLinks, productName, children, ...other } = props;
+  const { appName, children, className, navLinks, platformName, ...other } = props;
 
   const HeaderLogoClasses = classNames(`${prefix}--bmrg-header-brand`, className);
 
   return (
     <div className={HeaderLogoClasses} {...other}>
       {children}
-      {(companyName || productName) && (
-        <h1 className={`${prefix}--bmrg-header-brand__text`}>
-          {companyName}
-          {companyName && productName ? (
-            <span className={`${prefix}--bmrg-header-brand__divider --small`}>&nbsp; | &nbsp;</span>
-          ) : (
-            ''
-          )}
-          <span>{productName}</span>
-        </h1>
-      )}
-      {(companyName || productName) && Array.isArray(navLinks) && navLinks.length > 0 ? (
-        <span className={`${prefix}--bmrg-header-brand__divider --large`}>|</span>
+      <div className={`${prefix}--bmrg-header-brand__wrapper`}>
+        {(platformName || appName) && (
+          <h1 className={`${prefix}--bmrg-header-brand__title`}>{platformName}</h1>
+        )}
+        {appName && <span className={`${prefix}--bmrg-header-brand__text`}>{appName}</span>}
+      </div>
+      {Array.isArray(navLinks) && navLinks.length > 0 ? (
+        <div className={`${prefix}--bmrg-header-brand__divider`} />
       ) : null}
     </div>
   );
 };
 
 HeaderLogo.propTypes = {
+  appName: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
-  companyName: PropTypes.string,
   href: PropTypes.string,
   navLinks: PropTypes.array,
-  productName: PropTypes.string,
+  platformName: PropTypes.string,
 };
 
 HeaderLogo.defaultProps = {};

@@ -14,6 +14,10 @@ import GdprRedirectModal from '../GdprRedirectModal';
 
 UIShell.propTypes = {
   /**
+   * used in header, after the logo or platformName
+   */
+  appName: PropTypes.string,
+  /**
    * Base service url used to build up several requests
    * used by the header. paths to service endpoints are hardcoded
    */
@@ -22,10 +26,18 @@ UIShell.propTypes = {
    * base launch url, used to redirect to Launchpad if need to consent per GDPR
    */
   baseLaunchEnvUrl: PropTypes.string,
+
+  /**
+   * alias for "platformName" for legacy support
+   */
   companyName: PropTypes.string,
 
   /**
-   * Pass in whole header config object
+   * Pass in whole header config object used for
+   * - Feature flagging
+   * - Platform links
+   * - Metadata about the platform
+   * - Message banner to display for all users
    */
   headerConfig: PropTypes.shape({
     features: PropTypes.object,
@@ -44,6 +56,13 @@ UIShell.propTypes = {
    * in on click of "Tutorial" header menu item
    */
   onTutorialClick: PropTypes.func,
+  /**
+   * used in header, only rendered if renderLogo is false
+   */
+  platformName: PropTypes.string,
+  /**
+   * alias for "appName" for legacy support
+   */
   productName: PropTypes.string,
   /**
    * override for the consumer. When set as true, the launchpad redirect modal will be
@@ -73,7 +92,7 @@ UIShell.propTypes = {
   renderSidenav: PropTypes.func,
 
   /**
-   * Used to navigated to the main content of the app
+   * Used to navigate to the main content of the app
    */
   skipToContentProps: PropTypes.shape({
     href: PropTypes.string,
@@ -92,12 +111,14 @@ UIShell.defaultProps = {
 };
 
 function UIShell({
+  appName,
   baseLaunchEnvUrl,
   baseServiceUrl,
   companyName,
   headerConfig,
   onMenuClick,
   onTutorialClick,
+  platformName,
   productName,
   renderLogo,
   requirePlatformConsent,
@@ -108,16 +129,19 @@ function UIShell({
 }) {
   const { features, navigation, platform, platformMessage } = headerConfig;
 
+  const finalPlatformName = platformName || companyName;
+  const finalAppName = appName || productName;
+
   return (
     <>
       <Header
+        appName={finalAppName}
         baseLaunchEnvUrl={baseLaunchEnvUrl}
-        renderLogo={renderLogo}
-        companyName={!renderLogo && companyName ? companyName : ''}
-        productName={productName}
-        navLinks={navigation}
-        platformMessage={platformMessage}
         enableNotifications={features && features['notifications.enabled']}
+        platformMessage={platformMessage}
+        platformName={!renderLogo && finalPlatformName ? finalPlatformName : null}
+        renderLogo={renderLogo}
+        navLinks={navigation}
         notificationsConfig={{
           wsUrl: `${baseServiceUrl}/notifications/ws`,
         }}
@@ -135,7 +159,14 @@ function UIShell({
             <ReportBug baseServiceUrl={baseServiceUrl} key="Report Bug" />
           ),
           baseServiceUrl && features && features['support.enabled'] && (
-            <HeaderMenuLink href={`${baseLaunchEnvUrl}/launchpad/support`} text="Support Center" />
+            <HeaderMenuLink
+              href={`${baseLaunchEnvUrl}/launchpad/support`}
+              iconName="support"
+              text="Support Center"
+            />
+          ),
+          platform && platform.communityUrl && (
+            <HeaderMenuLink href={platform.communityUrl} iconName="forum" text="Community" />
           ),
         ].filter(Boolean)}
         profileChildren={[
@@ -156,7 +187,9 @@ function UIShell({
           baseServiceUrl && (
             <PrivacyStatement key="Privacy Statement" baseServiceUrl={baseServiceUrl} />
           ),
-          platform && <SignOut signOutLink={platform.signOutUrl} key="Sign Out" />,
+          platform && platform.signOutUrl && (
+            <SignOut signOutLink={platform.signOutUrl} key="Sign Out" />
+          ),
         ].filter(Boolean)}
         renderRightPanel={renderRightPanel}
         skipToContentProps={skipToContentProps}

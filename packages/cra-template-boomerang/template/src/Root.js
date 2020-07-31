@@ -1,22 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import App from 'Features/App';
-import { APP_ROOT } from 'Config/appConfig';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { ReactQueryConfigProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query-devtools";
+import { ErrorBoundary } from "@boomerang-io/carbon-addons-boomerang-react";
+import App from "Features/App";
+import ErrorDragon from "Components/ErrorDragon";
+import { APP_ROOT } from "Config/appConfig";
 
-Root.propTypes = {
-  store: PropTypes.object.isRequired,
-};
-
-function Root(props) {
-  const { store } = props;
+function Root() {
   return (
-    <Provider store={store}>
-      <BrowserRouter basename={APP_ROOT}>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <ErrorBoundary errorComponent={() => <div>Whoops</div>}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryConfigProvider config={{ queries: { throwOnError: true }, mutations: { throwOnError: true } }}>
+        <BrowserRouter basename={APP_ROOT}>
+          <App />
+        </BrowserRouter>
+      </ReactQueryConfigProvider>
+    </ErrorBoundary>
   );
 }
 
