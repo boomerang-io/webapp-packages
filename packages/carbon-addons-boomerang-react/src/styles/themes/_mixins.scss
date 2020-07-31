@@ -158,7 +158,7 @@
       padding: 0 1rem 0 0;
     }
 
-    .#{$prefix}--data-table th {
+    .#{$prefix}--data-table:not(.#{$prefix}--skeleton) th {
       padding: 0;
     }
 
