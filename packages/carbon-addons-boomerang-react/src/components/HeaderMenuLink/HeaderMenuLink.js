@@ -98,11 +98,7 @@ function HeaderMenuLink({ className, href, iconName, style, text, ...rest }) {
           <div className={`${prefix}--bmrg-header-menu-item__img`}>{iconMapping[iconName]}</div>
           <span className={`${prefix}--bmrg-header-menu-item__text`}>
             {text}
-            <ArrowUpRight16
-              fill={iconFill}
-              className={iconClassName}
-              style={{ height: '0.75rem' }}
-            />
+            <Launch16 fill={iconFill} className={iconClassName} style={{ height: '0.75rem' }} />
           </span>
         </div>
       </Button>
