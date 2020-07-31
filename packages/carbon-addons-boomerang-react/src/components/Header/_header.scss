@@ -150,10 +150,10 @@ $breakpoints: (
     }
 
     &.--is-active {
-      box-shadow: inset 0px rem(-4px) 0px 0px $bmrg-header-active-background-color;
+      box-shadow: inset 0px rem(-3px) 0px 0px $bmrg-header-active-background-color;
       color: $bmrg-header-active-text-color;
       &:focus {
-        box-shadow: inset 0px rem(-7px) 0px 0px $bmrg-header-active-background-color;
+        box-shadow: inset 0px rem(-6px) 0px 0px $bmrg-header-active-background-color;
         color: $bmrg-header-active-text-color;
       }
     }

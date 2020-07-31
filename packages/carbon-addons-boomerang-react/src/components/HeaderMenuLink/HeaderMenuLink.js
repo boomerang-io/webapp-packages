@@ -4,7 +4,6 @@ import cx from 'classnames';
 import { settings } from 'carbon-components';
 import { Button } from 'carbon-components-react';
 import {
-  ArrowUpRight16,
   Chat16,
   Debug20,
   Forum16,
