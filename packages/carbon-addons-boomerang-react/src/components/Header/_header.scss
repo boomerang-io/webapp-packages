@@ -78,19 +78,33 @@ $breakpoints: (
   .#{$prefix}--bmrg-header-brand__icon {
     height: rem(32px);
     width: 7rem;
-    margin-right: 1.25rem;
+    margin-right: -0.125rem;
+  }
+
+  .#{$prefix}--bmrg-header-brand__wrapper {
+    display: flex;
+    margin-right: rem(32px);
+  }
+
+  .#{$prefix}--bmrg-header-brand__title {
+    color: $bmrg-brand-white;
+    font-size: rem(16px);
+    font-weight: 600;
+    letter-spacing: 0.11px;
+    line-height: rem(18px);
   }
 
   .#{$prefix}--bmrg-header-brand__text {
     color: $bmrg-brand-white;
     font-size: rem(16px);
-    font-weight: 500;
-    margin-right: rem(14px);
+    letter-spacing: 0.11px;
+    line-height: rem(18px);
+    margin-left: rem(8px);
   }
 
-  .#{$prefix}--bmrg-header-brand__divider.--small {
-    color: $bmrg-brand-white;
-    font-weight: 400;
+  .#{$prefix}--bmrg-header-brand__divider {
+    height: rem(24px);
+    border-left: 1px solid #4d5358;
   }
 
   .#{$prefix}--bmrg-header-list {
@@ -98,6 +112,7 @@ $breakpoints: (
     display: flex;
     height: 100%;
     list-style: none;
+    margin-left: 1.125rem;
     padding: 0;
 
     > li {
@@ -150,10 +165,10 @@ $breakpoints: (
     }
 
     &.--is-active {
-      box-shadow: inset 0px rem(-3px) 0px 0px $bmrg-header-active-background-color;
+      box-shadow: inset 0px rem(-4px) 0px 0px $bmrg-header-active-background-color;
       color: $bmrg-header-active-text-color;
       &:focus {
-        box-shadow: inset 0px rem(-6px) 0px 0px $bmrg-header-active-background-color;
+        box-shadow: inset 0px rem(-7px) 0px 0px $bmrg-header-active-background-color;
         color: $bmrg-header-active-text-color;
       }
     }

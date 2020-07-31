@@ -28,7 +28,8 @@ storiesOf('UIShell', module)
       <UIShell
         renderLogo={boolean('renderLogo', true)}
         baseServiceUrl="https://www.ibm.com"
-        companyName={text('companyName', '')}
+        appName={text('appName', 'Flow')}
+        platformName={text('platformName', '')}
         headerConfig={{
           platformMessage: {
             kind: text('platformMessage.kind', 'info'),
@@ -62,7 +63,6 @@ storiesOf('UIShell', module)
           },
         }}
         onTutorialClick={action('Tutorial')}
-        productName={text('productName', '')}
         skipToContentProps={{ href: '#id' }}
         user={{
           name: 'test user',
@@ -79,7 +79,7 @@ storiesOf('UIShell', module)
     return (
       <UIShell
         baseServiceUrl="https://www.ibm.com"
-        companyName={text('companyName', '')}
+        platformName={text('platformName', '')}
         headerConfig={{
           navigation: [
             {
@@ -125,7 +125,7 @@ storiesOf('UIShell', module)
       <UIShell
         renderLogo={boolean('renderLogo', true)}
         baseServiceUrl="https://www.ibm.com"
-        companyName={text('companyName', '')}
+        platformName={text('platformName', '')}
         headerConfig={{
           navigation: [
             {
@@ -170,7 +170,7 @@ storiesOf('UIShell', module)
       <Router>
         <UIShell
           baseServiceUrl="https://www.ibm.com"
-          companyName={text('companyName', '')}
+          platformName={text('platformName', '')}
           headerConfig={{
             navigation: [
               {
@@ -239,7 +239,7 @@ storiesOf('UIShell', module)
     return (
       <UIShell
         baseServiceUrl="https://www.ibm.com"
-        companyName={text('companyName', '')}
+        platformName={text('platformName', '')}
         headerConfig={{
           navigation: [
             {

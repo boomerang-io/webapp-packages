@@ -28,7 +28,8 @@ const { prefix } = settings;
 
 class Header extends React.Component {
   static propTypes = {
-    companyName: PropTypes.string,
+    appName: PropTypes.string,
+
     enableNotifications: PropTypes.bool,
     /*
      * an array of objects. Each object has a name and url property.
@@ -46,12 +47,12 @@ class Header extends React.Component {
      * Function passed in by the consumer, what to render when the help icon is clicked
      */
     onHelpClick: PropTypes.array,
+    platformName: PropTypes.string,
 
     /**
      * Components to be rendered as Children by the Profile
      */
     platformMessage: PropTypes.object,
-    productName: PropTypes.string,
     profileChildren: PropTypes.array,
 
     renderGlobalSwitcher: PropTypes.bool,
@@ -177,10 +178,10 @@ class Header extends React.Component {
   render() {
     const {
       className,
-      companyName,
+      platformName,
       navLinks,
       platformMessage,
-      productName,
+      appName,
       renderGlobalSwitcher,
       renderLogo,
       renderRightPanel,
@@ -205,8 +206,9 @@ class Header extends React.Component {
                 className={cx({
                   [`${prefix}--bmrg-header-brand--no-menu`]: !this.props.renderSidenav,
                 })}
-                companyName={companyName}
-                productName={productName}
+                appName={appName}
+                platformName={platformName}
+                navLinks={navLinks}
               >
                 {renderLogo && (
                   <BoomerangLogo
