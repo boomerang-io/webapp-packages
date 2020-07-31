@@ -13,10 +13,8 @@ import {
   SideNavMenuItem,
 } from 'carbon-components-react';
 import { Help24, ServiceDesk16 } from '@carbon/icons-react';
-
 import LeftSideNav from '../LeftSideNav';
 import { PRIVACY_DATA } from '../PrivacyStatement/constants';
-
 import UIShell from './UIShell';
 
 const mock = new MockAdapter(axios);
@@ -27,14 +25,14 @@ storiesOf('UIShell', module)
     return (
       <UIShell
         renderLogo={boolean('renderLogo', true)}
-        baseServiceUrl="https://www.ibm.com"
         appName={text('appName', 'Flow')}
-        platformName={text('platformName', '')}
+        platformName={text('platformName', 'Boomerang')}
+        baseServiceUrl="https://www.ibm.com"
         headerConfig={{
-          platformMessage: {
-            kind: text('platformMessage.kind', 'info'),
-            message: text('platformMessage.message', 'Message Goes Here'),
-            title: text('platformMessage.title', 'Testing Platform Title'),
+          features: {
+            'community.enabled': boolean('community.enabled', true),
+            'notifications.enabled': boolean('notifications.enabled', true),
+            'support.enabled': boolean('support.enabled', true),
           },
           navigation: [
             {
@@ -50,16 +48,16 @@ storiesOf('UIShell', module)
               url: 'https://launch.boomerangplatform.net/launchpad',
             },
           ],
-          features: {
-            'banner.enabled': boolean('banner.enabled', true),
-            'notifications.enabled': boolean('notifications.enabled', true),
-            'support.enabled': boolean('support.enabled', true),
-          },
           platform: {
             name: text('platform.name', 'IBM Boomerang Platform'),
             version: text('platform.version', '5.0.0'),
             signOutUrl: 'https://ibm.com',
             communityUrl: 'https://developer.ibm.com',
+          },
+          platformMessage: {
+            kind: text('platformMessage.kind', 'info'),
+            message: text('platformMessage.message', 'Message Goes Here'),
+            title: text('platformMessage.title', 'Testing Platform Title'),
           },
         }}
         onTutorialClick={action('Tutorial')}
@@ -74,104 +72,21 @@ storiesOf('UIShell', module)
       />
     );
   })
-  .add('user not consented', () => {
-    mock.onGet('https://www.ibm.com/users/consents').reply(200, PRIVACY_DATA);
-    return (
-      <UIShell
-        baseServiceUrl="https://www.ibm.com"
-        platformName={text('platformName', '')}
-        headerConfig={{
-          navigation: [
-            {
-              name: 'Launchpad',
-              url: 'https://launch.boomerangplatform.net/launchpad',
-            },
-            {
-              name: 'Admin',
-              url: 'https://launch.boomerangplatform.net/launchpad',
-            },
-            {
-              name: 'Docs',
-              url: 'https://launch.boomerangplatform.net/launchpad',
-            },
-          ],
-          features: {
-            'notifications.enabled': boolean('notifications.enabled', true),
-            'support.enabled': boolean('support.enabled', true),
-          },
-          platform: {
-            name: text('platform.name', 'IBM Boomerang Platform'),
-            version: text('platform.version', '5.0.0'),
-            signOutUrl: 'ibm.com',
-            communityUrl: 'https://developer.ibm.com',
-          },
-        }}
-        onTutorialClick={action('Tutorial')}
-        productName={text('productName', '')}
-        renderLogo={boolean('renderLogo', true)}
-        user={{
-          name: 'test user',
-          email: 'test.user@ibm.com',
-
-          hasConsented: false,
-          status: 'active',
-        }}
-      />
-    );
-  })
-  .add('user pending deletion', () => {
-    mock.onGet('https://www.ibm.com/users/consents').reply(200, PRIVACY_DATA);
-    return (
-      <UIShell
-        renderLogo={boolean('renderLogo', true)}
-        baseServiceUrl="https://www.ibm.com"
-        platformName={text('platformName', '')}
-        headerConfig={{
-          navigation: [
-            {
-              name: 'Launchpad',
-              url: 'https://launch.boomerangplatform.net/launchpad',
-            },
-            {
-              name: 'Admin',
-              url: 'https://launch.boomerangplatform.net/launchpad',
-            },
-            {
-              name: 'Docs',
-              url: 'https://launch.boomerangplatform.net/launchpad',
-            },
-          ],
-          features: {
-            'notifications.enabled': boolean('notifications.enabled', true),
-            'support.enabled': boolean('support.enabled', true),
-          },
-          platform: {
-            name: text('platform.name', 'IBM Boomerang Platform'),
-            version: text('platform.version', '5.0.0'),
-            signOutUrl: 'ibm.com',
-            communityUrl: 'https://developer.ibm.com',
-          },
-        }}
-        onTutorialClick={action('Tutorial')}
-        productName={text('productName', '')}
-        user={{
-          name: 'test user',
-          email: 'test.user@ibm.com',
-
-          hasConsented: false,
-          status: 'pending_deletion',
-        }}
-      />
-    );
-  })
   .add('with Carbon sidenav and React Router ', () => {
     mock.onGet('https://www.ibm.com/users/consents').reply(200, PRIVACY_DATA);
     return (
       <Router>
         <UIShell
+          renderLogo={boolean('renderLogo', true)}
+          platformName={text('platformName', 'Boomerang')}
+          appName={text('appName', '')}
           baseServiceUrl="https://www.ibm.com"
-          platformName={text('platformName', '')}
           headerConfig={{
+            features: {
+              'community.enabled': boolean('community.enabled', true),
+              'notifications.enabled': boolean('notifications.enabled', true),
+              'support.enabled': boolean('support.enabled', true),
+            },
             navigation: [
               {
                 name: 'Launchpad',
@@ -186,46 +101,68 @@ storiesOf('UIShell', module)
                 url: 'https://launch.boomerangplatform.net/launchpad',
               },
             ],
-            features: {
-              'notifications.enabled': boolean('notifications.enabled', true),
-              'support.enabled': boolean('support.enabled', true),
-            },
             platform: {
               name: text('platform.name', 'IBM Boomerang Platform'),
               version: text('platform.version', '5.0.0'),
-              signOutUrl: 'ibm.com',
+              signOutUrl: 'https://ibm.com',
               communityUrl: 'https://developer.ibm.com',
+            },
+            platformMessage: {
+              kind: text('platformMessage.kind', 'info'),
+              message: text('platformMessage.message', 'Message Goes Here'),
+              title: text('platformMessage.title', 'Testing Platform Title'),
             },
           }}
           renderSidenav={({ isOpen }) => (
             <LeftSideNav isOpen={isOpen}>
               <SideNav expanded isChildOfHeader aria-label="sidenav">
                 <SideNavItems>
+                  <SideNavLink element={Link} to="">
+                    Link
+                  </SideNavLink>
+                  <SideNavLink isActive element={Link} renderIcon={ServiceDesk16} to="">
+                    Active link with icon
+                  </SideNavLink>
+                  <SideNavLink element={Link} large>
+                    Large link
+                  </SideNavLink>
+                  <SideNavLink isActive element={Link} renderIcon={ServiceDesk16} to="" large>
+                    Large active link with icon
+                  </SideNavLink>
+                  <SideNavMenu title="Menu">
+                    <SideNavMenuItem element={Link} to="">
+                      Active menu item 1
+                    </SideNavMenuItem>
+                    <SideNavMenuItem href="">Menu item 2</SideNavMenuItem>
+                    <SideNavMenuItem href="">Menu item 3</SideNavMenuItem>
+                  </SideNavMenu>
+                  <SideNavMenu renderIcon={ServiceDesk16} title="Active menu with icon">
+                    <SideNavMenuItem isActive element={Link} to="">
+                      Active menu item 1
+                    </SideNavMenuItem>
+                    <SideNavMenuItem href="">Menu item 2</SideNavMenuItem>
+                    <SideNavMenuItem href="">Menu item 3</SideNavMenuItem>
+                  </SideNavMenu>
                   <SideNavMenu title="Large menu" large>
                     <SideNavMenuItem element={Link} to="/">
-                      Menu 1
+                      Large menu item 1
                     </SideNavMenuItem>
                     <SideNavMenuItem element={Link} to="/">
-                      Menu 3
+                      Large menu item 2
                     </SideNavMenuItem>
                   </SideNavMenu>
-                  <SideNavMenu renderIcon={ServiceDesk16} title="Large menu w/icon" large>
+                  <SideNavMenu renderIcon={ServiceDesk16} title="Large active menu with icon" large>
                     <SideNavMenuItem isActive element={Link} to="">
-                      Menu 1
+                      Large active menu item 1
                     </SideNavMenuItem>
-                    <SideNavMenuItem href="">Menu 2</SideNavMenuItem>
-                    <SideNavMenuItem href="">Menu 3</SideNavMenuItem>
+                    <SideNavMenuItem href="">Large menu item 2</SideNavMenuItem>
+                    <SideNavMenuItem href="">Large menu item 3</SideNavMenuItem>
                   </SideNavMenu>
-                  <SideNavLink isActive element={Link} renderIcon={ServiceDesk16} to="" large>
-                    Large link w/icon
-                  </SideNavLink>
                 </SideNavItems>
               </SideNav>
             </LeftSideNav>
           )}
           onTutorialClick={action('Tutorial')}
-          productName={text('productName', '')}
-          renderLogo={boolean('renderLogo', true)}
           user={{
             name: 'test user',
             email: 'test.user@ibm.com',
@@ -238,9 +175,16 @@ storiesOf('UIShell', module)
     mock.onGet('https://www.ibm.com/users/consents').reply(200, PRIVACY_DATA);
     return (
       <UIShell
+        renderLogo={boolean('renderLogo', true)}
+        appName={text('appName', '')}
+        platformName={text('platformName', 'Boomerang')}
         baseServiceUrl="https://www.ibm.com"
-        platformName={text('platformName', '')}
         headerConfig={{
+          features: {
+            'community.enabled': boolean('community.enabled', true),
+            'notifications.enabled': boolean('notifications.enabled', true),
+            'support.enabled': boolean('support.enabled', true),
+          },
           navigation: [
             {
               name: 'Launchpad',
@@ -255,20 +199,19 @@ storiesOf('UIShell', module)
               url: 'https://launch.boomerangplatform.net/launchpad',
             },
           ],
-          features: {
-            'notifications.enabled': boolean('notifications.enabled', true),
-            'support.enabled': boolean('support.enabled', true),
-          },
           platform: {
             name: text('platform.name', 'IBM Boomerang Platform'),
             version: text('platform.version', '5.0.0'),
-            signOutUrl: 'ibm.com',
+            signOutUrl: 'https://ibm.com',
             communityUrl: 'https://developer.ibm.com',
+          },
+          platformMessage: {
+            kind: text('platformMessage.kind', 'info'),
+            message: text('platformMessage.message', 'Message Goes Here'),
+            title: text('platformMessage.title', 'Testing Platform Title'),
           },
         }}
         onTutorialClick={action('Tutorial')}
-        productName={text('productName', '')}
-        renderLogo={boolean('renderLogo', true)}
         renderRightPanel={{
           icon: <Help24 />,
           component: (
@@ -290,6 +233,109 @@ storiesOf('UIShell', module)
           email: 'test.user@ibm.com',
           hasConsented: true,
           status: 'active',
+        }}
+      />
+    );
+  })
+  .add('user not consented', () => {
+    mock.onGet('https://www.ibm.com/users/consents').reply(200, PRIVACY_DATA);
+    return (
+      <UIShell
+        renderLogo={boolean('renderLogo', true)}
+        appName={text('appName', '')}
+        baseServiceUrl="https://www.ibm.com"
+        platformName={text('platformName', 'Boomerang')}
+        headerConfig={{
+          features: {
+            'community.enabled': boolean('community.enabled', true),
+            'notifications.enabled': boolean('notifications.enabled', true),
+            'support.enabled': boolean('support.enabled', true),
+          },
+          navigation: [
+            {
+              name: 'Launchpad',
+              url: 'https://launch.boomerangplatform.net/launchpad',
+            },
+            {
+              name: 'Admin',
+              url: 'https://launch.boomerangplatform.net/launchpad',
+            },
+            {
+              name: 'Docs',
+              url: 'https://launch.boomerangplatform.net/launchpad',
+            },
+          ],
+          platform: {
+            name: text('platform.name', 'IBM Boomerang Platform'),
+            version: text('platform.version', '5.0.0'),
+            signOutUrl: 'https://ibm.com',
+            communityUrl: 'https://developer.ibm.com',
+          },
+          platformMessage: {
+            kind: text('platformMessage.kind', 'info'),
+            message: text('platformMessage.message', 'Message Goes Here'),
+            title: text('platformMessage.title', 'Testing Platform Title'),
+          },
+        }}
+        onTutorialClick={action('Tutorial')}
+        user={{
+          name: 'test user',
+          email: 'test.user@ibm.com',
+
+          hasConsented: false,
+          status: 'active',
+        }}
+      />
+    );
+  })
+  .add('user pending deletion', () => {
+    mock.onGet('https://www.ibm.com/users/consents').reply(200, PRIVACY_DATA);
+    return (
+      <UIShell
+        renderLogo={boolean('renderLogo', true)}
+        platformName={text('platformName', 'Boomerang')}
+        appName={text('appName', '')}
+        renderLogo={boolean('renderLogo', true)}
+        baseServiceUrl="https://www.ibm.com"
+        headerConfig={{
+          features: {
+            'community.enabled': boolean('community.enabled', true),
+            'notifications.enabled': boolean('notifications.enabled', true),
+            'support.enabled': boolean('support.enabled', true),
+          },
+          navigation: [
+            {
+              name: 'Launchpad',
+              url: 'https://launch.boomerangplatform.net/launchpad',
+            },
+            {
+              name: 'Admin',
+              url: 'https://launch.boomerangplatform.net/launchpad',
+            },
+            {
+              name: 'Docs',
+              url: 'https://launch.boomerangplatform.net/launchpad',
+            },
+          ],
+          platform: {
+            name: text('platform.name', 'IBM Boomerang Platform'),
+            version: text('platform.version', '5.0.0'),
+            signOutUrl: 'https://ibm.com',
+            communityUrl: 'https://developer.ibm.com',
+          },
+          platformMessage: {
+            kind: text('platformMessage.kind', 'info'),
+            message: text('platformMessage.message', 'Message Goes Here'),
+            title: text('platformMessage.title', 'Testing Platform Title'),
+          },
+        }}
+        onTutorialClick={action('Tutorial')}
+        user={{
+          name: 'test user',
+          email: 'test.user@ibm.com',
+
+          hasConsented: false,
+          status: 'pending_deletion',
         }}
       />
     );
