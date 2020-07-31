@@ -89,7 +89,7 @@ function HeaderMenuItem({ children, className, forwardRef, iconName, style, text
         buttonTriggerText={
           <div className={`${prefix}--bmrg-header-menu-item__content`}>
             <div className={`${prefix}--bmrg-header-menu-item__img`}>{iconMapping[iconName]}</div>
-            <h1 className={`${prefix}--bmrg-header-menu-item__text`}>{text}</h1>
+            <span className={`${prefix}--bmrg-header-menu-item__text`}>{text}</span>
           </div>
         }
         {...rest}

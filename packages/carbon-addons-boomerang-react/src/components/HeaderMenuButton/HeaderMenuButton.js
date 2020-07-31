@@ -89,7 +89,7 @@ function HeaderMenuButton({ className, iconName, onClick, style, text, ...rest }
       <Button className={`${prefix}--bmrg-header-menu-item`} onClick={onClick} {...rest}>
         <div className={`${prefix}--bmrg-header-menu-item__content`}>
           <div className={`${prefix}--bmrg-header-menu-item__img`}>{iconMapping[iconName]}</div>
-          <h1 className={`${prefix}--bmrg-header-menu-item__text`}>{text}</h1>
+          <span className={`${prefix}--bmrg-header-menu-item__text`}>{text}</span>
         </div>
       </Button>
     </div>

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { settings } from 'carbon-components';
-import { Button, TextArea, Tooltip } from 'carbon-components-react';
+import { Button, TextArea } from 'carbon-components-react';
 import {
   ModalHeader,
   ModalBody,
   ModalFooter,
 } from 'carbon-components-react/lib/components/ComposedModal';
 import window from 'window-or-global';
-
+import TooltipHover from '../TooltipHover';
 import HeaderMenuItem from '../HeaderMenuItem';
 import notify from '../Notifications/notify';
 import ToastNotification from '../Notifications/ToastNotification';
@@ -238,51 +238,56 @@ class ReportBug extends Component {
                       </label>
                     </div>
                     <p className={`${prefix}--bmrg-report-bug__env-desc`}>
-                      {
-                        "Like the browser page, URL, your children's names, and your social securitynumber"
-                      }
+                      Like the browser page, URL, your children's names, and your social security
+                      number
                     </p>
 
-                    <Tooltip
-                      className={`${prefix}--bmrg-reportbug-env-tooltip`}
-                      clickToOpen
+                    <TooltipHover
+                      className={`${prefix}--bmrg-reportbug-env-tooltip-container`}
+                      align="start"
                       direction="top"
-                      onClick={(e) => e.stopPropagation()}
-                      showIcon={false}
-                      triggerText="What are we really collecting?"
+                      tooltipContent={
+                        <div className={`${prefix}--bmrg-reportbug-env-tooltip`}>
+                          <ul className={`${prefix}--bmrg-report-bug-tooltip`}>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>
+                              Information collected about you
+                            </li>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__divider`} />
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>
+                              Location
+                            </li>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__detail`}>
+                              {userEnvironment.location}
+                            </li>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__divider`} />
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>
+                              Referrer
+                            </li>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__detail`}>
+                              {userEnvironment.referer}
+                            </li>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__divider`} />
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>
+                              User-agent
+                            </li>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__detail`}>
+                              {userEnvironment.userAgent}
+                            </li>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__divider`} />
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>
+                              Screen resolution
+                            </li>
+                            <li className={`${prefix}--bmrg-report-bug-tooltip__detail`}>
+                              {userEnvironment.screenResolution}
+                            </li>
+                          </ul>
+                        </div>
+                      }
                     >
-                      <div>
-                        <ul className={`${prefix}--bmrg-report-bug-tooltip`}>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>
-                            Information collected about you
-                          </li>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__divider`} />
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>Location</li>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__detail`}>
-                            {userEnvironment.location}
-                          </li>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__divider`} />
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>Referrer</li>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__detail`}>
-                            {userEnvironment.referer}
-                          </li>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__divider`} />
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>
-                            User-agent
-                          </li>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__detail`}>
-                            {userEnvironment.userAgent}
-                          </li>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__divider`} />
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__header`}>
-                            Screen resolution
-                          </li>
-                          <li className={`${prefix}--bmrg-report-bug-tooltip__detail`}>
-                            {userEnvironment.screenResolution}
-                          </li>
-                        </ul>
+                      <div className={`${prefix}--bmrg-reportbug-env-tooltip-trigger`}>
+                        What are we really collecting?
                       </div>
-                    </Tooltip>
+                    </TooltipHover>
                   </div>
                 </ModalBody>
                 <ModalFooter>

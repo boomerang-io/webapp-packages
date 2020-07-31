@@ -132,18 +132,36 @@
     }
   }
 
+  .#{$prefix}--bmrg-reportbug-env-tooltip-trigger {
+    color: #f2f4f8;
+    cursor: help;
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    width: fit-content;
+  }
+
+  .#{$prefix}--bmrg-reportbug-env-tooltip-container {
+    padding: 0rem;
+    background-color: $bmrg-primary-color !important;
+    border: 1px solid #f2f4f8;
+
+    .tippy-svg-arrow {
+      fill: transparent !important;
+    }
+  }
+
   // Is not descendant of report bug container
   .#{$prefix}--bmrg-reportbug-env-tooltip {
     border: none;
     border-radius: rem(4px);
-    background-color: #373d42;
+    background-color: $bmrg-primary-color;
     padding: rem(10px);
     &.#{$prefix}--tooltip {
       max-width: initial;
     }
     .#{$prefix}--tooltip__caret {
       border: none;
-      background-color: #373d42;
+      background-color: $bmrg-primary-color;
     }
   }
 
