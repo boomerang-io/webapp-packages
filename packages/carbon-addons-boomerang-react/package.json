@@ -68,7 +68,6 @@
     "react-focus-trap": "^2.7.1",
     "react-modal": "^3.10.1",
     "react-toastify": "^5.3.2",
-    "typeface-ibm-plex-sans": "0.0.75",
     "warning": "^4.0.3",
     "window-or-global": "^1.0.1"
   },
