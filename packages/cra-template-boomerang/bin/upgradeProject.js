@@ -33,15 +33,12 @@ const appPackage = require(packagePath);
 const useYarn = fs.existsSync(path.join(appPath, fileNames.yarnLock));
 
 const templatePath = path.join("..");
-console.warn(templatePath);
-
 const templateJsonPath = path.join(templatePath, fileNames.templatePackage);
-console.warn(templateJsonPath);
+
 let templateJson = {};
 if (fs.existsSync(templateJsonPath)) {
   templateJson = require(templateJsonPath);
 }
-console.warn(templateJson);
 
 const jsconfigPath = path.join(appPath, fileNames.jsconfig);
 let appJsconfig = {};
