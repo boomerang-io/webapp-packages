@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
-const spawn = require("cross-spawn");
 
+const spawn = require("cross-spawn");
 const yargs = require("yargs");
 
 yargs
