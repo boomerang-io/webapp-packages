@@ -150,9 +150,6 @@
       padding-left: 0;
     }
 
-    .#{$prefix}--table-column-checkbox {
-      padding-top: 0.75rem;
-    }
 
     .#{$prefix}--data-table .#{$prefix}--table-header-label {
       padding: 0.875rem 1rem;
@@ -162,7 +159,7 @@
       padding: 0 1rem 0 0;
     }
 
-    .#{$prefix}--data-table:not(.#{$prefix}--skeleton) th {
+    .#{$prefix}--data-table:not(.#{$prefix}--skeleton):not(.#{$prefix}--table-column-checkbox) th {
       padding: 0;
     }
 
