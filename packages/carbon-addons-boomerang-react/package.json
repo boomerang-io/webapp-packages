@@ -1,7 +1,7 @@
 {
   "name": "@boomerang-io/carbon-addons-boomerang-react",
   "description": "Carbon Addons for Boomerang apps",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": {
     "name": "Tim Bula",
     "email": "timrbula@gmail.com"
@@ -83,7 +83,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@carbon/icons-react": "^10.9.1",
+    "@carbon/icons-react": "^10.15.0",
     "@ibma/aat": "https://able.ibm.com/tools/dist/aat.tgz",
     "@storybook/addon-a11y": "^5.3.9",
     "@storybook/addon-actions": "^5.3.9",

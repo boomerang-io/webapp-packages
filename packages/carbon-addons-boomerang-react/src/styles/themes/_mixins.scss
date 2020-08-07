@@ -74,8 +74,8 @@
 
     .#{$prefix}--label,
     .#{$prefix}--list-box__label {
-      color: #21272a;
-      font-family: 'IBM Plex Sans', sans-serif;
+      color: $text-01;
+      font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     }
 
     .#{$prefix}--modal-container {
@@ -148,6 +148,10 @@
     .#{$prefix}--data-table:not(.#{$prefix}--skeleton)
       th:first-of-type:not(.#{$prefix}--table-expand):not(.#{$prefix}--table-column-checkbox) {
       padding-left: 0;
+    }
+
+    .#{$prefix}--table-column-checkbox {
+      padding-top: 0.75rem;
     }
 
     .#{$prefix}--data-table .#{$prefix}--table-header-label {

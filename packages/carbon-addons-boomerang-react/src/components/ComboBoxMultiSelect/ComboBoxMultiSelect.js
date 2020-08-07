@@ -52,7 +52,7 @@ function MultiSelectComponent({
               {tooltipContent && (
                 <div className={tooltipClassName}>
                   <TooltipHover {...tooltipProps} tooltipText={tooltipContent}>
-                    <Information16 />
+                    <Information16 fill="#4d5358" />
                   </TooltipHover>
                 </div>
               )}
