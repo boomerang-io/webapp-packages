@@ -159,7 +159,7 @@
       padding: 0 1rem 0 0;
     }
 
-    .#{$prefix}--data-table:not(.#{$prefix}--skeleton):not(.#{$prefix}--table-column-checkbox) th {
+    .#{$prefix}--data-table:not(.#{$prefix}--skeleton) th:not(.#{$prefix}--table-column-checkbox) {
       padding: 0;
     }
 
