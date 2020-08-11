@@ -39,8 +39,10 @@
 
     .#{$prefix}--form-item {
       .#{$prefix}--text-input,
-      .#{$prefix}--text-area {
+      .#{$prefix}--text-area,
+      .#{$prefix}--number input[type='number'] {
         border: none;
+        border-bottom: none;
         border-radius: rem(4px);
       }
     }
@@ -149,7 +151,6 @@
       th:first-of-type:not(.#{$prefix}--table-expand):not(.#{$prefix}--table-column-checkbox) {
       padding-left: 0;
     }
-
 
     .#{$prefix}--data-table .#{$prefix}--table-header-label {
       padding: 0.875rem 1rem;
