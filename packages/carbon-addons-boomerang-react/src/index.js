@@ -35,7 +35,6 @@ export { default as GraphicWrangler } from './components/GraphicWrangler';
 export { default as LeftSideNav } from './components/LeftSideNav';
 export { default as Loading } from './components/Loading';
 export { default as LoadingAnimation } from './components/LoadingAnimation';
-export { default as MemberBar } from './components/MemberBar';
 export { default as Modal } from './components/Modal';
 export { default as ModalConfirmEdit } from './components/ModalConfirmEdit';
 export { ModalForm } from './components/ModalForm';
