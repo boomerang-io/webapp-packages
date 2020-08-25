@@ -8,14 +8,14 @@ storiesOf('BreadcrumbNav', module)
   .add('one link', () => {
     return (
       <Router history={createMemoryHistory({ initialEntries: ['/'] })}>
-        <BreadcrumbNav navItems={[{ label: 'Teams', to: '/teams' }]} />
+        <BreadcrumbNav navItems={[{ label: 'Teams', href: '/teams' }]} />
       </Router>
     );
   })
   .add('one link and text', () => {
     return (
       <Router history={createMemoryHistory({ initialEntries: ['/'] })}>
-        <BreadcrumbNav navItems={[{ label: 'Teams', to: '/teams' }, { label: 'Testing Team' }]} />
+        <BreadcrumbNav navItems={[{ label: 'Teams', href: '/teams' }, { label: 'Testing Team' }]} />
       </Router>
     );
   })
@@ -24,8 +24,8 @@ storiesOf('BreadcrumbNav', module)
       <Router history={createMemoryHistory({ initialEntries: ['/'] })}>
         <BreadcrumbNav
           navItems={[
-            { label: 'Teams', to: '/teams' },
-            { label: 'Testing Team', to: '/teams/123' },
+            { label: 'Teams', href: '/teams' },
+            { label: 'Testing Team', href: '/teams/123' },
           ]}
         />
       </Router>
@@ -36,8 +36,8 @@ storiesOf('BreadcrumbNav', module)
       <Router history={createMemoryHistory({ initialEntries: ['/'] })}>
         <BreadcrumbNav
           navItems={[
-            { label: 'Teams', to: '/teams' },
-            { label: 'Testing Team', to: '/teams/123' },
+            { label: 'Teams', href: '/teams' },
+            { label: 'Testing Team', href: '/teams/123' },
             { label: 'Testing Tool' },
           ]}
         />

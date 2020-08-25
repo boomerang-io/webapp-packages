@@ -1,38 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import { Breadcrumb, BreadcrumbItem } from 'carbon-components-react';
 import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
 const BreadcrumbNav = ({ className, navItems, ...rest }) => {
-  const classNames = classnames(`${prefix}--bmrg-breadcrumb-nav`, className);
-
   return (
-    <nav className={classNames} {...rest}>
+    <Breadcrumb {...rest}>
       {navItems.map((navItem) => {
-        const { className, label, ...navItemProps } = navItem;
-        return navItem.to ? (
-          <>
-            <Link
-              className={classnames(`${prefix}--bmrg-breadcrumb-nav__link`, className)}
+        const { className = '', label, ...navItemProps } = navItem;
+        return navItem.href ? (
+          <BreadcrumbItem {...navItemProps}>{navItem.label}</BreadcrumbItem>
+        ) : (
+          <li>
+            <p
+              className={classnames(`${prefix}--bmrg-breadcrumb-nav-text`, className)}
               {...navItemProps}
             >
               {navItem.label}
-            </Link>
-            <span className={`${prefix}--bmrg-breadcrumb-nav__breadcrumb`}>/</span>
-          </>
-        ) : (
-          <p
-            className={classnames(`${prefix}--bmrg-breadcrumb-nav__text`, className)}
-            {...navItemProps}
-          >
-            {navItem.label}
-          </p>
+            </p>
+          </li>
         );
       })}
-    </nav>
+    </Breadcrumb>
   );
 };
 
@@ -42,7 +34,12 @@ BreadcrumbNav.defaultProps = {
 
 BreadcrumbNav.propTypes = {
   className: PropTypes.string,
-  navItems: PropTypes.array.isRequired,
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string,
+    })
+  ),
 };
 
 export default BreadcrumbNav;

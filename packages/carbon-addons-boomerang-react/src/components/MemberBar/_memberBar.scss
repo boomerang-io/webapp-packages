@@ -1,6 +1,7 @@
 @include exports('addons-bmrg-memberBar') {
   .#{$prefix}--bmrg-member-bar {
     align-items: center;
+    background-color: transparent;
     border: none;
     border-bottom: 0.0625rem solid $active-ui;
     cursor: pointer;

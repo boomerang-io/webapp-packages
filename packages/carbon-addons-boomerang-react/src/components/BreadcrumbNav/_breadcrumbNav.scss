@@ -1,27 +1,5 @@
 @include exports('addons-bmrg-breadcrumbNav') {
-  .#{$prefix}--bmrg-breadcrumb-nav {
-    display: flex;
-  }
-
-  .#{$prefix}--bmrg-breadcrumb-nav__link {
-    color: $interactive-01;
-    font-size: 0.875rem;
-    letter-spacing: 00.01rem;
-    line-height: 1.125rem;
-    text-decoration: none;
-    &:focus {
-      @include focus-outline();
-    }
-  }
-
-  .#{$prefix}--bmrg-breadcrumb-nav__breadcrumb {
-    font-size: 0.875rem;
-    letter-spacing: 00.01rem;
-    line-height: 1.125rem;
-    margin: 0 0.5rem;
-  }
-
-  .#{$prefix}--bmrg-breadcrumb-nav__text {
+  .#{$prefix}--bmrg-breadcrumb-nav-text {
     font-size: 0.875rem;
     letter-spacing: 00.01rem;
     line-height: 1.125rem;
