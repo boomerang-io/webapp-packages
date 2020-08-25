@@ -18,5 +18,8 @@
     border-bottom: 0.125rem solid $support-02;
     color: $text-01;
     font-weight: 600;
+    &:hover {
+      border-bottom: 0.125rem solid $support-02;
+    }
   }
 }

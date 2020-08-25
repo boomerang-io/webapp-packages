@@ -3,13 +3,46 @@
     background-color: $ui-01;
     display: flex;
     justify-content: space-between;
+    min-height: 6.25rem;
+    padding: 1.5rem 1.5rem 0;
     position: sticky;
     top: 0;
     z-index: 999;
+  }
+  .#{$prefix}--bmrg-feature-header__footer {
+    margin-top: auto;
   }
   .#{$prefix}--bmrg-feature-header__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .#{$prefix}--bmrg-feature-header__group {
+    margin: 0.5rem 0rem 1.5rem;
+
+    * {
+      color: $text-02;
+      font-size: 0.875rem;
+      line-height: 1rem;
+      letter-spacing: 0;
+      white-space: no-wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    h1 {
+      color: $text-01;
+      font-size: 2rem;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+
+    h2 {
+      color: $text-02;
+      font-size: 1rem;
+      letter-spacing: 0;
+      line-height: 1.25;
+    }
   }
 }

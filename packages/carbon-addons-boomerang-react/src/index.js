@@ -27,7 +27,11 @@ export { default as ErrorBoundary } from './components/ErrorBoundary';
 export { default as ErrorDragon } from './components/ErrorDragon';
 export { default as ErrorMessage } from './components/ErrorMessage';
 export { default as ErrorPage } from './components/ErrorPage';
-export { default as FeatureHeader } from './components/FeatureHeader';
+export {
+  FeatureHeader,
+  FeatureHeaderSubtitle,
+  FeatureHeaderTitle,
+} from './components/FeatureHeader';
 export { default as FeatureNavTab } from './components/FeatureNavTab';
 export { default as FeatureNavTabs } from './components/FeatureNavTabs';
 export { FlowModal as ModalFlow, FlowModalForm as ModalFlowForm } from './components/FlowModal';
