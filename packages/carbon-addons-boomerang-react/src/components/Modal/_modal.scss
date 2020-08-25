@@ -59,6 +59,7 @@
     .#{$prefix}--select-input,
     .#{$prefix}--text-input,
     .#{$prefix}--text-area,
+    .#{$prefix}--number input[type='number'],
     .#{$prefix}--toggle-input:disabled
       + .#{$prefix}--toggle-input__label
       > .#{$prefix}--toggle__switch::before {

@@ -4,6 +4,11 @@ import './styles/index.scss';
 // Components
 export { default as AutoSuggest } from './components/AutoSuggest';
 export { default as Avatar } from './components/Avatar';
+export { default as BmrgHeader } from './components/Header';
+export { default as BmrgHeaderMenuButton } from './components/HeaderMenuButton';
+export { default as BmrgHeaderMenuItem } from './components/HeaderMenuItem';
+export { default as BrmgHeaderMenuLink } from './components/HeaderMenuLink';
+export { default as BrmgHeaderMenuUser } from './components/HeaderMenuUser';
 export { default as CheckboxList } from './components/CheckboxList';
 export { default as ComboBox } from './components/ComboBox';
 export { default as ComboBoxMultiSelect } from './components/ComboBoxMultiSelect';
@@ -14,18 +19,19 @@ export { default as DataDrivenInput } from './components/DataDrivenInput';
 export { default as DecisionButtons } from './components/DecisionButtons';
 export { default as DelayedRender } from './components/DelayedRender';
 export { default as DynamicFormik } from './components/DynamicFormik';
-export { default as Error } from './components/ErrorMessage';
-export { default as ErrorMessage } from './components/ErrorMessage';
+export { default as Error } from './components/ErrorMessage'; //legacy export support
 export { default as Error403 } from './components/Error403';
 export { default as Error404 } from './components/Error404';
 export { default as ErrorBoundary } from './components/ErrorBoundary';
 export { default as ErrorDragon } from './components/ErrorDragon';
+export { default as ErrorMessage } from './components/ErrorMessage';
 export { default as ErrorPage } from './components/ErrorPage';
 export { FlowModal as ModalFlow, FlowModalForm as ModalFlowForm } from './components/FlowModal';
 export { FlowModal, FlowModalForm } from './components/FlowModal';
 export { default as GraphicLoch } from './components/GraphicLoch';
 export { default as GraphicWrangler } from './components/GraphicWrangler';
 export { default as LeftSideNav } from './components/LeftSideNav';
+export { default as Loading } from './components/Loading';
 export { default as LoadingAnimation } from './components/LoadingAnimation';
 export { default as Modal } from './components/Modal';
 export { default as ModalConfirmEdit } from './components/ModalConfirmEdit';
@@ -35,6 +41,7 @@ export { NotificationsContainer, notify, ToastNotification } from './components/
 export { default as OptionsGrid } from './components/OptionsGrid';
 export { default as PlatformBanner } from './components/PlatformBanner';
 export { default as PlatformNotificationsContainer } from './components/PlatformNotifications';
+export { default as Portal } from './components/Portal';
 export { default as PrivacyStatement } from './components/PrivacyStatement';
 export { default as ProtectedRoute } from './components/ProtectedRoute';
 export { default as RadioGroup } from './components/RadioGroup';
@@ -61,28 +68,26 @@ export {
   Copy,
   CopyButton,
   DangerButton,
-  // TODO consolidate Carbon's datatable exports below with our table exports
-  // default as DataTable,
-  // Table,
-  // TableActionList,
-  // TableBatchAction,
-  // TableBatchActions,
-  // TableBody,
-  // TableCell,
-  // TableContainer,
-  // TableExpandHeader,
-  // TableExpandRow,
-  // TableExpandedRow,
-  // TableHead,
-  // TableHeader,
-  // TableRow,
-  // TableSelectAll,
-  // TableSelectRow,
-  // TableToolbar,
-  // TableToolbarAction,
-  // TableToolbarContent,
-  // TableToolbarSearch,
-  // TableToolbarMenu,
+  Table,
+  TableActionList,
+  TableBatchAction,
+  TableBatchActions,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableExpandHeader,
+  TableExpandRow,
+  TableExpandedRow,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableSelectAll,
+  TableSelectRow,
+  TableToolbar,
+  TableToolbarAction,
+  TableToolbarContent,
+  TableToolbarSearch,
+  TableToolbarMenu,
   DataTable,
   DatePicker,
   DatePickerInput,
@@ -100,7 +105,6 @@ export {
   InlineLoading,
   Link,
   ListItem,
-  Loading,
   ModalWrapper,
   MultiSelect,
   InlineNotification,
@@ -113,8 +117,7 @@ export {
   OverflowMenuItem,
   Pagination,
   PrimaryButton,
-  // TODO Consolidate ProgressIndicator export from Carbon below with our ProgressIndicator export
-  // ProgressIndicator,
+  ProgressIndicator,
   ProgressStep,
   RadioButton,
   RadioButtonGroup,

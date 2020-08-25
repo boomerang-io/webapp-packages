@@ -51,7 +51,7 @@ $shell-side-nav-bg-03: $bmrg-secondary-color !default;
 /// @type Color
 /// @access private
 /// @group ui-shell
-$shell-side-nav-bg-04: $bmrg-header-hover-background-color !default;
+$shell-side-nav-bg-04: $bmrg-sidenav-active-background-color !default;
 /// Side nav menu item hover background
 /// @type Color
 /// @access private
@@ -551,16 +551,16 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   .#{$prefix}--side-nav__menu a.#{$prefix}--side-nav__link--current,
   .#{$prefix}--side-nav__menu a.#{$prefix}--side-nav__link[aria-current='page'],
   a.#{$prefix}--side-nav__link--current {
-    background-color: #07192b;
+    background-color: $shell-side-nav-bg-04;
 
     > span {
-      color: $bmrg-secondary-color;
+      color: $bmrg-header-active-text-color;
       font-weight: 600;
     }
   }
 
   a.#{$prefix}--side-nav__link--current > span.#{$prefix}--side-nav__link-text {
-    color: $bmrg-secondary-color;
+    color: $bmrg-header-active-text-color;
     font-weight: 600;
   }
   //----------------------------------------------------------------------------
@@ -605,7 +605,7 @@ $shell-side-nav-accent-01: $bmrg-secondary-color !default;
   a.#{$prefix}--side-nav__link[aria-current='page'],
   a.#{$prefix}--side-nav__link--current {
     font-weight: 600;
-    background-color: #07192b;
+    background-color: $shell-side-nav-bg-04;
   }
 
   a.#{$prefix}--side-nav__link[aria-current='page'] .#{$prefix}--side-nav__link-text,

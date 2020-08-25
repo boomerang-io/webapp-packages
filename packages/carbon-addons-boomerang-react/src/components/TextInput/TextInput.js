@@ -23,7 +23,7 @@ const TextInputComponent = React.forwardRef(function TextInputComponent(
               {tooltipContent && (
                 <div className={tooltipClassName}>
                   <TooltipHover tooltipContent={tooltipContent} {...tooltipProps}>
-                    <Information16 />
+                    <Information16 fill="#4d5358" />
                   </TooltipHover>
                 </div>
               )}
