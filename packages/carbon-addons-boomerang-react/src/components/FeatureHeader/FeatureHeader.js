@@ -8,6 +8,9 @@ const { prefix } = settings;
 FeatureHeader.defaultProps = {
   className: '',
   contentClassName: '',
+  navClassName: '',
+  headerClassName: '',
+  footerClassName: '',
   includeBorder: true,
 };
 
@@ -16,40 +19,47 @@ FeatureHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   footer: PropTypes.node,
-  nav: PropTypes.node,
+  header: PropTypes.node,
   includeBorder: PropTypes.bool,
+  nav: PropTypes.node,
   style: PropTypes.object,
   title: PropTypes.node,
+  contentClassName: PropTypes.string,
+  navClassName: PropTypes.string,
+  headerClassName: PropTypes.string,
+  footerClassName: PropTypes.string,
 };
 
 export function FeatureHeader({
   actions,
   children,
   className,
-  contentClassName,
-  footerClassName,
-  titleClassName,
   footer,
-  nav,
+  header,
   includeBorder,
+  nav,
   style,
-  subtitle,
-  title,
+  contentClassName,
+  navClassName,
+  headerClassName,
+  footerClassName,
   ...rest
 }) {
-  const containerClassNames = classnames(`${prefix}--bmrg-feature-header`, className);
+  const containerClassNames = classnames(`${prefix}--bmrg-feature-header`, className, {
+    '--bordered': includeBorder,
+  });
   const contentClassNames = classnames(`${prefix}--bmrg-feature-header__content`, contentClassName);
-  const titleGroupClassNames = classnames(`${prefix}--bmrg-feature-header__group`, titleClassName);
+  const navClassNames = classnames(`${prefix}--bmrg-feature-header__nav`, navClassName);
+  const headerClassNames = classnames(`${prefix}--bmrg-feature-header__header`, headerClassName);
   const footerClassNames = classnames(`${prefix}--bmrg-feature-header__footer`, footerClassName);
-  const additionalStyle = includeBorder ? { borderBottom: '0.0625rem solid #c1c7cd' } : {};
 
   return (
-    <header className={containerClassNames} style={{ ...additionalStyle, ...style }} {...rest}>
+    <header className={containerClassNames} style={style} {...rest}>
       <section className={contentClassNames}>
-        {nav}
-        {title && <hrgroup className={titleGroupClassNames}>{title}</hrgroup>}
+        {nav && <div className={navClassNames}>{nav}</div>}
+        {header && <hrgroup className={headerClassNames}>{header}</hrgroup>}
         {children}
-        <div className={footerClassNames}>{footer}</div>
+        {footer && <div className={footerClassNames}>{footer}</div>}
       </section>
       {actions}
     </header>
@@ -60,19 +70,17 @@ FeatureHeaderTitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   element: PropTypes.string,
-  includeBorder: PropTypes.bool,
 };
 
-export function FeatureHeaderTitle({
-  element: Element = 'h1',
-  children,
-  className,
-  styles,
-  ...rest
-}) {
+FeatureHeaderTitle.defaultProps = {
+  className: '',
+  element: 'h1',
+};
+
+export function FeatureHeaderTitle({ element: Element, children, className, style, ...rest }) {
   const classNames = classnames(`${prefix}--bmrg-feature-header-text`, className);
   return (
-    <Element className={classNames} {...rest}>
+    <Element className={classNames} style={style} {...rest}>
       {children}
     </Element>
   );
