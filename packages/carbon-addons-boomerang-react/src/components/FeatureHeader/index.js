@@ -1,1 +1,1 @@
-export { default } from './FeatureHeader';
+export { FeatureHeader, FeatureHeaderTitle, FeatureHeaderSubtitle } from './FeatureHeader';

@@ -5,36 +5,12 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-const FeatureHeader = ({
-  actions: Actions,
-  children,
-  className,
-  contentClassName,
-  footer: Footer,
-  header: Header,
-  includeBorder,
-  style,
-  ...rest
-}) => {
-  const containerClassNames = classnames(`${prefix}--bmrg-feature-header`, className);
-  const contentClassNames = classnames(`${prefix}--bmrg-feature-header__content`, contentClassName);
-  const additionalStyle = includeBorder ? { borderBottom: '0.0625rem solid #c1c7cd' } : {};
-
-  return (
-    <header className={containerClassNames} style={{ ...additionalStyle, ...style }} {...rest}>
-      <section className={contentClassNames}>
-        {Header ? <Header /> : null}
-        {children}
-        {Footer ? <Footer /> : null}
-      </section>
-      {Actions ? <Actions /> : null}
-    </header>
-  );
-};
-
 FeatureHeader.defaultProps = {
   className: '',
   contentClassName: '',
+  navClassName: '',
+  headerClassName: '',
+  footerClassName: '',
   includeBorder: true,
 };
 
@@ -45,7 +21,71 @@ FeatureHeader.propTypes = {
   footer: PropTypes.node,
   header: PropTypes.node,
   includeBorder: PropTypes.bool,
+  nav: PropTypes.node,
   style: PropTypes.object,
+  title: PropTypes.node,
+  contentClassName: PropTypes.string,
+  navClassName: PropTypes.string,
+  headerClassName: PropTypes.string,
+  footerClassName: PropTypes.string,
 };
 
-export default FeatureHeader;
+export function FeatureHeader({
+  actions,
+  children,
+  className,
+  footer,
+  header,
+  includeBorder,
+  nav,
+  style,
+  contentClassName,
+  navClassName,
+  headerClassName,
+  footerClassName,
+  ...rest
+}) {
+  const containerClassNames = classnames(`${prefix}--bmrg-feature-header`, className, {
+    '--bordered': includeBorder,
+  });
+  const contentClassNames = classnames(`${prefix}--bmrg-feature-header__content`, contentClassName);
+  const navClassNames = classnames(`${prefix}--bmrg-feature-header__nav`, navClassName);
+  const headerClassNames = classnames(`${prefix}--bmrg-feature-header__header`, headerClassName);
+  const footerClassNames = classnames(`${prefix}--bmrg-feature-header__footer`, footerClassName);
+
+  return (
+    <header className={containerClassNames} style={style} {...rest}>
+      <section className={contentClassNames}>
+        {nav && <div className={navClassNames}>{nav}</div>}
+        {header && <hrgroup className={headerClassNames}>{header}</hrgroup>}
+        {children}
+        {footer && <div className={footerClassNames}>{footer}</div>}
+      </section>
+      {actions}
+    </header>
+  );
+}
+
+FeatureHeaderTitle.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  element: PropTypes.string,
+};
+
+FeatureHeaderTitle.defaultProps = {
+  className: '',
+  element: 'h1',
+};
+
+export function FeatureHeaderTitle({ element: Element, children, className, style, ...rest }) {
+  const classNames = classnames(`${prefix}--bmrg-feature-header-text`, className);
+  return (
+    <Element className={classNames} style={style} {...rest}>
+      {children}
+    </Element>
+  );
+}
+
+export function FeatureHeaderSubtitle(props) {
+  return <FeatureHeaderTitle element="h2" {...props} />;
+}

@@ -7,6 +7,8 @@
     line-height: 1.125rem;
     padding: 0 1.75rem 0.625rem;
     text-decoration: none;
+    transition: border-bottom $carbon-motion--timing--productive $carbon-motion--easing--productive,
+    color $carbon-motion--timing--productive $carbon-motion--easing--productive;
 
     &:hover {
       border-bottom: 0.125rem solid #5d6168;
@@ -18,5 +20,9 @@
     border-bottom: 0.125rem solid $support-02;
     color: $text-01;
     font-weight: 600;
+  
+    &:hover {
+      border-bottom: 0.125rem solid $support-02;
+    }
   }
 }
