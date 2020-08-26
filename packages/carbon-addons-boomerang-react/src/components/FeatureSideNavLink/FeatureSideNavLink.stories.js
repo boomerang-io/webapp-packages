@@ -33,6 +33,7 @@ storiesOf('FeatureSideNavLink', module)
         <FeatureSideNavLink
           to="/test"
           children="TESTING"
+          iconProps={{"data-testid": "rocket-icon"}}
           icon={Rocket16}
         />
       </Router>
