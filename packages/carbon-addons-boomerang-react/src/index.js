@@ -28,6 +28,13 @@ export { default as ErrorMessage } from './components/ErrorMessage';
 export { default as ErrorPage } from './components/ErrorPage';
 export { FlowModal as ModalFlow, FlowModalForm as ModalFlowForm } from './components/FlowModal';
 export { FlowModal, FlowModalForm } from './components/FlowModal';
+export {
+  FeatureSideNav,
+  FeatureSideNavFooter,
+  FeatureSideNavHeader,
+  FeatureSideNavLinks,
+} from './components/FeatureSideNav';
+export { default as FeatureSideNavLink } from './components/FeatureSideNavLink';
 export { default as GraphicLoch } from './components/GraphicLoch';
 export { default as GraphicWrangler } from './components/GraphicWrangler';
 export { default as LeftSideNav } from './components/LeftSideNav';
