@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
 import { Button, TextInput, ModalBody, ModalFooter } from 'carbon-components-react';
 import FlowModal from './FlowModal';
 import FlowModalForm from './FlowModalForm';
