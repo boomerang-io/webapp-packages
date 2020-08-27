@@ -522,9 +522,9 @@ export default function DynamicFormik({
       typeof input.requiredForKey === 'string' ? input.requiredForKey.replace(/\./g, '||') : null,
   }));
 
-  const normalizedInitialInputs = () => {
-    if (!Boolean(initialValues)) return {};
-    let inputKeys = Object.entries(initialValues);
+  const normalizeValues = (values) => {
+    if (!Boolean(values)) return {};
+    let inputKeys = Object.entries(values);
     let newValues = {};
     inputKeys.forEach((value) => (newValues[value[0].replace(/\./g, '||')] = value[1]));
     return newValues;
@@ -533,9 +533,9 @@ export default function DynamicFormik({
   return (
     <Formik
       initialValues={
-        (Boolean(initialValues) && normalizedInitialInputs()) || {
+        (Boolean(initialValues) && normalizeValues(initialValues)) || {
           ...determineInitialValues(normalizedInputs),
-          ...additionalInitialValues,
+          ...normalizeValues(additionalInitialValues),
         }
       }
       validationSchema={
