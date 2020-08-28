@@ -57,7 +57,7 @@ export function FeatureHeader({
     <header className={containerClassNames} style={style} {...rest}>
       <section className={contentClassNames}>
         {nav && <div className={navClassNames}>{nav}</div>}
-        {header && <hrgroup className={headerClassNames}>{header}</hrgroup>}
+        {header && <hgroup className={headerClassNames}>{header}</hgroup>}
         {children}
         {footer && <div className={footerClassNames}>{footer}</div>}
       </section>

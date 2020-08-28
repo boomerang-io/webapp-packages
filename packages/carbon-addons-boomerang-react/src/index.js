@@ -9,7 +9,6 @@ export { default as BmrgHeaderMenuButton } from './components/HeaderMenuButton';
 export { default as BmrgHeaderMenuItem } from './components/HeaderMenuItem';
 export { default as BrmgHeaderMenuLink } from './components/HeaderMenuLink';
 export { default as BrmgHeaderMenuUser } from './components/HeaderMenuUser';
-export { default as BreadcrumbNav } from './components/BreadcrumbNav';
 export { default as CheckboxList } from './components/CheckboxList';
 export { default as ComboBox } from './components/ComboBox';
 export { default as ComboBoxMultiSelect } from './components/ComboBoxMultiSelect';

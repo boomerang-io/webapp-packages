@@ -1,15 +1,25 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Router } from 'react-router-dom';
+import { Router, Link } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { FeatureHeader, FeatureHeaderTitle, FeatureHeaderSubtitle } from './index';
 import { default as Tabs } from '../FeatureNavTabs';
 import { default as Tab } from '../FeatureNavTab';
-import BreadcrumbNav from '../BreadcrumbNav';
-import { Button } from 'carbon-components-react';
+import { Button, Breadcrumb, BreadcrumbItem } from 'carbon-components-react';
 import { Save16, View16 } from '@carbon/icons-react';
 
-const navItems = [{ label: 'Teams', href: '/teams' }, { label: 'Testing Team' }];
+const Nav = () => {
+  return (
+    <Breadcrumb noTrailingSlash>
+      <BreadcrumbItem>
+        <Link to="/teams">Teams</Link>
+      </BreadcrumbItem>
+      <BreadcrumbItem isCurrentPage>
+        <Link to="/teams/123">Testing Team</Link>
+      </BreadcrumbItem>
+    </Breadcrumb>
+  )
+}
 
 const Footer = () => {
   return (
@@ -118,7 +128,7 @@ storiesOf('FeatureHeader', module)
       <Router history={createMemoryHistory({ initialEntries: ['/'] })}>
         <div style={{ backgroundColor: '#f2f4f8', height: '100vh', width: '100vw' }}>
           <FeatureHeader
-            nav={<BreadcrumbNav navItems={navItems} />}
+            nav={<Nav />}
             header={
               <>
                 <FeatureHeaderTitle>With Header</FeatureHeaderTitle>
@@ -134,7 +144,7 @@ storiesOf('FeatureHeader', module)
     return (
       <Router history={createMemoryHistory({ initialEntries: ['/'] })}>
         <div style={{ backgroundColor: '#f2f4f8', height: '100vh', width: '100vw' }}>
-          <FeatureHeader nav={<BreadcrumbNav navItems={navItems} />} />
+          <FeatureHeader nav={<Nav />} />
         </div>
       </Router>
     );
@@ -170,7 +180,7 @@ storiesOf('FeatureHeader', module)
       <Router history={createMemoryHistory({ initialEntries: ['/'] })}>
         <div style={{ backgroundColor: '#f2f4f8', height: '100vh', width: '100vw' }}>
           <FeatureHeader
-            nav={<BreadcrumbNav navItems={navItems} />}
+            nav={<Nav />}
             footer={<Footer />}
             actions={<Actions />}
             header={
