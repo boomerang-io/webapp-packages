@@ -25,4 +25,14 @@
       border-bottom: 0.125rem solid $support-02;
     }
   }
+
+  .#{$prefix}--bmrg-feature-nav-tab--loading {
+    border-bottom: 0.125rem solid #b9bfc7;
+    padding: 0 1.75rem 0.625rem;
+  }
+
+  .#{$prefix}--bmrg-feature-nav-tab--loading__skeleton {
+    height: 0.875rem;
+    width: 7rem;
+  }
 }

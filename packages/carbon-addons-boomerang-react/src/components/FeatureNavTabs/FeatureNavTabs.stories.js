@@ -17,4 +17,16 @@ storiesOf('FeatureNavTabs', module).add('default', () => {
       </Tabs>
     </Router>
   );
+}).add('loading', () => {
+  return (
+    <Router history={createMemoryHistory({ initialEntries: ['/'] })}>
+      <Tabs>
+        <Tab label="Services" to="/services" loading />
+        <Tab label="Members" to="/members" />
+        <Tab label="Service Requests" to="/service-requests" />
+        <Tab label="Members Requests" to="/members-requests" loading />
+        <Tab label="Settings" to="/settings" />
+      </Tabs>
+    </Router>
+  );
 });
