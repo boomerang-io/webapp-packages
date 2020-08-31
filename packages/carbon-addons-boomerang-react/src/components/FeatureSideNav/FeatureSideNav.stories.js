@@ -58,4 +58,35 @@ storiesOf('FeatureSideNav', module)
         </FeatureSideNav>
       </Router>
     );
+  })
+  .add('Feature Sidenav Loading', () => {
+    return (
+      <Router history={history}>
+        <FeatureSideNav border="right" isLoading={true}>
+          <FeatureSideNavLink to="/link1" children="Link1" />
+          <FeatureSideNavLink to="/link2" children="Link2" />
+        </FeatureSideNav>
+      </Router>
+    );
+  })
+  .add('Feature Sidenav Components Loading', () => {
+    return (
+      <Router history={history}>
+        <FeatureSideNav border="left">
+          <FeatureSideNavHeader isLoading={true}>
+            <h1>Test Title</h1>
+            <Search />
+          </FeatureSideNavHeader>
+          <FeatureSideNavLinks isLoading={true}>
+            <Accordion>
+              <FeatureSideNavLink to="/link1" children="Link1" />
+              <FeatureSideNavLink to="/link2" children="Link2" />
+            </Accordion>
+          </FeatureSideNavLinks>
+          <FeatureSideNavFooter isLoading={true}>
+            <Button>Click here</Button>
+          </FeatureSideNavFooter>
+        </FeatureSideNav>
+      </Router>
+    );
   });
