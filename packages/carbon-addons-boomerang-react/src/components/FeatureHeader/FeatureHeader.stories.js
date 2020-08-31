@@ -114,6 +114,21 @@ storiesOf('FeatureHeader', module)
       </div>
     );
   })
+  .add('loading', () => {
+    return (
+      <div style={{ backgroundColor: '#f2f4f8', height: '100vh', width: '100vw' }}>
+        <FeatureHeader
+          isLoading
+          header={
+            <>
+              <FeatureHeaderTitle>It is Loading</FeatureHeaderTitle>
+              <FeatureHeaderSubtitle>Subtitle</FeatureHeaderSubtitle>
+            </>
+          }
+        ></FeatureHeader>
+      </div>
+    );
+  })
   .add('with footer', () => {
     return (
       <Router history={createMemoryHistory({ initialEntries: ['/'] })}>

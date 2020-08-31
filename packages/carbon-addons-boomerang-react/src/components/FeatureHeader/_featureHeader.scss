@@ -17,6 +17,12 @@
     margin-bottom: auto;
   }
 
+  .#{$prefix}--bmrg-feature-header__loading {
+    height: 3.75rem;
+    margin: 0.5rem 0rem 1.5rem;
+    width: 30rem;
+  }
+
   .#{$prefix}--bmrg-feature-header__content {
     display: flex;
     flex-direction: column;

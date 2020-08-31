@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { SkeletonPlaceholder } from 'carbon-components-react';
 import { settings } from 'carbon-components';
 
 const { prefix } = settings;
@@ -8,10 +9,12 @@ const { prefix } = settings;
 FeatureHeader.defaultProps = {
   className: '',
   contentClassName: '',
+  skeletonClassName: '',
   navClassName: '',
   headerClassName: '',
   footerClassName: '',
   includeBorder: true,
+  isLoading: false
 };
 
 FeatureHeader.propTypes = {
@@ -21,10 +24,12 @@ FeatureHeader.propTypes = {
   footer: PropTypes.node,
   header: PropTypes.node,
   includeBorder: PropTypes.bool,
+  isLoading: PropTypes.bool,
   nav: PropTypes.node,
   style: PropTypes.object,
   title: PropTypes.node,
   contentClassName: PropTypes.string,
+  skeletonClassName: PropTypes.string,
   navClassName: PropTypes.string,
   headerClassName: PropTypes.string,
   footerClassName: PropTypes.string,
@@ -37,9 +42,11 @@ export function FeatureHeader({
   footer,
   header,
   includeBorder,
+  isLoading,
   nav,
   style,
   contentClassName,
+  skeletonClassName,
   navClassName,
   headerClassName,
   footerClassName,
@@ -49,6 +56,7 @@ export function FeatureHeader({
     '--bordered': includeBorder,
   });
   const contentClassNames = classnames(`${prefix}--bmrg-feature-header__content`, contentClassName);
+  const skeletonClassNames = classnames(`${prefix}--bmrg-feature-header__loading`, skeletonClassName);
   const navClassNames = classnames(`${prefix}--bmrg-feature-header__nav`, navClassName);
   const headerClassNames = classnames(`${prefix}--bmrg-feature-header__header`, headerClassName);
   const footerClassNames = classnames(`${prefix}--bmrg-feature-header__footer`, footerClassName);
@@ -57,8 +65,12 @@ export function FeatureHeader({
     <header className={containerClassNames} style={style} {...rest}>
       <section className={contentClassNames}>
         {nav && <div className={navClassNames}>{nav}</div>}
-        {header && <hgroup className={headerClassNames}>{header}</hgroup>}
-        {children}
+        {isLoading ? <SkeletonPlaceholder className={skeletonClassNames} /> : (
+          <>
+            {header && <hgroup className={headerClassNames}>{header}</hgroup>}
+            {children}
+          </>
+        )}
         {footer && <div className={footerClassNames}>{footer}</div>}
       </section>
       {actions}

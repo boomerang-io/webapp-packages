@@ -7,11 +7,11 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-const FeatureNavTab = ({ activeClassName, className, style, label, loading, ...rest }) => {
+const FeatureNavTab = ({ activeClassName, className, style, label, isLoading, ...rest }) => {
   const classNames = classnames(`${prefix}--bmrg-feature-nav-tab`, className);
   const activeClassNames = classnames(`${prefix}--bmrg-feature-nav-tab--active`, activeClassName);
 
-  return loading ? (
+  return isLoading ? (
     <div className={`${prefix}--bmrg-feature-nav-tab--loading`}>
       <SkeletonPlaceholder className={`${prefix}--bmrg-feature-nav-tab--loading__skeleton`} />
     </div> 
@@ -26,14 +26,14 @@ FeatureNavTab.defaultProps = {
   activeClassName: '',
   className: '',
   label: '',
-  loading: false
+  isLoading: false
 };
 
 FeatureNavTab.propTypes = {
   activeClassName: PropTypes.string,
   className: PropTypes.string,
   label: PropTypes.string,
-  loading: PropTypes.bool,
+  isLoading: PropTypes.bool,
   style: PropTypes.object,
 };
 
