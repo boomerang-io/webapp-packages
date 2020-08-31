@@ -26,9 +26,9 @@ storiesOf('Header', module)
   .add('default', () => (
     <Header
       renderLogo={boolean('renderLogo', true)}
+      appName={text('appName', '')}
+      platformName={text('platformName', '')}
       enableNotifications={boolean('enableNotifications', true)}
-      companyName={text('companyName', '')}
-      productName={text('productName', '')}
       navLinks={object('navLinks', [
         {
           name: 'Launchpad',

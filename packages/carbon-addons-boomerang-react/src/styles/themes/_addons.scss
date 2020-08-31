@@ -7,7 +7,7 @@ $carbon-addons-bmrg--theme-map--boomerang: (
   bmrg-brand-white: #f2f4f8,
   bmrg-header-active-background-color: #08bdba,
   bmrg-header-active-text-color: #f2f4f8,
-  bmrg-header-hover-background-color: #012749,
+  bmrg-header-hover-background-color: #343a3f,
   bmrg-header-menu-options-accent-color: #08bdba,
   bmrg-header-menu-options-active-background-color: #002b50,
   bmrg-header-menu-options-top-border-color: #08bdba,
@@ -20,6 +20,7 @@ $carbon-addons-bmrg--theme-map--boomerang: (
   bmrg-header-modal-background-color: #061727,
   bmrg-header-button-text-color: #272727,
   bmrg-header-attachment-background-color: #50565b,
+  bmrg-sidenav-active-background-color: #343a3f,
 ) !default;
 
 $carbon-addons-bmrg--theme-map--iap-dark: (
@@ -45,6 +46,7 @@ $carbon-addons-bmrg--theme-map--iap-dark: (
   bmrg-header-modal-background-color: #242a2e,
   bmrg-header-button-text-color: #242a2e,
   bmrg-header-attachment-background-color: #1b2834,
+  bmrg-sidenav-active-background-color: #3d3d3d,
 ) !default;
 
 $carbon-addons-bmrg--theme-maps: (
@@ -92,6 +94,10 @@ $carbon-addons-bmrg--theme-maps: (
   $bmrg-header-attachment-background-color: map-get(
     $theme,
     bmrg-header-attachment-background-color
+  ) !global;
+  $bmrg-sidenav-active-background-color: map-get(
+    $theme,
+    bmrg-sidenav-active-background-color
   ) !global;
 
   @content;

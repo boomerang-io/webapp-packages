@@ -39,8 +39,10 @@
 
     .#{$prefix}--form-item {
       .#{$prefix}--text-input,
-      .#{$prefix}--text-area {
+      .#{$prefix}--text-area,
+      .#{$prefix}--number input[type='number'] {
         border: none;
+        border-bottom: none;
         border-radius: rem(4px);
       }
     }
@@ -74,8 +76,8 @@
 
     .#{$prefix}--label,
     .#{$prefix}--list-box__label {
-      color: #21272a;
-      font-family: 'IBM Plex Sans', sans-serif;
+      color: $text-01;
+      font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     }
 
     .#{$prefix}--modal-container {
@@ -145,7 +147,7 @@
     }
 
     // DataTable Overrides
-    .#{$prefix}--data-table
+    .#{$prefix}--data-table:not(.#{$prefix}--skeleton)
       th:first-of-type:not(.#{$prefix}--table-expand):not(.#{$prefix}--table-column-checkbox) {
       padding-left: 0;
     }
@@ -158,7 +160,7 @@
       padding: 0 1rem 0 0;
     }
 
-    .#{$prefix}--data-table th {
+    .#{$prefix}--data-table:not(.#{$prefix}--skeleton) th:not(.#{$prefix}--table-column-checkbox) {
       padding: 0;
     }
 

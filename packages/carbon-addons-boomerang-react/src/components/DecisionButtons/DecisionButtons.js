@@ -134,7 +134,7 @@ function DecisionButtons({
                 onClick={(e) => e.preventDefault()}
                 tooltipText={tooltipContent}
               >
-                <Information16 />
+                <Information16 fill="#4d5358" />
               </TooltipHover>
             </div>
           )}
