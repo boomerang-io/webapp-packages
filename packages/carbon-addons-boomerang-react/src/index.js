@@ -26,6 +26,13 @@ export { default as ErrorBoundary } from './components/ErrorBoundary';
 export { default as ErrorDragon } from './components/ErrorDragon';
 export { default as ErrorMessage } from './components/ErrorMessage';
 export { default as ErrorPage } from './components/ErrorPage';
+export {
+  FeatureHeader,
+  FeatureHeaderSubtitle,
+  FeatureHeaderTitle,
+} from './components/FeatureHeader';
+export { default as FeatureNavTab } from './components/FeatureNavTab';
+export { default as FeatureNavTabs } from './components/FeatureNavTabs';
 export { FlowModal as ModalFlow, FlowModalForm as ModalFlowForm } from './components/FlowModal';
 export { FlowModal, FlowModalForm } from './components/FlowModal';
 export {
@@ -40,6 +47,7 @@ export { default as GraphicWrangler } from './components/GraphicWrangler';
 export { default as LeftSideNav } from './components/LeftSideNav';
 export { default as Loading } from './components/Loading';
 export { default as LoadingAnimation } from './components/LoadingAnimation';
+export { default as MemberBar } from './components/MemberBar';
 export { default as Modal } from './components/Modal';
 export { default as ModalConfirmEdit } from './components/ModalConfirmEdit';
 export { ModalForm } from './components/ModalForm';

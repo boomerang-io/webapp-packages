@@ -43,6 +43,7 @@ function ConfirmModal(props) {
     appElement,
     children,
     containerClassName,
+    isExternallyControlled,
     label,
     modalProps,
     modalTrigger,
@@ -71,14 +72,14 @@ function ConfirmModal(props) {
     if (typeof affirmativeAction === 'function') {
       affirmativeAction();
     }
-    closeModal();
+    if (!isExternallyControlled) closeModal();
   }
 
   function handleNegativeAction() {
     if (typeof negativeAction === 'function') {
       negativeAction();
     }
-    closeModal();
+    if (!isExternallyControlled) closeModal();
   }
 
   return (
