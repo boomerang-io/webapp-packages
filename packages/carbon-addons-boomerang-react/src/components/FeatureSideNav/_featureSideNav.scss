@@ -58,4 +58,11 @@
       max-width: 100%;
     }
   }
+
+  .#{$prefix}--bmrg-feature-sidenav-links-skeleton {
+    padding: 1rem;
+    > div + div {
+      margin-top: 1rem;
+    }
+  }
 }
