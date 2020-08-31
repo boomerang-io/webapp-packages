@@ -1,29 +1,23 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Router } from "react-router-dom";
+import { Router } from 'react-router-dom';
 import FeatureSideNavLink from './FeatureSideNavLink';
-import { Rocket16 } from "@carbon/icons-react";
-import { createBrowserHistory } from "history";
+import { Rocket16 } from '@carbon/icons-react';
+import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
 storiesOf('FeatureSideNavLink', module)
   .add('Default Feature Sidenav Link', () => {
     return (
       <Router history={history}>
-        <FeatureSideNavLink
-          to="/test"
-          children="TESTING"
-        />
+        <FeatureSideNavLink to="/test" children="TESTING" />
       </Router>
     );
   })
   .add('Active Feature Sidenav Link', () => {
     return (
       <Router history={history}>
-        <FeatureSideNavLink
-          to="/"
-          children="TESTING"
-        />
+        <FeatureSideNavLink to="/" children="TESTING" />
       </Router>
     );
   })
@@ -33,7 +27,7 @@ storiesOf('FeatureSideNavLink', module)
         <FeatureSideNavLink
           to="/test"
           children="TESTING"
-          iconProps={{"data-testid": "rocket-icon"}}
+          iconProps={{ 'data-testid': 'rocket-icon' }}
           icon={Rocket16}
         />
       </Router>
@@ -42,9 +36,7 @@ storiesOf('FeatureSideNavLink', module)
   .add('Feature Sidenav Link with custom content', () => {
     return (
       <Router history={history}>
-        <FeatureSideNavLink
-          to="/test"
-        >
+        <FeatureSideNavLink to="/test">
           <div>
             <p>text1</p>
             <p>text2</p>
@@ -56,11 +48,7 @@ storiesOf('FeatureSideNavLink', module)
   .add('Feature Sidenav Link with divider', () => {
     return (
       <Router history={history}>
-        <FeatureSideNavLink
-          to="/test"
-          children="TESTING"
-          hasDivider
-        />
+        <FeatureSideNavLink to="/test" children="TESTING" hasDivider />
       </Router>
     );
   });
