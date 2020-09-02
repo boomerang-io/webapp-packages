@@ -24,6 +24,12 @@
         background-color: inherit;
       }
     }
+
+    .bx--bmrg-avatar {
+      path {
+        fill: var(--cds-text-01);
+      }
+    }
   }
 
   .#{$prefix}--bmrg-member-bar__user {
