@@ -11,8 +11,8 @@ test('render feature nav tabs', () => {
   const { queryByText } = render(
     <Router history={history}>
       <FeatureNavTabs>
-        <FeatureNavTab label="Polar Bear" to="/polar-bear"/>
-        <FeatureNavTab label="Bee" to="/bee"/>
+        <FeatureNavTab label="Polar Bear" to="/polar-bear" />
+        <FeatureNavTab label="Bee" to="/bee" />
       </FeatureNavTabs>
     </Router>
   );

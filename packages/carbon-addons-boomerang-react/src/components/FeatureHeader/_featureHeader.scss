@@ -37,22 +37,22 @@
     margin: 0.5rem 0rem 1.5rem;
   }
 
-  h1.#{$prefix}--bmrg-feature-header-text {
+  h1.#{$prefix}--bmrg-feature-header-title {
     color: $text-01;
     font-size: 2rem;
     font-weight: 600;
     letter-spacing: 0;
     line-height: 1.25;
+    margin: 0;
     @include text-overflow-ellipsis();
   }
 
-  h2.#{$prefix}--bmrg-feature-header-text {
+  h2.#{$prefix}--bmrg-feature-header-title {
     color: $text-02;
-      font-size: 1rem;
-      letter-spacing: 0;
-      line-height: 1.25;
-      @include text-overflow-ellipsis();
+    font-size: 1rem;
+    letter-spacing: 0;
+    line-height: 1.25;
+    margin: 0;
+    @include text-overflow-ellipsis();
   }
-
-
 }

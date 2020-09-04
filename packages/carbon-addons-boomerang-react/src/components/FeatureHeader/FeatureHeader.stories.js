@@ -18,8 +18,8 @@ const Nav = () => {
         <Link to="/teams/123">Testing Team</Link>
       </BreadcrumbItem>
     </Breadcrumb>
-  )
-}
+  );
+};
 
 const Footer = () => {
   return (

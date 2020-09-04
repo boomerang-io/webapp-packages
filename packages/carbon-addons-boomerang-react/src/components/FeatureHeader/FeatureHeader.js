@@ -14,7 +14,7 @@ FeatureHeader.defaultProps = {
   headerClassName: '',
   footerClassName: '',
   includeBorder: true,
-  isLoading: false
+  isLoading: false,
 };
 
 FeatureHeader.propTypes = {
@@ -56,7 +56,10 @@ export function FeatureHeader({
     '--bordered': includeBorder,
   });
   const contentClassNames = classnames(`${prefix}--bmrg-feature-header__content`, contentClassName);
-  const skeletonClassNames = classnames(`${prefix}--bmrg-feature-header__loading`, skeletonClassName);
+  const skeletonClassNames = classnames(
+    `${prefix}--bmrg-feature-header__loading`,
+    skeletonClassName
+  );
   const navClassNames = classnames(`${prefix}--bmrg-feature-header__nav`, navClassName);
   const headerClassNames = classnames(`${prefix}--bmrg-feature-header__header`, headerClassName);
   const footerClassNames = classnames(`${prefix}--bmrg-feature-header__footer`, footerClassName);
@@ -65,7 +68,9 @@ export function FeatureHeader({
     <header className={containerClassNames} style={style} {...rest}>
       <section className={contentClassNames}>
         {nav && <div className={navClassNames}>{nav}</div>}
-        {isLoading ? <SkeletonPlaceholder className={skeletonClassNames} /> : (
+        {isLoading ? (
+          <SkeletonPlaceholder className={skeletonClassNames} />
+        ) : (
           <>
             {header && <hgroup className={headerClassNames}>{header}</hgroup>}
             {children}
@@ -90,7 +95,7 @@ FeatureHeaderTitle.defaultProps = {
 };
 
 export function FeatureHeaderTitle({ element: Element, children, className, style, ...rest }) {
-  const classNames = classnames(`${prefix}--bmrg-feature-header-text`, className);
+  const classNames = classnames(`${prefix}--bmrg-feature-header-title`, className);
   return (
     <Element className={classNames} style={style} {...rest}>
       {children}

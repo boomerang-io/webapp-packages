@@ -8,11 +8,11 @@ const Header = () => {
       <FeatureHeaderTitle>Header Title</FeatureHeaderTitle>
       <FeatureHeaderSubtitle>Header Subtitle</FeatureHeaderSubtitle>
     </>
-  )
-}
+  );
+};
 
 const props = {
-  header: <Header />
+  header: <Header />,
 };
 
 test('render feature header', () => {

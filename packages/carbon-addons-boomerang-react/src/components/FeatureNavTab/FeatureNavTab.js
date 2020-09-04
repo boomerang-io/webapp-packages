@@ -14,7 +14,7 @@ const FeatureNavTab = ({ activeClassName, className, style, label, isLoading, ..
   return isLoading ? (
     <div className={`${prefix}--bmrg-feature-nav-tab--loading`}>
       <SkeletonPlaceholder className={`${prefix}--bmrg-feature-nav-tab--loading__skeleton`} />
-    </div> 
+    </div>
   ) : (
     <NavLink className={classNames} activeClassName={activeClassNames} style={style} {...rest}>
       {label}
@@ -26,7 +26,7 @@ FeatureNavTab.defaultProps = {
   activeClassName: '',
   className: '',
   label: '',
-  isLoading: false
+  isLoading: false,
 };
 
 FeatureNavTab.propTypes = {

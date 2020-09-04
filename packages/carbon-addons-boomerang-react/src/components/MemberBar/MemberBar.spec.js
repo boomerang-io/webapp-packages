@@ -5,7 +5,7 @@ import MemberBar from './index.js';
 const props = {
   name: 'Mister Owl',
   email: 'owl@email.com',
-  avatarSrc: ''
+  avatarSrc: '',
 };
 
 test('render member bar', () => {
