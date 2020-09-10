@@ -1,46 +1,49 @@
-import React from 'react';
-import { NavLink, Route } from 'react-router-dom';
-import BlogPosts from '../../features/BlogPosts';
-import Docs from '../../features/Docs';
-import logo from './logo.svg';
-import './styles.scss';
 
-function App() {
+import React from "react";
+import { useQuery } from "react-query";
+import { ErrorBoundary, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
+import AppContext from "State/context/appContext";
+import ErrorDragon from "Components/ErrorDragon";
+import Navbar from "./Navbar";
+import Main from "./Main"
+import { serviceUrl, resolver } from "Config/servicesConfig";
+
+const userUrl = serviceUrl.resourceUserProfile();
+const navigationUrl = serviceUrl.resourceNavigation();
+
+export function App() {
+  const { data: userData, error: userError, isLoading: userIsLoading } = useQuery({
+    queryKey: userUrl,
+    queryFn: resolver.query(userUrl),
+  });
+  const { data: navigationData, error: navigationError, isLoading: navigationIsLoading } = useQuery({
+    queryKey: navigationUrl,
+    queryFn: resolver.query(navigationUrl),
+  });
+
+  function renderApp() {
+    if (userIsLoading || navigationIsLoading) {
+      return <Loading />;
+    }
+
+    if (userError || navigationError) {
+      return (
+        <ErrorDragon />
+      );
+    }
+    
+    return (
+      <AppContext.Provider value={{ user: userData, navigation: navigationData }}>
+          <Main user={userData} />
+      </AppContext.Provider>
+    );
+  }
+
   return (
-    <div className="c-app">
-      <header className="b-app-header">
-        <h1 style={{ marginTop: '4rem' }}>Welcome to Boomerang React</h1>
-        <img src={logo} className="b-app-header__logo" alt="Boomerang logo" />
-      </header>
-      <nav className="c-nav">
-        <ul className="b-nav-items">
-          <NavLink
-            to="/"
-            className="b-nav-items__link"
-            activeClassName="--active"
-            exact
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/blog"
-            className="b-nav-items__link"
-            activeClassName="--active"
-          >
-            Blog
-          </NavLink>
-          <NavLink
-            to="/docs"
-            className="b-nav-items__link"
-            activeClassName="--active"
-          >
-            Docs
-          </NavLink>
-        </ul>
-      </nav>
-      <Route path="/blog" component={BlogPosts} />
-      <Route path="/docs" component={Docs} />
-    </div>
+    <>
+      <Navbar navigation={navigationData} user={userData} />
+      <ErrorBoundary errorComponent={ErrorDragon}>{renderApp()}</ErrorBoundary>
+    </>
   );
 }
 

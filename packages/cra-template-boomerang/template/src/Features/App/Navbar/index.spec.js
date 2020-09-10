@@ -2,7 +2,7 @@ import React from "react";
 import { waitFor } from "@testing-library/react";
 import { queryCaches } from "react-query";
 import { startApiServer } from "ApiServer";
-import App from "./index";
+import Navbar from "./index";
 
 let server;
 
@@ -17,8 +17,8 @@ afterEach(() => {
 
 describe("App", () => {
   describe("RTL", () => {
-    it("Capturing Snapshot of App", async () => {
-      const { baseElement } = rtlContextRouterRender(<App />);
+    it("Capturing Snapshot of Navbar", async () => {
+      const { baseElement } = rtlRender(<Navbar />);
   
       expect(baseElement).toMatchSnapshot();
       await waitFor(() => {});

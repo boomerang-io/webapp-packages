@@ -4,7 +4,6 @@ import { ReactQueryConfigProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query-devtools";
 import { ErrorBoundary } from "@boomerang-io/carbon-addons-boomerang-react";
 import App from "Features/App";
-import ErrorDragon from "Components/ErrorDragon";
 import { APP_ROOT } from "Config/appConfig";
 
 function Root() {
