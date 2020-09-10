@@ -290,35 +290,44 @@ const determineInitialValues = (inputs) => {
  * If input Y has a value that is present in input X's requiredValueOf array, then render X
  */
 const conditionallyRenderInput = (input, values) => {
-  if (input.conditionallyRender) {
-    let requiredValue = '';
-    let keepInput = false;
-
-    /**
-     * Check which input in this section has the key equal to requiredForKey and get its value
-     */
-    requiredValue = values[input.requiredForKey];
-
-    if (Array.isArray(requiredValue)) {
-      input.requiredValueOf.forEach((value) => {
-        requiredValue.forEach((requiredVal) => {
-          if (value === requiredVal) {
-            keepInput = true;
-          }
-        });
-      });
-    } else {
-      input.requiredValueOf.forEach((value) => {
-        if (value === requiredValue) {
-          keepInput = true;
-        }
-      });
-    }
-
-    return keepInput;
-  } else {
+  if (!input.conditionallyRender) {
     return true;
   }
+
+  /**
+   * Check which input in this section has the key equal to requiredForKey and get its value
+   */
+  const requiredForKeyInputValue = values[input.requiredForKey];
+  const valuesInputIsRenderedFor = input.requiredValueOf;
+
+  /**
+   * If the value of the input this input is required for is an array loop through those values to find a matching one
+   * by going through all of configured values for the input  - the "requiredValueOf" of property
+   * Check for the value and the string of the value bc of how the services work. "true" and "false" are strings not boolean values
+   */
+  if (Array.isArray(requiredForKeyInputValue)) {
+    for (let requiredForValue of valuesInputIsRenderedFor) {
+      for (let singleRequiredForKeyInputValue of requiredForKeyInputValue) {
+        if (
+          requiredForValue === singleRequiredForKeyInputValue ||
+          requiredForValue === String(singleRequiredForKeyInputValue)
+        ) {
+          return true;
+        }
+      }
+    }
+  } else {
+    for (let requiredForValue of valuesInputIsRenderedFor) {
+      if (
+        requiredForValue === requiredForKeyInputValue ||
+        requiredForValue === String(requiredForKeyInputValue)
+      ) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 };
 
 /**

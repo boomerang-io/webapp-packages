@@ -211,93 +211,136 @@ const inputs = [
     // eslint-disable-next-line
     customComponent: ({ formikProps, ...rest }) => <TextInput {...rest} />,
   },
+  {
+    key: 'general.worker.nextgen.enable',
+    label: 'Enable Generation 3 Worker Integration',
+    maxValueLength: null,
+    minValueLength: null,
+    type: 'boolean',
+    defaultValue: 'false',
+    required: false,
+    validValues: null,
+    category: 'general',
+    description: '',
+    adminOnly: false,
+    options: [],
+    helpertext: 'Enabling this will require integration to the DAG based worker implementation.',
+  },
+  {
+    key: 'general.worker.token.deploy',
+    label: 'Next Gen Worker Deploy Token',
+    maxValueLength: null,
+    minValueLength: null,
+    type: 'text',
+    defaultValue: '',
+    required: false,
+    validValues: null,
+    category: 'general',
+    description: '',
+    adminOnly: false,
+    conditionallyRender: true,
+    requiredValueOf: ['true'],
+    requiredForKey: 'general.worker.nextgen.enable',
+    helpertext: 'Leave this blank to retain the default Gen 2 worker.',
+    placeholder: '',
+  },
 ];
+
+function Wrapper(props) {
+  return <div style={{ padding: '2rem' }}>{props.children}</div>;
+}
 
 storiesOf('DynamicFormik', module)
   .add('default', () => {
     return (
-      <DynamicFormik
-        id="dynamic-formik-form-id"
-        inputs={inputs}
-        onSubmit={() => {
-          action('submit clicked');
-        }}
-        validationSchemaExtension={additionalSchema}
-      >
-        {({ inputs, formikProps }) => {
-          return (
-            <form>
-              {inputs}
-              <button
-                disabled={!formikProps.isValid}
-                onClick={formikProps.handleSubmit}
-                style={{ marginTop: '1rem' }}
-                type="button"
-              >
-                Submit
-              </button>
-            </form>
-          );
-        }}
-      </DynamicFormik>
+      <Wrapper>
+        <DynamicFormik
+          id="dynamic-formik-form-id"
+          inputs={inputs}
+          onSubmit={() => {
+            action('submit clicked');
+          }}
+          validationSchemaExtension={additionalSchema}
+        >
+          {({ inputs, formikProps }) => {
+            return (
+              <form>
+                {inputs}
+                <button
+                  disabled={!formikProps.isValid}
+                  onClick={formikProps.handleSubmit}
+                  style={{ marginTop: '1rem' }}
+                  type="button"
+                >
+                  Submit
+                </button>
+              </form>
+            );
+          }}
+        </DynamicFormik>
+      </Wrapper>
     );
   })
   .add('allow property syntax', () => {
     return (
-      <DynamicFormik
-        allowCustomPropertySyntax
-        id="dynamic-formik-form-id"
-        inputs={inputs}
-        onSubmit={() => {
-          action('submit clicked');
-        }}
-        validationSchemaExtension={additionalSchema}
-      >
-        {({ inputs, formikProps }) => {
-          return (
-            <form>
-              {inputs}
-              <button
-                disabled={!formikProps.isValid}
-                onClick={formikProps.handleSubmit}
-                style={{ marginTop: '1rem' }}
-                type="button"
-              >
-                Submit
-              </button>
-            </form>
-          );
-        }}
-      </DynamicFormik>
+      <Wrapper>
+        <DynamicFormik
+          allowCustomPropertySyntax
+          id="dynamic-formik-form-id"
+          inputs={inputs}
+          onSubmit={() => {
+            action('submit clicked');
+          }}
+          validationSchemaExtension={additionalSchema}
+        >
+          {({ inputs, formikProps }) => {
+            return (
+              <form>
+                {inputs}
+                <button
+                  disabled={!formikProps.isValid}
+                  onClick={formikProps.handleSubmit}
+                  style={{ marginTop: '1rem' }}
+                  type="button"
+                >
+                  Submit
+                </button>
+              </form>
+            );
+          }}
+        </DynamicFormik>
+      </Wrapper>
     );
   })
   .add('allow property syntax, custom pattern ${b:}', () => {
     return (
-      <DynamicFormik
-        allowCustomPropertySyntax
-        customPropertySyntaxPattern={/\$\{b:([a-zA-Z0-9_.-]+)\}/}
-        id="dynamic-formik-form-id"
-        inputs={inputs}
-        onSubmit={() => {
-          action('submit clicked');
-        }}
-        validationSchemaExtension={additionalSchema}
-      >
-        {({ inputs, formikProps }) => {
-          return (
-            <form>
-              {inputs}
-              <button
-                disabled={!formikProps.isValid}
-                onClick={formikProps.handleSubmit}
-                style={{ marginTop: '1rem' }}
-                type="button"
-              >
-                Submit
-              </button>
-            </form>
-          );
-        }}
-      </DynamicFormik>
+      <Wrapper>
+        <DynamicFormik
+          allowCustomPropertySyntax
+          customPropertySyntaxPattern={/\$\{b:([a-zA-Z0-9_.-]+)\}/}
+          id="dynamic-formik-form-id"
+          inputs={inputs}
+          onSubmit={() => {
+            action('submit clicked');
+          }}
+          validationSchemaExtension={additionalSchema}
+        >
+          {({ inputs, formikProps }) => {
+            return (
+              <form>
+                {inputs}
+                <button
+                  disabled={!formikProps.isValid}
+                  onClick={formikProps.handleSubmit}
+                  style={{ marginTop: '1rem' }}
+                  type="button"
+                >
+                  Submit
+                </button>
+              </form>
+            );
+          }}
+        </DynamicFormik>
+      </Wrapper>
     );
   });

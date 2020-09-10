@@ -122,20 +122,12 @@ $breakpoints: (
   }
 
   .#{$prefix}--bmrg-header-list--link {
-    display: none;
-
-    @include breakpoint('672px') {
       display: flex;
-    }
   }
 
   .#{$prefix}--bmrg-header-list--icon
     .#{$prefix}--bmrg-header-list__item:not(.#{$prefix}--bmrg-header-list__item--icon) {
-    display: none;
-
-    @include breakpoint('320px') {
       display: flex;
-    }
   }
 
   .#{$prefix}--bmrg-header-list__item {
