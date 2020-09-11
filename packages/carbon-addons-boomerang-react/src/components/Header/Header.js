@@ -247,6 +247,7 @@ class Header extends React.Component {
                       display: 'flex',
                       alignItems: 'center',
                       color: this.state.isMobileNavActive ? '#343a3f' : 'inherit',
+                      fontSize: '0.875rem',
                     }}
                   >
                     Navigation {this.state.isMobileNavActive ? <ChevronUp16 /> : <ChevronDown16 />}
