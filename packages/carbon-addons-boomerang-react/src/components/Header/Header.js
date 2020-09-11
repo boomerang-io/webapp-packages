@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import {
   AppSwitcher20,
+  ChevronDown16,
+  ChevronUp16,
   Help24,
   User24,
   Notification24,
@@ -18,6 +20,7 @@ import NotificationsContainer from '../Notifications/NotificationsContainer';
 
 import HeaderList from './HeaderList';
 import HeaderListItem from './HeaderListItem';
+import HeaderMenuLink from '../HeaderMenuLink';
 import HeaderLogo from './HeaderLogo';
 import HeaderMenuBmrg from './HeaderMenuBmrg';
 import HeaderWrapper from './HeaderWrapper';
@@ -80,6 +83,7 @@ class Header extends React.Component {
   static defaultProps = {};
 
   state = {
+    isMobileNavActive: false,
     isHelpActive: false,
     isMenuActive: false,
     isNotificationActive: false,
@@ -109,6 +113,7 @@ class Header extends React.Component {
 
   handleClickOutsideState = () => {
     this.setState({
+      isMobileNavActive: false,
       isHelpActive: false,
       isMenuActive: false,
       isNotificationActive: false,
@@ -228,9 +233,41 @@ class Header extends React.Component {
                   ))}
               </HeaderList>
             </nav>
+            <HeaderList className={`${prefix}--bmrg-header-list--mobile-nav`}>
+              <li>
+                <HeaderListItem
+                  isIcon
+                  id="navigation-mobile-menu"
+                  ariaExpanded={this.state.isMobileNavActive}
+                  onClick={this.handleIconClick('MobileNav')}
+                  onKeyDown={this.handleIconKeypress('MobileNav')}
+                >
+                  <span
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      color: this.state.isMobileNavActive ? '#343a3f' : 'inherit',
+                    }}
+                  >
+                    Navigation {this.state.isMobileNavActive ? <ChevronUp16 /> : <ChevronDown16 />}
+                  </span>
+                </HeaderListItem>
+
+                {this.state.isMobileNavActive && (
+                  <HeaderMenu>
+                    {Array.isArray(navLinks) &&
+                      navLinks.map((link, i) => (
+                        <li key={`${link.url}-${i}`}>
+                          <HeaderMenuLink external={false} href={link.url} text={link.name} />
+                        </li>
+                      ))}
+                  </HeaderMenu>
+                )}
+              </li>
+            </HeaderList>
           </HeaderWrapper>
           <HeaderWrapper>
-            <HeaderList className={`${prefix}--bmrg-header-list--icon`}>
+            <HeaderList className={`${prefix}--bmrg-header-list--icon\\`}>
               {this.props.enableNotifications && this.props.notificationsConfig && (
                 <li>
                   <HeaderListItem

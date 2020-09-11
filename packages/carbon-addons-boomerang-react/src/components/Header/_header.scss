@@ -121,8 +121,20 @@ $breakpoints: (
     }
   }
 
+  .#{$prefix}--bmrg-header-list--mobile-nav {
+    display: flex;
+
+    @include breakpoint('672px') {
+      display: none;
+    }
+  }
+
   .#{$prefix}--bmrg-header-list--link {
+    display: none;
+
+    @include breakpoint('672px') {
       display: flex;
+    }
   }
 
   .#{$prefix}--bmrg-header-list--icon
@@ -177,6 +189,7 @@ $breakpoints: (
   .#{$prefix}--bmrg-header-list__btn {
     align-items: center;
     border: rem(2px) solid transparent;
+    color: $bmrg-secondary-color;
     cursor: pointer;
     display: flex;
     height: 100%;
@@ -196,6 +209,7 @@ $breakpoints: (
     }
 
     &:hover {
+      color: $bmrg-header-active-text-color;
       background-color: $bmrg-header-hover-background-color;
       svg {
         fill: $bmrg-header-active-text-color;

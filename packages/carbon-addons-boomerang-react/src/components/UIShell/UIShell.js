@@ -160,6 +160,7 @@ function UIShell({
           ),
           baseServiceUrl && features && features['support.enabled'] && (
             <HeaderMenuLink
+              external={false}
               href={`${baseLaunchEnvUrl}/launchpad/support`}
               iconName="support"
               text="Support Center"

@@ -4,6 +4,7 @@ import cx from 'classnames';
 import { settings } from 'carbon-components';
 import { Button } from 'carbon-components-react';
 import {
+  ArrowRight16,
   Chat16,
   Debug20,
   Forum16,
@@ -79,25 +80,34 @@ HeaderMenuLink.propTypes = {
    * props to modalWrapper
    */
   disabled: PropTypes.bool,
+  external: PropTypes.bool,
 };
 
-HeaderMenuLink.defaultProps = {
-  iconName: 'launch',
-};
-
-function HeaderMenuLink({ className, href, iconName, style, text, ...rest }) {
+function HeaderMenuLink({ className, external = true, href, iconName, style, text, ...rest }) {
   const wrapperClassNames = cx(`${prefix}--bmrg-header-menu-item-wrapper`, {
     [className]: !!className,
   });
+
+  const iconToRender = iconMapping[iconName];
 
   return (
     <div className={wrapperClassNames} style={style} role="presentation">
       <Button className={`${prefix}--bmrg-header-menu-item`} href={href} role="link" {...rest}>
         <div className={`${prefix}--bmrg-header-menu-item__content`}>
-          <div className={`${prefix}--bmrg-header-menu-item__img`}>{iconMapping[iconName]}</div>
+          {Boolean(iconToRender) && (
+            <div className={`${prefix}--bmrg-header-menu-item__img`}>{iconMapping[iconName]}</div>
+          )}
           <span className={`${prefix}--bmrg-header-menu-item__text`}>
             {text}
-            <Launch16 fill={iconFill} className={iconClassName} style={{ height: '0.75rem' }} />
+            {external ? (
+              <Launch16 fill={iconFill} className={iconClassName} style={{ height: '0.75rem' }} />
+            ) : (
+              <ArrowRight16
+                fill={iconFill}
+                className={iconClassName}
+                style={{ height: '0.75rem' }}
+              />
+            )}
           </span>
         </div>
       </Button>
