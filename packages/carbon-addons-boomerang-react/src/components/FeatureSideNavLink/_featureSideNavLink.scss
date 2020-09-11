@@ -10,7 +10,6 @@
     text-decoration: none;
     width: 100%;
     &:focus {
-      outline-color: $support-02 !important;
       outline-offset: -0.125rem !important;
       outline: 0.125rem solid $support-02 !important;
     }

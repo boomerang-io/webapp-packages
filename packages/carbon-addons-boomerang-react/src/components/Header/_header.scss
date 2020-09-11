@@ -124,7 +124,7 @@ $breakpoints: (
   .#{$prefix}--bmrg-header-list--mobile-nav {
     display: flex;
 
-    @include breakpoint('672px') {
+    @include breakpoint('bp--sm--major') {
       display: none;
     }
   }
@@ -132,7 +132,7 @@ $breakpoints: (
   .#{$prefix}--bmrg-header-list--link {
     display: none;
 
-    @include breakpoint('672px') {
+    @include breakpoint('bp--sm--major') {
       display: flex;
     }
   }
