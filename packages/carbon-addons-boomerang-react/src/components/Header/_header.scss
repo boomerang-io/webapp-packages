@@ -139,7 +139,7 @@ $breakpoints: (
 
   .#{$prefix}--bmrg-header-list--icon
     .#{$prefix}--bmrg-header-list__item:not(.#{$prefix}--bmrg-header-list__item--icon) {
-      display: flex;
+    display: flex;
   }
 
   .#{$prefix}--bmrg-header-list__item {
