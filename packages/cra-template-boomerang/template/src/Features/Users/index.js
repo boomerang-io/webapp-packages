@@ -1,7 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FeatureHeader from "Components/FeatureHeader";
-import styles from "./users.module.scss";
+import {
+  FeatureHeader,
+  Button,
+  FeatureHeaderTitle as HeaderTitle,
+  FeatureHeaderSubtitle as HeaderSubtitle,
+  FeatureNavTab as Tab,
+  FeatureNavTabs as Tabs,
+} from "@boomerang-io/carbon-addons-boomerang-react";
+import { AppLink } from "Config/appConfig";
+import { Save16 } from "@carbon/icons-react";
+import styles from "./users.module.scss"
 
 Users.propTypes = {
   user: PropTypes.object
@@ -10,12 +19,31 @@ Users.propTypes = {
 function Users({ user }) {
 
   return (
-    <FeatureHeader includeBorder className={styles.container}>
-      <section>
-        <h1 className={styles.title}>User</h1>
-        <p className={styles.description}>User details displayed bellow</p>
-      </section>
-    </FeatureHeader>
+    <FeatureHeader 
+    // For Demo purposes, these tabs only switch from one page to another but they can be customize to only update the content 
+      footer={
+        <Tabs>
+          <Tab label="Go To Teams Page" to={AppLink.Teams()} />
+          <Tab label="Go To Users Page" to={AppLink.Users()} />
+        </Tabs>
+      }
+      actions={
+        <Button
+          renderIcon={Save16}
+          iconDescription="Save"
+          onClick={() => {}}
+          size="field"
+        >
+           Save User
+        </Button>
+      }
+      header={
+        <>
+          <HeaderTitle className={styles.title}>User</HeaderTitle>
+          <HeaderSubtitle>User details displayed bellow</HeaderSubtitle>
+        </>
+      }
+    />
   );
 }
 

@@ -1,33 +1,5 @@
 @import "~@boomerang-io/styles/lib/colors";
 
-.container {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  height: 9rem;
-  justify-content: space-between;
-  padding: 1rem 2rem 0rem;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 3; //min needed, 99 puts is above the sidenav
-}
-
 .title {
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 2.5rem;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.description {
-  font-size: 1rem;
-  line-height: 1.5;
-  overflow: hidden;
-  text-overflow: wrap;
-  padding-top: 0.5rem;
-  color: var(--cds-text-02);
+  margin-top: 0;
 }

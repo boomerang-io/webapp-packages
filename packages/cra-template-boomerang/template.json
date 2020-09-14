@@ -29,7 +29,7 @@
       "upgradePackage": "node scripts/upgradePackage"
     },
     "dependencies": {
-      "@boomerang-io/carbon-addons-boomerang-react": "0.0.11",
+      "@boomerang-io/carbon-addons-boomerang-react": "0.0.12",
       "@boomerang-io/styles": "^0.0.2",
       "axios": "0.19.2",
       "classnames": "2.2.6",

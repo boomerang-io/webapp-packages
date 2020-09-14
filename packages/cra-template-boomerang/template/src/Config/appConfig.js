@@ -15,9 +15,9 @@ export const APP_ROOT =
       Users: "/users"
     };
     
-    export const appLink = {
-      root: () => "/",
-      teams: "/teams",
-      users: "/users"
+    export const AppLink = {
+      Root: () => "/",
+      Teams: () => "/teams",
+      Users: () => "/users"
     };
     
