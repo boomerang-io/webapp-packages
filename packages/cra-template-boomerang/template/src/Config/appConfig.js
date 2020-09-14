@@ -11,11 +11,13 @@ export const APP_ROOT =
 
     export const AppPath = {
       Root: "/",
-      Error: "/error",
+      Teams: "/teams",
+      Users: "/users"
     };
     
     export const appLink = {
       root: () => "/",
-      error: () => "/error"
+      teams: "/teams",
+      users: "/users"
     };
     

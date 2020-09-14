@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { UIShell } from "@boomerang-io/carbon-addons-boomerang-react";
+import { LeftSideNav, SideNavItems, SideNavLink, UIShell } from "@boomerang-io/carbon-addons-boomerang-react";
+import { AppPath } from "Config/appConfig";
+import { SideNav } from "carbon-components-react";
 import { BASE_LAUNCH_ENV_URL } from "Config/platformUrlConfig";
 import { BASE_URL } from "Config/servicesConfig";
 
@@ -10,6 +13,8 @@ const defaultUIShellProps = {
   renderLogo: false,
   baseLaunchEnvUrl: BASE_LAUNCH_ENV_URL,
 };
+
+const activeClassName = "bx--side-nav__link--current";
 
 const skipToContentProps = {
   href: "#content",
@@ -39,6 +44,34 @@ function Navbar(props) {
           renderLogo={navigation?.platform?.displayLogo}
           companyName={navigation?.platform?.platformName}
           skipToContentProps={skipToContentProps}
+          onMenuClick={({ isOpen, onMenuClose }) => (
+            <LeftSideNav isOpen={isOpen}>
+              <SideNav aria-label="sidenav" expanded={isOpen} isChildOfHeader={true}>
+                <SideNavItems>
+                  <SideNavLink
+                    large
+                    activeClassName={activeClassName}
+                    element={NavLink}
+                    onClick={onMenuClose}
+                    to={AppPath.Users}
+                    key="/users"
+                  >
+                    Users
+                  </SideNavLink>
+                  <SideNavLink
+                    large
+                    activeClassName={activeClassName}
+                    element={NavLink}
+                    onClick={onMenuClose}
+                    to={AppPath.Teams}
+                    key="/teams"
+                  >
+                    Teams
+                  </SideNavLink>
+                </SideNavItems>
+              </SideNav>
+            </LeftSideNav>
+          )}
         />
       </>
     );
