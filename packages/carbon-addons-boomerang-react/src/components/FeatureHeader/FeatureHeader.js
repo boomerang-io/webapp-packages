@@ -46,10 +46,10 @@ export function FeatureHeader({
   nav,
   style,
   contentClassName,
-  skeletonClassName,
-  navClassName,
-  headerClassName,
   footerClassName,
+  headerClassName,
+  navClassName,
+  skeletonClassName,
   ...rest
 }) {
   const containerClassNames = classnames(`${prefix}--bmrg-feature-header`, className, {
@@ -72,7 +72,7 @@ export function FeatureHeader({
           <SkeletonPlaceholder className={skeletonClassNames} />
         ) : (
           <>
-            {header && <hgroup className={headerClassNames}>{header}</hgroup>}
+            {header && <div className={headerClassNames}>{header}</div>}
             {children}
           </>
         )}
@@ -104,5 +104,5 @@ export function FeatureHeaderTitle({ element: Element, children, className, styl
 }
 
 export function FeatureHeaderSubtitle(props) {
-  return <FeatureHeaderTitle element="h2" {...props} />;
+  return <FeatureHeaderTitle element="p" {...props} />;
 }
