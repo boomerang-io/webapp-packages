@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { appContext } from "State/context";
+import { appContext } from "State";
 
 function useAppContext() {
   return useContext(appContext);

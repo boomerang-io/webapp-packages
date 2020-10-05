@@ -1,11 +1,10 @@
-
 import React from "react";
 import { useQuery } from "react-query";
 import { ErrorBoundary, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
-import AppContext from "State/context/appContext";
+import AppContext from "State/appContext";
 import ErrorDragon from "Components/ErrorDragon";
 import Navbar from "./Navbar";
-import Main from "./Main"
+import Main from "./Main";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 
 const userUrl = serviceUrl.resourceUserProfile();
@@ -21,28 +20,22 @@ export function App() {
     queryFn: resolver.query(navigationUrl),
   });
 
-  function renderApp() {
-    if (userIsLoading || navigationIsLoading) {
-      return <Loading />;
-    }
+  if (userIsLoading || navigationIsLoading) {
+    return <Loading />;
+  }
 
-    if (userError || navigationError) {
-      return (
-        <ErrorDragon />
-      );
-    }
-    
-    return (
-      <AppContext.Provider value={{ user: userData, navigation: navigationData }}>
-          <Main user={userData} />
-      </AppContext.Provider>
-    );
+  if (userError || navigationError) {
+    return <ErrorDragon />;
   }
 
   return (
     <>
       <Navbar navigation={navigationData} user={userData} />
-      <ErrorBoundary errorComponent={ErrorDragon}>{renderApp()}</ErrorBoundary>
+      <ErrorBoundary errorComponent={ErrorDragon}>
+        <AppContext.Provider value={{ user: userData, navigation: navigationData }}>
+          <Main user={userData} />
+        </AppContext.Provider>
+      </ErrorBoundary>
     </>
   );
 }

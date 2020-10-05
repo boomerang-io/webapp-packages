@@ -10,19 +10,13 @@ beforeEach(() => {
   server = startApiServer();
 });
 
-afterEach(() => {
-  server.shutdown();
-  queryCaches.forEach((queryCache) => queryCache.clear());
-});
-
 describe("App", () => {
   describe("RTL", () => {
     it("Capturing Snapshot of App", async () => {
       const { baseElement } = rtlContextRouterRender(<App />);
-  
+
       expect(baseElement).toMatchSnapshot();
       await waitFor(() => {});
     });
   });
-  
 });

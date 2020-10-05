@@ -10,11 +10,6 @@ beforeEach(() => {
   server = startApiServer();
 });
 
-afterEach(() => {
-  server.shutdown();
-  queryCaches.forEach((queryCache) => queryCache.clear());
-});
-
 describe("RTL", () => {
   it("Capturing Snapshot of Teams", async () => {
     const { baseElement, getByText } = rtlRender(<Teams />);
@@ -22,4 +17,3 @@ describe("RTL", () => {
     expect(baseElement).toMatchSnapshot();
   });
 });
-  
