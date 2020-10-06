@@ -7,18 +7,31 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-function MemberBar({ avatarSrc, email, id, name, removeUser, addUser, isDetail = false }) {
+function MemberBar({
+  addUser,
+  avatarProps = {},
+  avatarSrc,
+  buttonClassName = "",
+  buttonProps = {},
+  email, 
+  id,
+  isDetail = false,
+  liProps = {},
+  name, 
+  removeUser, 
+}) {
   return (
-    <li>
+    <li {...liProps}>
       <button
-        className={cx(`${prefix}--bmrg-member-bar`, {
+        className={cx(`${prefix}--bmrg-member-bar`, buttonClassName, {
           [`${prefix}--bmrg-member-bar--detail`]: isDetail,
         })}
         onClick={addUser ? () => addUser(id) : removeUser ? () => removeUser(id) : () => {}}
         type="button"
+        {...buttonProps}
       >
         <div className={`${prefix}--bmrg-member-bar__user`}>
-          <Avatar src={avatarSrc} />
+          <Avatar src={avatarSrc} {...avatarProps}/>
           <div className={`${prefix}--bmrg-member-bar__data`}>
             <p className={`${prefix}--bmrg-member-bar__name`}>{name}</p>
             <p className={`${prefix}--bmrg-member-bar__email`}>{email}</p>
@@ -37,13 +50,17 @@ function MemberBar({ avatarSrc, email, id, name, removeUser, addUser, isDetail =
 }
 
 MemberBar.propTypes = {
+  addUser: PropTypes.func,
+  avatarProps: PropTypes.object,
   avatarSrc: PropTypes.string,
+  buttonClassName: PropTypes.string,
+  buttonProps: PropTypes.object,
   email: PropTypes.string,
   id: PropTypes.string,
+  isDetail: PropTypes.bool,
+  liProps: PropTypes.object,
   name: PropTypes.string,
   removeUser: PropTypes.func,
-  addUser: PropTypes.func,
-  isDetail: PropTypes.bool,
 };
 
 export default MemberBar;
