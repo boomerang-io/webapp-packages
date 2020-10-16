@@ -131,6 +131,7 @@ function UIShell({
 
   const finalPlatformName = platformName || companyName;
   const finalAppName = appName || productName;
+  const isSupportEnabled = Boolean(features) && Boolean(features['support.enabled']);
 
   return (
     <>
@@ -154,11 +155,13 @@ function UIShell({
               key="Tutorial"
             />
           ),
-          baseServiceUrl && <ContactUs baseServiceUrl={baseServiceUrl} key="Contact Us" />,
-          baseServiceUrl && features && features['support.enabled'] && (
+          baseServiceUrl && isSupportEnabled && (
+            <ContactUs baseServiceUrl={baseServiceUrl} key="Contact Us" />
+          ),
+          baseServiceUrl && isSupportEnabled && (
             <ReportBug baseServiceUrl={baseServiceUrl} key="Report Bug" />
           ),
-          baseServiceUrl && features && features['support.enabled'] && (
+          baseServiceUrl && isSupportEnabled && (
             <HeaderMenuLink
               external={false}
               href={`${baseLaunchEnvUrl}/launchpad/support`}
