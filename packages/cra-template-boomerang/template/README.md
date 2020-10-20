@@ -1,25 +1,28 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using the [CRA Boomerang Template](https://github.com/boomerang-io/webapp-packages/tree/feature-cra-boomerang-template/packages/cra-template-boomerang)
 
-## Template Features 
+## Template Features
 
-- carbon-addons-boomerang-react
-- react-query
-- mirage.js
-- scss
-- absolute imports
-- fast refresh
-- eslint configuration
-- cypress configuration
-- husky and commitlint
-- additional commands
-- travisci testing config
-- webapp express server for deployment for SPA w/ client-side routing
-- testing configuration
-- Port-forwarding configuration to k8s
+The template provides an opinionated setup and configuration for building Boomerang web applications.
+
+- Carbon Components
+- Carbon Addons Boomerang React template integration
+- React-Query for request and server-state mangement
+- Axios.js for data fetching
+- Mirage.js local API mocking for development and test
+- SCSS configuration
+- Absolute file imports
+- ESLint configuration for additional testing tools
+- Cypress configuration for integration testing
+- Husky and Commitlint for commit hook quality enforcement
+- TravisCI config for PR test execution
+- Express.js webserver for SPA w/ client-side routing and Kubernetes environments
+- Testing configuration with Jest and React-Testing-Library
+- Port-forwarding proxy configuration to Kubernetes
 - Boomerang CICD configuration
-- upgrade CLI to keep project and dependencies aligned
-- Dockerfile config
+- `npx` upgrade script to maintain consistent project dependencies and configuration
+- Dockerfile config for cloud-native packaing
 - New Relic monitoring config - browser and server
+- GitHub PR template
 
 ## Available Scripts
 
