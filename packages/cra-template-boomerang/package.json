@@ -19,6 +19,9 @@
   "bugs": {
     "url": "https://github.com/boomerang-io/webapp-packages/issues"
   },
+  "bin": {
+    "boomerang-cra-template": "./bin/index.js"
+  },
   "main": "template.json",
   "files": [
     "template",
@@ -29,5 +32,11 @@
     "create-react-app",
     "react",
     "template"
-  ]
+  ],
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "cross-spawn": "^7.0.3",
+    "fs-extra": "^9.0.1",
+    "inquirer": "^7.3.3"
+  }
 }

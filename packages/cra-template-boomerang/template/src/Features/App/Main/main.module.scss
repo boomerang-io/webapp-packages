@@ -1,0 +1,13 @@
+.container {
+  background-color: var(--cds-ui-background);
+  flex: 1;
+  margin-top: 3rem;
+  min-height: calc(100vh - 3rem);
+  min-width: 60rem;
+  width: 100%;
+}
+
+.welcome {
+  text-align: center;
+  padding-top: 5rem;
+}
