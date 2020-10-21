@@ -23,7 +23,8 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
     // Register the data as a model so we can use the schema
     models: {
       navigation: Model,
-      userProfile: Model
+      userProfile: Model,
+      user: Model,
     },
 
     routes() {
@@ -46,6 +47,8 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
       this.get(serviceUrl.resourceNavigation(), (schema) => {
         return schema.db.navigation[0];
       });
+
+      this.get(serviceUrl.resourceUsers());
     },
   });
 }

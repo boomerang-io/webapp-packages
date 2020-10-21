@@ -1,5 +1,5 @@
 import React from "react";
-import AppContext from "./state/context/appContext";
+import AppContext from "State/appContext";
 import { Router } from "react-router-dom";
 import { navigation, userProfile } from "./ApiServer/fixtures";
 import { createMemoryHistory } from "history";

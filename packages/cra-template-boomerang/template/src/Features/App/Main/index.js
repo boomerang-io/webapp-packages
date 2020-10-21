@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import PropTypes from "prop-types";
-import { Switch, Redirect, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { DelayedRender, Error404, NotificationsContainer, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import { AppPath } from "Config/appConfig";
 import styles from "./main.module.scss";
@@ -9,7 +9,6 @@ Main.propTypes = {
   user: PropTypes.object.isRequired,
 };
 
-const Teams = lazy(() => import(/* webpackChunkName: "Requests" */ "Features/Teams"));
 const Users = lazy(() => import(/* webpackChunkName: "Users" */ "Features/Users"));
 
 function Main({ user }) {
@@ -23,14 +22,18 @@ function Main({ user }) {
         }
       >
         <Switch>
-          <Route path={AppPath.Teams}>
-            <Teams />
+          <Route exact path={AppPath.Root}>
+            <article className={styles.welcome}>
+              <h1>Hello!</h1>
+              <p>Welcome to the Create React App Boomerang Template.</p>
+              <br />
+              <p>Select the hamburger menu to navigate to other pages.</p>
+            </article>
           </Route>
           <Route path={AppPath.Users}>
             <Users user={user} />
           </Route>
-          <Redirect exact from="/" to={AppPath.Users} />
-          <Route>
+          <Route path={"*"}>
             <Error404 />
           </Route>
         </Switch>

@@ -1,11 +1,11 @@
-import React from "react";
-import { render } from "react-dom";
+import React from 'react';
+import { render } from 'react-dom';
 import { Server, Response } from "miragejs";
-import Root from "./Root";
+import Root from './Root';
 import { startApiServer } from "./ApiServer";
-import "Config/axiosGlobalConfig";
+import 'Config/axiosGlobalConfig';
 import "Styles/styles.scss";
-import * as serviceWorker from "./serviceWorker";
+import * as serviceWorker from './serviceWorker';
 
 if (window.Cypress) {
   new Server({
@@ -29,7 +29,7 @@ if (window.Cypress) {
   }
 }
 
-render(<Root />, document.getElementById("app"));
+render(<Root />, document.getElementById('app'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

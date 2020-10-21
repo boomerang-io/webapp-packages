@@ -46,6 +46,7 @@ export const BASE_SERVICE_STATUS_URL = determineUrl(BASE_SERVICE_ENV_URL, "/stat
 export const serviceUrl = {
   resourceUserProfile: () => `${BASE_SERVICE_USERS_URL}/profile`,
   resourceNavigation: () => `${BASE_SERVICE_USERS_URL}/navigation`,
+  resourceUsers: () => `${BASE_SERVICE_USERS_URL}/users`,
 };
 
 export const cancellableResolver = ({ url, method, body, ...config }) => {
