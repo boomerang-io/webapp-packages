@@ -1,7 +1,7 @@
 import formatErrorMessage from "./formatErrorMessage";
 
-const defaultTitle = "Something's Wrong";
-const defaultMessage = "Request failed";
+const defaultTitle = "Request Failed";
+const defaultMessage = "Try again.";
 const customStatus = 403;
 const customError = "Not allowed";
 const customMessage = "You can't do this";
@@ -67,42 +67,42 @@ describe("formatErrorMessage", () => {
     expect(message).toBe(defaultMessage);
   });
 
-  test("returns correct messages for different combinations - title object and message string", () => {
+  test("returns correct messages for different combinations - full error object ", () => {
     // uses only message
     let errorRes = {
-      response: { data: { title: { code: customStatus, message: customMessage }, message: customError } },
+      response: { data: { error: { code: customStatus, message: customMessage } } },
     };
     let { title, message } = formatErrorMessage({ error: errorRes });
-    expect(title).toBe(`${errorRes.response.data.message}`);
-    expect(message).toBe(`${errorRes.response.data.title.code} - ${errorRes.response.data.title.message}`);
+    expect(title).toBe(`${errorRes.response.data.error.code} - ${errorRes.response.data.error.message}`);
+    expect(message).toBe(defaultMessage);
   });
 
-  test("returns correct messages for different combinations - title object no code and message string", () => {
+  test("returns correct messages for different combinations - error object without code", () => {
     // uses only message
     let errorRes = {
-      response: { data: { title: { message: customMessage }, message: customError } },
+      response: { data: { error: { message: customMessage } } },
     };
     let { title, message } = formatErrorMessage({ error: errorRes });
-    expect(title).toBe(`${errorRes.response.data.message}`);
-    expect(message).toBe(errorRes.response.data.title.message);
+    expect(title).toBe(customMessage);
+    expect(message).toBe(defaultMessage);
   });
 
-  test("returns correct messages for different combinations - title object and no message", () => {
+  test("returns correct messages for different combinations - error object without message", () => {
     // uses only message
     let errorRes = {
-      response: { data: { title: { code: customStatus, message: customMessage } } },
+      response: { data: { error: { code: customStatus } } },
     };
-    let { title, message } = formatErrorMessage({ error: errorRes, defaultTitle });
-    expect(title).toBe(`${defaultTitle}`);
-    expect(message).toBe(`${errorRes.response.data.title.code} - ${errorRes.response.data.title.message}`);
+    let { title, message } = formatErrorMessage({ error: errorRes });
+    expect(title).toBe(`${errorRes.response.data.error.code} - ${defaultTitle}`);
+    expect(message).toBe(defaultMessage);
   });
 
   test("returns correct messages for different combinations - empty title object and no message", () => {
     // uses only message
     let errorRes = {
-      response: { data: { title: {} } },
+      response: { data: { error: {} } },
     };
-    let { title, message } = formatErrorMessage({ error: errorRes, defaultTitle, defaultMessage });
+    let { title, message } = formatErrorMessage({ error: errorRes });
     expect(title).toBe(defaultTitle);
     expect(message).toBe(defaultMessage);
   });
