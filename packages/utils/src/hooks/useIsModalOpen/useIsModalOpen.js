@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import useMutationObserver from "./useMutationObserver";
+import useMutationObserver from "../useMutationObserver";
 
 const htmlElem = document.getElementsByTagName("html")[0];
 const HTML_MODAL_CLASS = "bx--bmrg-html-modal-is-open";
@@ -10,8 +10,8 @@ function useIsModalOpen() {
 
   useMutationObserver(
     htmlRef,
-    mutationRecords => {
-      const record = mutationRecords.find(record => record.type === "attributes");
+    (mutationRecords) => {
+      const record = mutationRecords.find((record) => record.type === "attributes");
       if (record?.target.className === HTML_MODAL_CLASS) {
         setIsModalOpen(true);
       } else {
@@ -22,7 +22,7 @@ function useIsModalOpen() {
       attributes: true,
       characterData: false,
       subtree: false,
-      childList: false
+      childList: false,
     }
   );
 

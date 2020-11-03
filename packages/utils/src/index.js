@@ -14,6 +14,4 @@ export { default as useInterval } from "./hooks/useInterval";
 export { default as useIsModalOpen } from "./hooks/useIsModalOpen";
 export { default as useMutationObserver } from "./hooks/useMutationObserver";
 export { default as useParseQueryString } from "./hooks/useParseQueryString";
-export { default as useSimpleQuery } from "./hooks/useSimpleQuery";
-export { default as useUserPermissions } from "./hooks/useUserPermissions";
 export { default as useWindowDimensions } from "./hooks/useWindowDimensions";

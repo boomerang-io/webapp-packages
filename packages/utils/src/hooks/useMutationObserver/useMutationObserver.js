@@ -6,7 +6,7 @@ const config = {
   attributes: true,
   characterData: true,
   subtree: true,
-  childList: true
+  childList: true,
 };
 
 /**
