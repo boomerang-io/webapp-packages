@@ -45,7 +45,7 @@ Options
 ## Use as a function
 
 ```javascript
-const server = require("@boomerang/boomerang-webapp-server");
+const server = require("@boomerang-io/webapp-spa-server");
 server({
   cors: {},
   disableInjectHTMLHeadData: true,
