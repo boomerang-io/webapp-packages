@@ -1,4 +1,4 @@
-import isAccessibleKeyboardEvent from "./index";
+import isAccessibleKeyboardEvent from "./isAccessibleKeyboardEvent";
 
 const keydownEnterEvent = { type: "keydown", key: "Enter" };
 

@@ -1,4 +1,4 @@
-import formatErrorMessage from "../formatErrorMessage";
+import formatErrorMessage from "./formatErrorMessage";
 
 const defaultTitle = "Something's Wrong";
 const defaultMessage = "Request failed";

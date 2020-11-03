@@ -1,6 +1,6 @@
 {
   "name": "@boomerang-io/utils",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "Tim Bula",
     "email": "timrbula@gmail.com"
@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "build": "npm run build:commonjs",
-    "build:commonjs": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --ignore ./**/*.spec.js",
+    "build:commonjs": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --ignore ./**/*.test.js",
     "lint": "eslint src",
     "precommit": "lint-staged",
     "prebuild": "rimraf lib es",
