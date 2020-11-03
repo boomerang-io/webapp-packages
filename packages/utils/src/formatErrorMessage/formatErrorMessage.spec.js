@@ -66,4 +66,44 @@ describe("formatErrorMessage", () => {
     expect(title).toBe(`${errorRes.response.data.error}`);
     expect(message).toBe(defaultMessage);
   });
+
+  test("returns correct messages for different combinations - title object and message string", () => {
+    // uses only message
+    let errorRes = {
+      response: { data: { title: { code: customStatus, message: customMessage }, message: customError } },
+    };
+    let { title, message } = formatErrorMessage({ error: errorRes });
+    expect(title).toBe(`${errorRes.response.data.message}`);
+    expect(message).toBe(`${errorRes.response.data.title.code} - ${errorRes.response.data.title.message}`);
+  });
+
+  test("returns correct messages for different combinations - title object no code and message string", () => {
+    // uses only message
+    let errorRes = {
+      response: { data: { title: { message: customMessage }, message: customError } },
+    };
+    let { title, message } = formatErrorMessage({ error: errorRes });
+    expect(title).toBe(`${errorRes.response.data.message}`);
+    expect(message).toBe(errorRes.response.data.title.message);
+  });
+
+  test("returns correct messages for different combinations - title object and no message", () => {
+    // uses only message
+    let errorRes = {
+      response: { data: { title: { code: customStatus, message: customMessage } } },
+    };
+    let { title, message } = formatErrorMessage({ error: errorRes, defaultTitle });
+    expect(title).toBe(`${defaultTitle}`);
+    expect(message).toBe(`${errorRes.response.data.title.code} - ${errorRes.response.data.title.message}`);
+  });
+
+  test("returns correct messages for different combinations - empty title object and no message", () => {
+    // uses only message
+    let errorRes = {
+      response: { data: { title: {} } },
+    };
+    let { title, message } = formatErrorMessage({ error: errorRes, defaultTitle, defaultMessage });
+    expect(title).toBe(defaultTitle);
+    expect(message).toBe(defaultMessage);
+  });
 });
