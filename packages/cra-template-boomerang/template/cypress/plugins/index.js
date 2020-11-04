@@ -10,39 +10,18 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-
-const path = require('path');
-const findWebpack = require('find-webpack');
-const webpackPreprocessor = require('@cypress/webpack-preprocessor');
+const path = require("path");
+const webpackPreprocessor = require("@cypress/webpack-preprocessor");
 
 module.exports = (on, config) => {
-  // find the Webpack config used by react-scripts
-  const webpackOptions = findWebpack.getWebpackOptions();
-
-  if (!webpackOptions) {
-    throw new Error('Could not find Webpack in this project 😢');
-  }
-
-  const cleanOptions = {
-    reactScripts: true,
-  };
-
-  findWebpack.cleanForCypress(cleanOptions, webpackOptions);
-
-  const options = {
-    webpackOptions,
-    watchOptions: {},
-  };
-
+  const options = webpackPreprocessor.defaultOptions;
   // Define your alias(es) here:
-  options.webpackOptions.resolve.alias.src = path.resolve(
-    process.cwd(),
-    'src/apiServer'
-  );
-  options.webpackOptions.resolve.alias.config = path.resolve(
-    process.cwd(),
-    'src/config'
-  );
-
-  on('file:preprocessor', webpackPreprocessor(options));
+  options.webpackOptions["resolve"] = {
+    alias: {
+      ApiServer: path.resolve(process.cwd(), "src/ApiServer"),
+      Config: path.resolve(process.cwd(), "src/Config"),
+      Constants: path.resolve(process.cwd(), "src/Constants"),
+    },
+  };
+  on("file:preprocessor", webpackPreprocessor(options));
 };
