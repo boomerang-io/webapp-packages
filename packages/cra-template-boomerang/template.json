@@ -7,12 +7,13 @@
       "postbuild": "copyfiles build/**/*.* server",
       "cm": "git cz",
       "cypress": "cypress open",
-      "cypress:run": "$(npm bin)/cypress run --config video=false",
+      "cypress:ci": "$(npm bin)/cypress run --config video=false",
       "docker": "run-p docker:run",
       "docker:build": "docker build -t webapp .",
       "docker:run": "docker run -i -t -p 3000:3000 -e APP_ROOT=/app webapp",
       "eject": "react-scripts eject",
       "lint": "eslint -f json -o lint-report.json ./src",
+      "lint:staged": "eslint ./src",
       "predocker": "run-s build docker:build",
       "preprod": "run-s build prod:installServerDependencies prod:rewriteAssetPaths",
       "prod": "run-p prod:server",
@@ -20,10 +21,9 @@
       "prod:rewriteAssetPaths": "cross-env APP_ROOT=/app node server/scripts/rewriteAssetPaths.js",
       "prod:server": "cd server && npm run-script dev",
       "start": "react-scripts start",
-      "test": "react-scripts test --env=jsdom-fourteen",
-      "test:ci": "react-scripts test --coverage --env=jsdom-fourteen",
-      "test:ci-cypress": "start-server-and-test dev http://localhost:3000 cypress:run",
-      "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail --env=jsdom-fourteen"
+      "test": "react-scripts test --coverage --env=jsdom-fourteen",
+      "test:cypress": "start-server-and-test start http://localhost:3000 cypress:ci",
+      "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail --env=jsdom-fourteen",
     },
     "dependencies": {
       "@boomerang-io/carbon-addons-boomerang-react": "0.0.12",
@@ -99,7 +99,7 @@
     },
     "lint-staged": {
       "*.{js,jsx,json,scss,css,md}": ["prettier --print-width 120 --write"],
-      "src/**/*.{js,jsx}": ["npm run-script lint", "npm run-script test:staged"]
+      "src/**/*.{js,jsx}": ["npm run-script lint:staged", "npm run-script test:staged"]
     },
     "browserslist": {
       "production": [
