@@ -12,3 +12,11 @@ body {
 a {
   text-decoration: none;
 }
+
+// Override reset to fix issue w/ Safari
+button,
+html [type="button"], 
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: initial;
+}
