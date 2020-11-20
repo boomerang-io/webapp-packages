@@ -17,4 +17,4 @@ RUN chmod -R u+x $BMRG_HOME \
 USER 2000
 
 EXPOSE 3000
-ENTRYPOINT npm start
+ENTRYPOINT node scripts/rewriteAssetPaths && npm start
