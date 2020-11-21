@@ -21,9 +21,9 @@
       "prod:rewriteAssetPaths": "cross-env APP_ROOT=/app node server/scripts/rewriteAssetPaths.js",
       "prod:server": "cd server && npm run-script dev",
       "start": "react-scripts start",
-      "test": "react-scripts test --coverage --env=jsdom-fourteen",
+      "test": "react-scripts test --coverage",
       "test:cypress": "start-server-and-test start http://localhost:3000 cypress:ci",
-      "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail --env=jsdom-fourteen",
+      "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail",
     },
     "dependencies": {
       "@boomerang-io/carbon-addons-boomerang-react": "0.0.12",
