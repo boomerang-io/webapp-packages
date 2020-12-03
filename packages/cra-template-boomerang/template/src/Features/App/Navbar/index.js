@@ -39,7 +39,6 @@ function Navbar(props) {
           {...defaultUIShellProps}
           headerConfig={navigation}
           user={user}
-          requirePlatformConsent={false}
           onTutorialClick={props.handleOnTutorialClick}
           renderLogo={navigation?.platform?.displayLogo}
           companyName={navigation?.platform?.platformName}
