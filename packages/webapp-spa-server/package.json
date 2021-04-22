@@ -1,7 +1,7 @@
 {
   "name": "@boomerang-io/webapp-spa-server",
   "description": "Webapp Server for React-based SPA w/ client-side routing",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": {
     "name": "Tim Bula",
     "email": "timrbula@gmail.com"
@@ -32,8 +32,8 @@
     "cors": "2.8.5",
     "dotenv": "6.2.0",
     "express": "4.16.4",
-    "helmet": "^3.15.1",
-    "newrelic": "^5.3.0",
+    "helmet": "^3.23.1",
+    "newrelic": "^7.3.1",
     "serialize-javascript": "4.0.0",
     "yargs": "^16.2.0"
   },
