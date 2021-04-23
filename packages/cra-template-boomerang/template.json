@@ -23,7 +23,7 @@
       "start": "react-scripts start",
       "test": "react-scripts test --coverage",
       "test:cypress": "start-server-and-test start http://localhost:3000 cypress:ci",
-      "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail",
+      "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail"
     },
     "dependencies": {
       "@boomerang-io/carbon-addons-boomerang-react": "0.0.12",
@@ -54,7 +54,7 @@
       "commitizen": "4.0.3",
       "copyfiles": "2.3.0",
       "cross-env": "7.0.2",
-      "cypress": "^5.1.0",
+      "cypress": "^6.4.0",
       "cz-conventional-changelog": "3.1.0",
       "eslint-plugin-cypress": "^2.11.1",
       "eslint-plugin-jest": "^23.11.0",
