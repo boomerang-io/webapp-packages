@@ -36,6 +36,8 @@ function createBoomerangServer({
     NEW_RELIC_LICENSE_KEY,
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
+    BASE_LAUCNH_ENV_URL,
+    GA_SITE_ID,
   } = process.env;
 
   // Monitoring
@@ -93,7 +95,9 @@ function createBoomerangServer({
         BUILD_DIR,
         HTML_HEAD_INJECTED_DATA_KEYS,
         HTML_HEAD_INJECTED_SCRIPTS,
-        APP_ROOT
+        APP_ROOT,
+        GA_SITE_ID,
+        BASE_LAUNCH_ENV_URL,
       )
     );
   } else {
@@ -127,10 +131,29 @@ function createBoomerangServer({
  * @param {string} injectedScripts - string of comma delimited values
  * @param {string} appRoot - root context off app. Used for script injection
  */
-function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, injectedScripts, appRoot) {
+function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, injectedScripts, appRoot, gaSiteId, baseLaunchUrl) {
   /**
    * Create objects to be injected into application via the HEAD tag
    */
+  // Build script for GA integration
+  const headScriptGA = Boolean(gaSiteId) ? 
+    `window.idaPageIsSPA = true;
+    digitalData = {
+      page: {
+        pageInfo: {
+          ibm: {
+            siteId: ${gaSiteId},
+          }
+        },
+        category: {
+          primaryCategory: ${baseLaunchUrl + appRoot}
+        }
+      }
+    };`
+    : "";
+  const scriptIBMCommonJS = Boolean(gaSiteId) ? 
+    `<script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>`
+    : "";
   // Build up object of external data to append
   const headInjectedData = injectedDataKeys.split(",").reduce((acc, key) => {
     acc[key] = process.env[key];
@@ -164,9 +187,15 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
   function addHeadData(chunk) {
     return chunk.toString().replace(
       "</head>",
-      `<script>window._SERVER_DATA = ${serialize(headInjectedData, {
-        isJSON: true,
-      })};</script>${headScriptsTags}</head>`
+      `<script>
+        window._SERVER_DATA = ${serialize(headInjectedData, {
+          isJSON: true,
+        })};
+        ${headScriptGA}
+      </script>
+      ${scriptIBMCommonJS}
+      ${headScriptsTags}
+      </head>`
     );
   }
 }
