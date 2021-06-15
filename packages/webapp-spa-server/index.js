@@ -130,6 +130,8 @@ function createBoomerangServer({
  * @param {string} injectedDataKeys - string of comma delimited values
  * @param {string} injectedScripts - string of comma delimited values
  * @param {string} appRoot - root context off app. Used for script injection
+ * @param {string} gaSiteId - siteID to be injected on scripts to support GA
+ * @param {string} baseLaunchUrl - base url to determine GA primaryCategory
  */
 function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, injectedScripts, appRoot, gaSiteId, baseLaunchUrl) {
   /**
