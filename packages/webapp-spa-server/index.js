@@ -36,7 +36,7 @@ function createBoomerangServer({
     NEW_RELIC_LICENSE_KEY,
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
-    BASE_LAUCNH_ENV_URL,
+    BASE_LAUNCH_ENV_URL,
     GA_SITE_ID,
   } = process.env;
 
