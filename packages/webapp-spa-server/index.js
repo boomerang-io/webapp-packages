@@ -145,7 +145,7 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
         page: {
           pageInfo: {
             ibm: {
-              siteId: ${gaSiteId},
+              siteID: ${gaSiteId},
             }
           },
           category: {
@@ -194,8 +194,8 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
           isJSON: true,
         })};
       </script>
+      ${headScripstGA}
       ${headScriptsTags}
-      ${headScriptGA}
       </head>`
     );
   }
