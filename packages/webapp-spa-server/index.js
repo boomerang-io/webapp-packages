@@ -138,23 +138,23 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
    * Create objects to be injected into application via the HEAD tag
    */
   // Build script for GA integration
-  const headScriptGA = Boolean(gaSiteId) ? 
-    `window.idaPageIsSPA = true;
-    digitalData = {
-      page: {
-        pageInfo: {
-          ibm: {
-            siteId: ${gaSiteId},
+  const headScripstGA = Boolean(gaSiteId) ? 
+    `<script>
+      window.idaPageIsSPA = true;
+      digitalData = {
+        page: {
+          pageInfo: {
+            ibm: {
+              siteId: ${gaSiteId},
+            }
+          },
+          category: {
+            primaryCategory: ${baseLaunchUrl + appRoot}
           }
-        },
-        category: {
-          primaryCategory: ${baseLaunchUrl + appRoot}
         }
-      }
-    };`
-    : "";
-  const scriptIBMCommonJS = Boolean(gaSiteId) ? 
-    `<script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>`
+      };
+    </script>
+    <script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>`
     : "";
   // Build up object of external data to append
   const headInjectedData = injectedDataKeys.split(",").reduce((acc, key) => {
@@ -193,10 +193,9 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
         window._SERVER_DATA = ${serialize(headInjectedData, {
           isJSON: true,
         })};
-        ${headScriptGA}
       </script>
-      ${scriptIBMCommonJS}
       ${headScriptsTags}
+      ${headScriptGA}
       </head>`
     );
   }
