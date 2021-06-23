@@ -139,17 +139,17 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
    */
   // Build script for GA integration
   const headScripstGA = Boolean(gaSiteId) ? 
-    `<script>
+    `<script type="text/javascript">
       window.idaPageIsSPA = true;
       digitalData = {
         page: {
           pageInfo: {
             ibm: {
-              siteID: ${gaSiteId},
+              siteID: '${gaSiteId}',
             }
           },
           category: {
-            primaryCategory: ${baseLaunchUrl.replace("https://", "") + appRoot}
+            primaryCategory: '${baseLaunchUrl.replace("https://", "") + appRoot}'
           }
         }
       };
