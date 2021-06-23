@@ -149,7 +149,7 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
             }
           },
           category: {
-            primaryCategory: '${baseLaunchUrl.replace("https://", "") + appRoot}'
+            primaryCategory: 'PC100'
           }
         }
       };
