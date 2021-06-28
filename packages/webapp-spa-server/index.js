@@ -154,7 +154,32 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
         }
       };
     </script>
-    <script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>`
+    <script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>
+    <script >
+      function loadXMLDoc() {
+        var xmlhttp;
+
+        if(window.XMLHttpRequest) {
+          xmlhttp = new XMLHttpRequest();
+        } else {
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4) {
+            if(xmlhttp.status == 200) {
+              digitalData.page.pageInfo.pageID = "manual page view tag loaded boomerang";
+              digitalData.page.pageInfo.onsiteSearchTerm = "boomerang core";
+              digitalData.page.pageInfo.onsiteSearchResult = "1234";
+              createPageViewTagForSPA();
+            }
+          }
+        }
+        xmlhttp.open("GET", "../ajax-info.txt", true);
+        xmlhttp.send();
+      }
+    </script>
+    `
     : "";
   // Build up object of external data to append
   const headInjectedData = injectedDataKeys.split(",").reduce((acc, key) => {
