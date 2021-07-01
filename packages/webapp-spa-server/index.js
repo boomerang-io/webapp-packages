@@ -36,6 +36,8 @@ function createBoomerangServer({
     NEW_RELIC_LICENSE_KEY,
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
+    BASE_LAUNCH_ENV_URL,
+    GA_SITE_ID,
   } = process.env;
 
   // Monitoring
@@ -93,7 +95,9 @@ function createBoomerangServer({
         BUILD_DIR,
         HTML_HEAD_INJECTED_DATA_KEYS,
         HTML_HEAD_INJECTED_SCRIPTS,
-        APP_ROOT
+        APP_ROOT,
+        GA_SITE_ID,
+        BASE_LAUNCH_ENV_URL,
       )
     );
   } else {
@@ -126,11 +130,57 @@ function createBoomerangServer({
  * @param {string} injectedDataKeys - string of comma delimited values
  * @param {string} injectedScripts - string of comma delimited values
  * @param {string} appRoot - root context off app. Used for script injection
+ * @param {string} gaSiteId - siteID to be injected on scripts to support GA
+ * @param {string} baseLaunchUrl - base url to determine GA primaryCategory
  */
-function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, injectedScripts, appRoot) {
+function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, injectedScripts, appRoot, gaSiteId, baseLaunchUrl) {
   /**
    * Create objects to be injected into application via the HEAD tag
    */
+  // Build script for GA integration
+  const headScripstGA = Boolean(gaSiteId) ? 
+    `<script type="text/javascript">
+      window.idaPageIsSPA = true;
+      digitalData = {
+        page: {
+          pageInfo: {
+            ibm: {
+              siteID: 'IBMTESTWWW',
+            }
+          },
+          category: {
+            primaryCategory: 'PC100'
+          }
+        }
+      };
+    </script>
+    <script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>
+    <script >
+      function loadXMLDoc() {
+        var xmlhttp;
+
+        if(window.XMLHttpRequest) {
+          xmlhttp = new XMLHttpRequest();
+        } else {
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4) {
+            if(xmlhttp.status == 200) {
+              digitalData.page.pageInfo.pageID = "manual page view tag loaded boomerang";
+              digitalData.page.pageInfo.onsiteSearchTerm = "boomerang core";
+              digitalData.page.pageInfo.onsiteSearchResult = "1234";
+              createPageViewTagForSPA();
+            }
+          }
+        }
+        xmlhttp.open("GET", "../ajax-info.txt", true);
+        xmlhttp.send();
+      }
+    </script>
+    `
+    : "";
   // Build up object of external data to append
   const headInjectedData = injectedDataKeys.split(",").reduce((acc, key) => {
     acc[key] = process.env[key];
@@ -164,9 +214,14 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
   function addHeadData(chunk) {
     return chunk.toString().replace(
       "</head>",
-      `<script>window._SERVER_DATA = ${serialize(headInjectedData, {
-        isJSON: true,
-      })};</script>${headScriptsTags}</head>`
+      `<script>
+        window._SERVER_DATA = ${serialize(headInjectedData, {
+          isJSON: true,
+        })};
+      </script>
+      ${headScripstGA}
+      ${headScriptsTags}
+      </head>`
     );
   }
 }
