@@ -145,7 +145,7 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
         page: {
           pageInfo: {
             ibm: {
-              siteID: 'IBMTESTWWW',
+              siteID: '${gaSiteId}',
             }
           },
           category: {
