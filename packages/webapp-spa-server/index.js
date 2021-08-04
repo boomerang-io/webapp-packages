@@ -141,6 +141,16 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
   const headScripstGA = Boolean(gaSiteId) ? 
     `<script type="text/javascript">
       window.idaPageIsSPA = true;
+      window._ibmAnalytics = {
+        settings: {
+          name: "IBM_Services_Essentials",
+          isSpa: true,
+          tealiumProfileName: "ibm-web-app",
+        },
+        trustarc: {
+          isCookiePreferencesButtonAlwaysOn: true,
+        },
+      };
       digitalData = {
         page: {
           pageInfo: {
