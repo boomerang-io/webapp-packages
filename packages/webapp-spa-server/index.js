@@ -97,7 +97,7 @@ function createBoomerangServer({
         HTML_HEAD_INJECTED_SCRIPTS,
         APP_ROOT,
         GA_SITE_ID,
-        BASE_LAUNCH_ENV_URL,
+        BASE_LAUNCH_ENV_URL
       )
     );
   } else {
@@ -133,13 +133,21 @@ function createBoomerangServer({
  * @param {string} gaSiteId - siteID to be injected on scripts to support GA
  * @param {string} baseLaunchUrl - base url to determine GA primaryCategory
  */
-function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, injectedScripts, appRoot, gaSiteId, baseLaunchUrl) {
+function injectEnvDataAndScriptsIntoHTML(
+  res,
+  buildDir,
+  injectedDataKeys,
+  injectedScripts,
+  appRoot,
+  gaSiteId,
+  baseLaunchUrl
+) {
   /**
    * Create objects to be injected into application via the HEAD tag
    */
   // Build script for GA integration
-  const headScripstGA = Boolean(gaSiteId) ? 
-    `<script type="text/javascript">
+  const headScripstGA = Boolean(gaSiteId)
+    ? `<script type="text/javascript">
       window.idaPageIsSPA = true;
       window._ibmAnalytics = {
         settings: {
@@ -148,7 +156,7 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
           tealiumProfileName: "ibm-web-app",
         },
         trustarc: {
-          isCookiePreferencesButtonAlwaysOn: true,
+          isCookiePreferencesInstalled: true,
         },
       };
       digitalData = {
@@ -165,30 +173,6 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
       };
     </script>
     <script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>
-    <script >
-      function loadXMLDoc() {
-        var xmlhttp;
-
-        if(window.XMLHttpRequest) {
-          xmlhttp = new XMLHttpRequest();
-        } else {
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange = function () {
-          if (xmlhttp.readyState == 4) {
-            if(xmlhttp.status == 200) {
-              digitalData.page.pageInfo.pageID = "manual page view tag loaded boomerang";
-              digitalData.page.pageInfo.onsiteSearchTerm = "boomerang core";
-              digitalData.page.pageInfo.onsiteSearchResult = "1234";
-              createPageViewTagForSPA();
-            }
-          }
-        }
-        xmlhttp.open("GET", "../ajax-info.txt", true);
-        xmlhttp.send();
-      }
-    </script>
     `
     : "";
   // Build up object of external data to append
