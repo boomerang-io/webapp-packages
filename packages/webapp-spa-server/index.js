@@ -156,7 +156,7 @@ function injectEnvDataAndScriptsIntoHTML(
           tealiumProfileName: "ibm-web-app",
         },
         trustarc: {
-          isCookiePreferencesInstalled: true,
+          isCookiePreferencesButtonAlwaysOn: false,
         },
       };
       digitalData = {
