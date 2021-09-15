@@ -83,8 +83,9 @@ function createBoomerangServer({
    * It will be returned on the second route
    * https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#serving-apps-with-client-side-routing
    */
-  logger.debug("0 - URL and ID: ",GA_SITE_ID,BASE_LAUNCH_ENV_URL);
+  logger.debug("0 - disableInjectHTMLHeadData: ", disableInjectHTMLHeadData);
   if (!disableInjectHTMLHeadData) {
+    logger.debug("1 - URL and ID: ",GA_SITE_ID,BASE_LAUNCH_ENV_URL);
     appRouter.use(
       "/",
       express.static(path.join(process.cwd(), BUILD_DIR), {
@@ -103,6 +104,7 @@ function createBoomerangServer({
       )
     );
   } else {
+    logger.debug("1 - disableInjectHTMLHeadData: ",gaSiteId);
     appRouter.use("/", express.static(path.join(process.cwd(), BUILD_DIR)));
   }
 
@@ -148,7 +150,7 @@ function injectEnvDataAndScriptsIntoHTML(
    * Create objects to be injected into application via the HEAD tag
    */
   // Build script for GA integration
-  logger.debug("1 - GA Site ID: ",gaSiteId);
+  logger.debug("2 - GA Site ID: ",gaSiteId);
   const headScripstGA = Boolean(gaSiteId)
     ? `<script type="text/javascript">
       window.idaPageIsSPA = true;
@@ -208,7 +210,7 @@ function injectEnvDataAndScriptsIntoHTML(
    * @param {Buffer} chunk
    * @return {string} replaced string with data interopolated
    */
-  logger.debug("2 - GA script: ", headScripstGA);
+  logger.debug("3 - GA script: ", headScripstGA);
   function addHeadData(chunk) {
     return chunk.toString().replace(
       "</head>",
