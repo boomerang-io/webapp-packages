@@ -104,7 +104,7 @@ function createBoomerangServer({
       )
     );
   } else {
-    logger.debug("1 - disableInjectHTMLHeadData: ",gaSiteId);
+    logger.debug("1 - disableInjectHTMLHeadData: ",disableInjectHTMLHeadData);
     appRouter.use("/", express.static(path.join(process.cwd(), BUILD_DIR)));
   }
 
