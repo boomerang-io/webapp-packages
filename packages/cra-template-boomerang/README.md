@@ -2,7 +2,7 @@
 
 This is the official base template for the Boomerang projects for [Create React App](https://github.com/facebook/create-react-app).
 
-If you don't specify this template (for example, `--template cra-template-boomerang`), the default CRA template will be used by default.
+If you don't specify this template (for example, `--template @boomerang-io/cra-template-boomerang`), the default CRA template will be used by default.
 
 For more information about CRA and templates, please refer to:
 
