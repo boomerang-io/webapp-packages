@@ -1,7 +1,7 @@
 {
   "name": "@boomerang-io/logger-middleware",
   "description": "Boomerang logging middleware for logging consistently on the Boomerang platform",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Tim Bula",
     "email": "timrbula@gmail.com"
@@ -24,14 +24,15 @@
   },
   "dependencies": {
     "app-root-path": "3.0.0",
-    "log4js": "^6.1.2"
+    "log4js": "^6.4.0"
   },
   "devDependencies": {
-    "express": "^4.16.3",
-    "lint-staged": "^10.0.0",
-    "nodemon": "^2.0.0",
-    "prettier": "^2.0.0",
-    "supertest": "^4.0.0"
+    "express": "^4.17.2",
+    "jest": "^27.4.7",
+    "lint-staged": "^12.2.2",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.2"
   },
   "keywords": [
     "boomerang",
