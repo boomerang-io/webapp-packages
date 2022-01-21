@@ -30,7 +30,7 @@
   "dependencies": {
     "ibm-design-colors": "^2.0.4",
     "normalize-scss": "^7.0.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^3.0.2"
   },
   "keywords": [
     "scss"

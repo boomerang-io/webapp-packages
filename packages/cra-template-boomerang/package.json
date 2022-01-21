@@ -2,14 +2,16 @@
   "name": "@boomerang-io/cra-template-boomerang",
   "description": "The Boomerang template for Create React App.",
   "version": "0.0.2",
-  "authors": [{
-    "name": "Tim Bula",
-    "email": "timrbula@gmail.com"
-  },
-  {
-    "name": "Andrei Miron",
-    "email": "andreimiron94@yahoo.com"
-  }],
+  "authors": [
+    {
+      "name": "Tim Bula",
+      "email": "timrbula@gmail.com"
+    },
+    {
+      "name": "Andrei Miron",
+      "email": "andreimiron94@yahoo.com"
+    }
+  ],
   "license": "Apache-2",
   "engines": {
     "node": ">=10"
@@ -38,9 +40,9 @@
     "template"
   ],
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "5.0.0",
     "cross-spawn": "^7.0.3",
-    "fs-extra": "^9.0.1",
-    "inquirer": "^7.3.3"
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.2.0"
   }
 }
