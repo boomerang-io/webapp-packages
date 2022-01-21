@@ -61,7 +61,9 @@ function createBoomerangServer({
 
   // Security
   const helmet = require("helmet");
-  app.use(helmet());
+  app.use(helmet({
+    contentSecurityPolicy: false,
+  }));
   app.disable("x-powered-by");
   app.use(cors(corsConfig));
 
