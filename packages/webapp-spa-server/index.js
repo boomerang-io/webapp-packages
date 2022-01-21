@@ -36,7 +36,10 @@ function createBoomerangServer({
     NEW_RELIC_LICENSE_KEY,
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
+    BASE_LAUNCH_ENV_URL,
+    GA_SITE_ID,
   } = process.env;
+  logger.debug("PROCESS ENV: ", process.env);
 
   // Monitoring
   if (NEW_RELIC_APP_NAME && NEW_RELIC_LICENSE_KEY) {
@@ -82,7 +85,9 @@ function createBoomerangServer({
    * It will be returned on the second route
    * https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#serving-apps-with-client-side-routing
    */
+  logger.debug("0 - disableInjectHTMLHeadData: ", disableInjectHTMLHeadData);
   if (!disableInjectHTMLHeadData) {
+    logger.debug("1 - URL and ID: ",GA_SITE_ID,BASE_LAUNCH_ENV_URL);
     appRouter.use(
       "/",
       express.static(path.join(process.cwd(), BUILD_DIR), {
@@ -95,10 +100,13 @@ function createBoomerangServer({
         BUILD_DIR,
         HTML_HEAD_INJECTED_DATA_KEYS,
         HTML_HEAD_INJECTED_SCRIPTS,
-        APP_ROOT
+        APP_ROOT,
+        GA_SITE_ID,
+        BASE_LAUNCH_ENV_URL
       )
     );
   } else {
+    logger.debug("1 - disableInjectHTMLHeadData: ",disableInjectHTMLHeadData);
     appRouter.use("/", express.static(path.join(process.cwd(), BUILD_DIR)));
   }
 
@@ -128,11 +136,52 @@ function createBoomerangServer({
  * @param {string} injectedDataKeys - string of comma delimited values
  * @param {string} injectedScripts - string of comma delimited values
  * @param {string} appRoot - root context off app. Used for script injection
+ * @param {string} gaSiteId - siteID to be injected on scripts to support GA
+ * @param {string} baseLaunchUrl - base url to determine GA primaryCategory
  */
-function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, injectedScripts, appRoot) {
+function injectEnvDataAndScriptsIntoHTML(
+  res,
+  buildDir,
+  injectedDataKeys,
+  injectedScripts,
+  appRoot,
+  gaSiteId,
+  baseLaunchUrl
+) {
   /**
    * Create objects to be injected into application via the HEAD tag
    */
+  // Build script for GA integration
+  logger.debug("2 - GA Site ID: ",gaSiteId);
+  const headScripstGA = Boolean(gaSiteId)
+    ? `<script type="text/javascript">
+      window.idaPageIsSPA = true;
+      window._ibmAnalytics = {
+        settings: {
+          name: "IBM_Services_Essentials",
+          isSpa: true,
+          tealiumProfileName: "ibm-web-app",
+        },
+        trustarc: {
+          isCookiePreferencesButtonAlwaysOn: false,
+        },
+      };
+      digitalData = {
+        page: {
+          pageInfo: {
+            ibm: {
+              siteID: '${gaSiteId}',
+            }
+          },
+          category: {
+            primaryCategory: 'PC100'
+          }
+        }
+      };
+    </script>
+    <script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>
+    `
+    : "";
   // Build up object of external data to append
   const headInjectedData = injectedDataKeys.split(",").reduce((acc, key) => {
     acc[key] = process.env[key];
@@ -163,12 +212,18 @@ function injectEnvDataAndScriptsIntoHTML(res, buildDir, injectedDataKeys, inject
    * @param {Buffer} chunk
    * @return {string} replaced string with data interopolated
    */
+  logger.debug("3 - GA script: ", headScripstGA);
   function addHeadData(chunk) {
     return chunk.toString().replace(
       "</head>",
-      `<script>window._SERVER_DATA = ${serialize(headInjectedData, {
-        isJSON: true,
-      })};</script>${headScriptsTags}</head>`
+      `<script>
+        window._SERVER_DATA = ${serialize(headInjectedData, {
+          isJSON: true,
+        })};
+      </script>
+      ${headScripstGA}
+      ${headScriptsTags}
+      </head>`
     );
   }
 }
