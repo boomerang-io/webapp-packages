@@ -49,8 +49,5 @@
     "src/**/*.{js,jsx}": [
       "npm run-script test"
     ]
-  },
-  "publishConfig": {
-    "registry": "https://tools.boomerangplatform.net/artifactory/api/npm/boomeranglib-npm/"
   }
 }
