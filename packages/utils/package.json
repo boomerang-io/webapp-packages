@@ -30,7 +30,7 @@
     "test:ci": "jest --findRelatedTests"
   },
   "peerDependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.21.2",
     "lodash": "^4.17.21",
     "query-string": "^7.1.0",
     "react": "^16.14.0",
@@ -40,7 +40,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.21.2",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.10",
     "@babel/eslint-parser": "7.16.5",
