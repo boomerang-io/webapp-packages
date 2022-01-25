@@ -1,7 +1,7 @@
 {
   "name": "@boomerang-io/cra-template-boomerang",
   "description": "The Boomerang template for Create React App.",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "Tim Bula",
