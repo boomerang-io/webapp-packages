@@ -105,7 +105,8 @@ function createBoomerangServer({
         HTML_HEAD_INJECTED_SCRIPTS,
         APP_ROOT,
         GA_SITE_ID,
-        BASE_LAUNCH_ENV_URL
+        BASE_LAUNCH_ENV_URL,
+        ENABLE_BEEHEARD_SURVEY
       )
     );
   } else {
@@ -141,6 +142,7 @@ function createBoomerangServer({
  * @param {string} appRoot - root context off app. Used for script injection
  * @param {string} gaSiteId - siteID to be injected on scripts to support GA
  * @param {string} baseLaunchUrl - base url to determine GA primaryCategory
+ * @param {boolean} enableBeeheardSurvey - true/false value configured at helm to decide to insert survey script
  */
 function injectEnvDataAndScriptsIntoHTML(
   res,
@@ -149,7 +151,8 @@ function injectEnvDataAndScriptsIntoHTML(
   injectedScripts,
   appRoot,
   gaSiteId,
-  baseLaunchUrl
+  baseLaunchUrl,
+  enableBeeheardSurvey
 ) {
   /**
    * Create objects to be injected into application via the HEAD tag
@@ -186,7 +189,7 @@ function injectEnvDataAndScriptsIntoHTML(
     `
     : "";
 
-  const headScriptBeeheardSurvey = Boolean(ENABLE_BEEHEARD_SURVEY)
+  const headScriptBeeheardSurvey = Boolean(enableBeeheardSurvey)
     ? '<script async src="https://beeheard.dal1a.cirrus.ibm.com/survey/preconfig/HHPxpQgN.js"></script>'
     : "";
 
