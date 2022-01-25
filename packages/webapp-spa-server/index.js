@@ -38,6 +38,7 @@ function createBoomerangServer({
     BUILD_DIR = "build",
     BASE_LAUNCH_ENV_URL,
     GA_SITE_ID,
+    ENABLE_BEEHEARD_SURVEY,
   } = process.env;
   logger.debug("PROCESS ENV: ", process.env);
 
@@ -61,9 +62,11 @@ function createBoomerangServer({
 
   // Security
   const helmet = require("helmet");
-  app.use(helmet({
-    contentSecurityPolicy: false,
-  }));
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
   app.disable("x-powered-by");
   app.use(cors(corsConfig));
 
@@ -87,7 +90,7 @@ function createBoomerangServer({
    */
   logger.debug("0 - disableInjectHTMLHeadData: ", disableInjectHTMLHeadData);
   if (!disableInjectHTMLHeadData) {
-    logger.debug("1 - URL and ID: ",GA_SITE_ID,BASE_LAUNCH_ENV_URL);
+    logger.debug("1 - URL and ID: ", GA_SITE_ID, BASE_LAUNCH_ENV_URL);
     appRouter.use(
       "/",
       express.static(path.join(process.cwd(), BUILD_DIR), {
@@ -102,11 +105,12 @@ function createBoomerangServer({
         HTML_HEAD_INJECTED_SCRIPTS,
         APP_ROOT,
         GA_SITE_ID,
-        BASE_LAUNCH_ENV_URL
+        BASE_LAUNCH_ENV_URL,
+        ENABLE_BEEHEARD_SURVEY
       )
     );
   } else {
-    logger.debug("1 - disableInjectHTMLHeadData: ",disableInjectHTMLHeadData);
+    logger.debug("1 - disableInjectHTMLHeadData: ", disableInjectHTMLHeadData);
     appRouter.use("/", express.static(path.join(process.cwd(), BUILD_DIR)));
   }
 
@@ -138,6 +142,7 @@ function createBoomerangServer({
  * @param {string} appRoot - root context off app. Used for script injection
  * @param {string} gaSiteId - siteID to be injected on scripts to support GA
  * @param {string} baseLaunchUrl - base url to determine GA primaryCategory
+ * @param {boolean} enableBeeheardSurvey - true/false value configured at helm to decide to insert survey script
  */
 function injectEnvDataAndScriptsIntoHTML(
   res,
@@ -146,13 +151,14 @@ function injectEnvDataAndScriptsIntoHTML(
   injectedScripts,
   appRoot,
   gaSiteId,
-  baseLaunchUrl
+  baseLaunchUrl,
+  enableBeeheardSurvey
 ) {
   /**
    * Create objects to be injected into application via the HEAD tag
    */
   // Build script for GA integration
-  logger.debug("2 - GA Site ID: ",gaSiteId);
+  logger.debug("2 - GA Site ID: ", gaSiteId);
   const headScripstGA = Boolean(gaSiteId)
     ? `<script type="text/javascript">
       window.idaPageIsSPA = true;
@@ -182,6 +188,11 @@ function injectEnvDataAndScriptsIntoHTML(
     <script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>
     `
     : "";
+
+  const headScriptBeeheardSurvey = Boolean(enableBeeheardSurvey)
+    ? '<script async src="https://beeheard.dal1a.cirrus.ibm.com/survey/preconfig/HHPxpQgN.js"></script>'
+    : "";
+
   // Build up object of external data to append
   const headInjectedData = injectedDataKeys.split(",").reduce((acc, key) => {
     acc[key] = process.env[key];
@@ -221,6 +232,7 @@ function injectEnvDataAndScriptsIntoHTML(
           isJSON: true,
         })};
       </script>
+      ${headScriptBeeheardSurvey}
       ${headScripstGA}
       ${headScriptsTags}
       </head>`
