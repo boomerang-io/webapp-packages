@@ -36,11 +36,9 @@ function createBoomerangServer({
     NEW_RELIC_LICENSE_KEY,
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
-    BASE_LAUNCH_ENV_URL,
     GA_SITE_ID,
     ENABLE_BEEHEARD_SURVEY,
   } = process.env;
-  logger.debug("PROCESS ENV: ", process.env);
 
   // Monitoring
   if (NEW_RELIC_APP_NAME && NEW_RELIC_LICENSE_KEY) {
@@ -88,9 +86,7 @@ function createBoomerangServer({
    * It will be returned on the second route
    * https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#serving-apps-with-client-side-routing
    */
-  logger.debug("0 - disableInjectHTMLHeadData: ", disableInjectHTMLHeadData);
   if (!disableInjectHTMLHeadData) {
-    logger.debug("1 - URL and ID: ", GA_SITE_ID, BASE_LAUNCH_ENV_URL);
     appRouter.use(
       "/",
       express.static(path.join(process.cwd(), BUILD_DIR), {
@@ -105,7 +101,6 @@ function createBoomerangServer({
         HTML_HEAD_INJECTED_SCRIPTS,
         APP_ROOT,
         GA_SITE_ID,
-        BASE_LAUNCH_ENV_URL,
         ENABLE_BEEHEARD_SURVEY
       )
     );
@@ -151,14 +146,12 @@ function injectEnvDataAndScriptsIntoHTML(
   injectedScripts,
   appRoot,
   gaSiteId,
-  baseLaunchUrl,
   enableBeeheardSurvey
 ) {
   /**
    * Create objects to be injected into application via the HEAD tag
    */
   // Build script for GA integration
-  logger.debug("2 - GA Site ID: ", gaSiteId);
   const headScripstGA = Boolean(gaSiteId)
     ? `<script type="text/javascript">
       window.idaPageIsSPA = true;

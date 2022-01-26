@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const boomerangLogger = require("@boomerang-io/logger-middleware")("webapp-spa-server/index.js");
+const logger = boomerangLogger.logger;
 /**
  * Import and execute app
  */
@@ -22,7 +24,6 @@ require("yargs") // eslint-disable-line
     describe: "CORS configuration using cors package. Accepts JSON string.",
     type: "string",
   })
-
   .option("disableInjectHTMLHeadData", {
     alias: "d",
     describe: "Enable injection of data and scripts into the head of the HTML file.",
@@ -36,5 +37,16 @@ require("yargs") // eslint-disable-line
     type: "string",
   })
   .coerce({
-    cors: JSON.parse,
+    cors: (arg) => {
+      if (arg) {
+        return JSON.parse(arg);
+      }
+    },
+  })
+  .fail(function (msg, err) {
+    logger.error(msg);
+    if (err) {
+      throw err;
+    }
+    process.exit(1);
   }).argv;
