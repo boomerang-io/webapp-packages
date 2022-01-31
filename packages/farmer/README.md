@@ -8,13 +8,13 @@ Farmer will update all `package.json` and `package-lock.json` files in a directo
 
 ```sh
 $ npm install -g @boomerang-io/farmer
-$ farmer -d <dependency> -v <version> -b <path/to/directory> -b <branch> -t (tag or not)
+$ farmer -d <dependency> -v <version> -p <path/to/directory> -b <branch> -t (tag or not)
 ```
 
 ## Use with npx
 
 ```sh
-$ npx farmer -p -d <dependency> -v <version> <path/to/directory> -b <branch> -t (tag or not)
+$ npx farmer -d <dependency> -v <version> -p <path/to/directory> -b <branch> -t (tag or not)
 ```
 
 ## Flags
