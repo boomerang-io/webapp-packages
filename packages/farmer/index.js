@@ -11,19 +11,27 @@ const minimist = require("minimist");
 const askQuestions = async () => {
   const questions = [
     {
-      name: "DIRECTORY",
-      type: "input",
-      message: "What is the relative path to the directory of repos your want to update?",
-    },
-    {
       name: "DEPENDENCY",
       type: "input",
-      message: "What dependency do you want to update?",
+      message: "What is the name of the dependency you want to update?",
     },
     {
       name: "VERSION",
       type: "input",
       message: "What version do you want it to be?",
+    },
+    {
+      name: "DIRECTORY",
+      type: "input",
+      message:
+        "What is the path to the directory of repos your want to update? We'll confirm which repos exactly later.",
+      default: ".",
+    },
+    {
+      name: "BRANCH",
+      type: "input",
+      message: "What branch do you want to make these changes against?",
+      default: "main",
     },
     {
       name: "TAG",
@@ -57,37 +65,54 @@ const run = async () => {
   let dependency;
   let upgradeVersion;
   let toTag;
+  let branch;
   const args = minimist(process.argv.slice(2));
-  if (Object.keys(args).length < 3) {
+  const unflaggedArgs = args["_"];
+  if (!(args.p && args.d && args.v)) {
     console.log(
       chalk.yellow(
-        `Whoops, correct format is: <path/to/directory> <dependency> <version>.\nThat's all right! Answer the following por favor:\n`
+        `Whoops, correct format is: -d <dependency> -v <version>.\nYou can also specifiy: -p <path/to/directory> -b <branch> -t (tag or not).\n\nThat's all right! Answer the following por favor:\n`
       )
     );
     const answers = await askQuestions();
-    const { DIRECTORY, DEPENDENCY, VERSION, TAG } = answers;
+    const { DIRECTORY, DEPENDENCY, VERSION, TAG, BRANCH = "main" } = answers;
     pathToDir = DIRECTORY;
     dependency = DEPENDENCY;
     upgradeVersion = VERSION;
+    branch = BRANCH;
     toTag = TAG;
   } else {
     pathToDir = args.p;
     dependency = args.d;
     upgradeVersion = args.v;
     toTag = !!args.t;
+    branch = args.b ?? "main";
   }
 
-  fs.readdir(pathToDir, async (err, repos) => {
+  fs.readdir(pathToDir, { withFileTypes: true }, async (err, files) => {
+    let repos = [];
+    for await (const dirent of files) {
+      if (!dirent.isDirectory()) {
+        continue;
+      }
+      const repoPath = path.join(__dirname, pathToDir, dirent.name);
+      const git = require("simple-git")(repoPath);
+      const isRepo = await git.checkIsRepo("root");
+      if (isRepo) {
+        repos.push(dirent.name);
+      }
+    }
+
     if (repos && repos.length) {
       const { reposToUpdate } = await askToIncludeRepos(repos);
       console.log(`🙌  Updating some repos for you:`, reposToUpdate);
       await Promise.mapSeries(reposToUpdate, async (repo) => {
         console.log(chalk.bold.cyan(`\nWorking on ${repo}. Wish me luck`));
         const repoPath = path.join(__dirname, pathToDir, repo);
-        const git = require("simple-git/promise")(repoPath);
+        const git = require("simple-git")(repoPath);
 
         //Checkout develop
-        await checkoutDevelop(git);
+        await checkoutBranch(git, branch);
 
         const packagePath = path.join(repoPath, "package.json");
         const packageJSON = require(packagePath);
@@ -115,9 +140,9 @@ const run = async () => {
         }
         // Commit, tag and push
         if (toTag) {
-          return await commitAndTagRepo({ repo, git, dependency, upgradeVersion });
+          return await commitAndTagRepo({ branch, repo, git, dependency, upgradeVersion });
         } else {
-          return await commitRepo({ repo, git, dependency, upgradeVersion });
+          return await commitRepo({ branch, repo, git, dependency, upgradeVersion });
         }
       })
         .then(() => console.log(chalk.green("\nAll done! 😄 🔥 😄 🔥")))
@@ -128,7 +153,7 @@ const run = async () => {
   });
 };
 
-async function commitRepo({ repo, git, dependency, upgradeVersion }) {
+async function commitRepo({ branch, git, dependency, upgradeVersion }) {
   return await git
     .add("./*")
     .then(() => {
@@ -137,12 +162,12 @@ async function commitRepo({ repo, git, dependency, upgradeVersion }) {
     })
     .then(() => {
       console.log("Pushing commit 🙏");
-      return git.push();
+      return git.push("origin", branch);
     })
     .catch((err) => console.log(err));
 }
 
-async function commitAndTagRepo({ repo, git, dependency, upgradeVersion }) {
+async function commitAndTagRepo({ branch, repo, git, dependency, upgradeVersion }) {
   // let isRepo;
   // try {
   //   isRepo = await git.checkIsRepo();
@@ -156,11 +181,12 @@ async function commitAndTagRepo({ repo, git, dependency, upgradeVersion }) {
   // }
 
   return await git
-    .add("./*")
+    .add(".")
     .then(() => {
       console.log("Committing updates...🤞");
       return git.commit(`chore: update ${dependency} to version ${upgradeVersion}`);
     })
+    .then(() => git.pull("origin", branch, "--tags"))
     .then(() => git.tags())
     .then((tags) => {
       if (tags && tags.latest) {
@@ -175,20 +201,26 @@ async function commitAndTagRepo({ repo, git, dependency, upgradeVersion }) {
     })
     .then(() => {
       console.log("Pushing commit and tag 🙏");
-      return git.push();
+      return git.push("origin", branch);
     })
     .then(() => git.pushTags())
     .catch((err) => console.log(err));
 }
 
-async function checkoutDevelop(git) {
-  return await git
-    .branch()
-    .then((branchSummary) => {
-      return branchSummary.current !== "develop" && git.checkout("develop");
-    })
-    .then(() => git.pull())
-    .then(() => git.pull("origin", "develop", "--tags"));
+async function checkoutBranch(git, branch) {
+  console.log(branch);
+  const branchSummary = await git.branch();
+  if (branchSummary.current === branch) {
+    return;
+  }
+  try {
+    await git.checkout(branch);
+    await git.pull();
+  } catch (e) {
+    await git.checkoutLocalBranch(branch);
+  }
+
+  return;
 }
 
 run();
