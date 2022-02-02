@@ -62,7 +62,11 @@ function createBoomerangServer({
   const helmet = require("helmet");
   app.use(
     helmet({
+      referrerPolicy: { policy: "strict-origin-when-cross-origin" },
       contentSecurityPolicy: false,
+      crossOriginEmbedderPolicy: false,
+      crossOriginOpenerPolicy: false,
+      crossOriginResourcePolicy: false,
     })
   );
   app.disable("x-powered-by");
@@ -105,7 +109,6 @@ function createBoomerangServer({
       )
     );
   } else {
-    logger.debug("1 - disableInjectHTMLHeadData: ", disableInjectHTMLHeadData);
     appRouter.use("/", express.static(path.join(process.cwd(), BUILD_DIR)));
   }
 
@@ -178,12 +181,12 @@ function injectEnvDataAndScriptsIntoHTML(
         }
       };
     </script>
-    <script src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script>
+    <script src="https://1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript" crossorigin></script>
     `
     : "";
 
   const headScriptBeeheardSurvey = Boolean(enableBeeheardSurvey)
-    ? '<script async src="https://beeheard.dal1a.cirrus.ibm.com/survey/preconfig/HHPxpQgN.js"></script>'
+    ? '<script async src="https://beeheard.dal1a.cirrus.ibm.com/survey/preconfig/HHPxpQgN.js" crossorigin></script>'
     : "";
 
   // Build up object of external data to append
@@ -216,7 +219,6 @@ function injectEnvDataAndScriptsIntoHTML(
    * @param {Buffer} chunk
    * @return {string} replaced string with data interopolated
    */
-  logger.debug("3 - GA script: ", headScripstGA);
   function addHeadData(chunk) {
     return chunk.toString().replace(
       "</head>",
