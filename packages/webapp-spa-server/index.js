@@ -36,8 +36,6 @@ function createBoomerangServer({
     NEW_RELIC_LICENSE_KEY,
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
-    GA_SITE_ID,
-    ENABLE_BEEHEARD_SURVEY,
   } = process.env;
 
   // Monitoring
@@ -98,15 +96,13 @@ function createBoomerangServer({
       })
     );
     appRouter.get("/*", (req, res) =>
-      injectEnvDataAndScriptsIntoHTML(
+      injectEnvDataAndScriptsIntoHTML({
         res,
-        BUILD_DIR,
-        HTML_HEAD_INJECTED_DATA_KEYS,
-        HTML_HEAD_INJECTED_SCRIPTS,
-        APP_ROOT,
-        GA_SITE_ID,
-        ENABLE_BEEHEARD_SURVEY
-      )
+        appRoot: APP_ROOT,
+        buildDir: BUILD_DIR,
+        injectedDataKeys: HTML_HEAD_INJECTED_DATA_KEYS,
+        injectedScripts: HTML_HEAD_INJECTED_SCRIPTS,
+      })
     );
   } else {
     appRouter.use("/", express.static(path.join(process.cwd(), BUILD_DIR)));
@@ -137,58 +133,8 @@ function createBoomerangServer({
  * @param {string} buildDir - build directory for building up path to index.html file
  * @param {string} injectedDataKeys - string of comma delimited values
  * @param {string} injectedScripts - string of comma delimited values
- * @param {string} appRoot - root context off app. Used for script injection
- * @param {string} gaSiteId - siteID to be injected on scripts to support GA
- * @param {string} baseLaunchUrl - base url to determine GA primaryCategory
- * @param {boolean} enableBeeheardSurvey - true/false value configured at helm to decide to insert survey script
  */
-function injectEnvDataAndScriptsIntoHTML(
-  res,
-  buildDir,
-  injectedDataKeys,
-  injectedScripts,
-  appRoot,
-  gaSiteId,
-  enableBeeheardSurvey
-) {
-  /**
-   * Create objects to be injected into application via the HEAD tag
-   */
-  // Build script for GA integration
-  const headScripstGA = Boolean(gaSiteId)
-    ? `<script type="text/javascript">
-      window.idaPageIsSPA = true;
-      window._ibmAnalytics = {
-        settings: {
-          name: "IBM_Services_Essentials",
-          isSpa: true,
-          tealiumProfileName: "ibm-web-app",
-        },
-        trustarc: {
-          isCookiePreferencesButtonAlwaysOn: false,
-        },
-      };
-      digitalData = {
-        page: {
-          pageInfo: {
-            ibm: {
-              siteID: '${gaSiteId}',
-            }
-          },
-          category: {
-            primaryCategory: 'PC100'
-          }
-        }
-      };
-    </script>
-    <script src="https://1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript" crossorigin></script>
-    `
-    : "";
-
-  const headScriptBeeheardSurvey = Boolean(enableBeeheardSurvey)
-    ? '<script async src="https://beeheard.dal1a.cirrus.ibm.com/survey/preconfig/HHPxpQgN.js" crossorigin></script>'
-    : "";
-
+function injectEnvDataAndScriptsIntoHTML({ res, buildDir, appRoot, injectedDataKeys, injectedScripts }) {
   // Build up object of external data to append
   const headInjectedData = injectedDataKeys.split(",").reduce((acc, key) => {
     acc[key] = process.env[key];
@@ -196,7 +142,7 @@ function injectEnvDataAndScriptsIntoHTML(
   }, {});
 
   // Build up string of scripts to append, absolute path
-  const headScriptsTags = injectedScripts
+  const localScriptTags = injectedScripts
     ? injectedScripts
         .split(",")
         .reduce((acc, currentValue) => `${acc}<script src="${appRoot}/${currentValue}"></script>`, "")
@@ -227,12 +173,71 @@ function injectEnvDataAndScriptsIntoHTML(
           isJSON: true,
         })};
       </script>
-      ${headScriptBeeheardSurvey}
-      ${headScripstGA}
-      ${headScriptsTags}
+      ${getBeeheardSurveyScripts()}
+      ${getGAScripts()}
+      ${getInstanaScripts()}
+      ${localScriptTags}
       </head>`
     );
   }
+}
+
+// Include BeeHeard survey based on env var
+function getBeeheardSurveyScripts() {
+  const enableBeeheardSurvey = process.env.ENABLE_BEEHEARD_SURVEY;
+  return Boolean(enableBeeheardSurvey)
+    ? '<script async src="https://beeheard.dal1a.cirrus.ibm.com/survey/preconfig/HHPxpQgN.js" crossorigin></script>'
+    : "";
+}
+
+// Include Google Analytics based on env var
+function getGAScripts() {
+  const gaSiteId = process.env.GA_SITE_ID;
+  return Boolean(gaSiteId)
+    ? `<script type="text/javascript">
+        window.idaPageIsSPA = true;
+        window._ibmAnalytics = {
+          settings: {
+            name: "IBM_Services_Essentials",
+            isSpa: true,
+            tealiumProfileName: "ibm-web-app",
+          },
+          trustarc: {
+            isCookiePreferencesButtonAlwaysOn: false,
+          },
+        };
+        digitalData = {
+          page: {
+            pageInfo: {
+              ibm: {
+                siteID: '${gaSiteId}',
+              }
+            },
+            category: {
+              primaryCategory: 'PC100'
+            }
+          }
+        };
+      </script>
+      <script src="https://1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript" crossorigin></script>`
+    : "";
+}
+
+// Include Instana monitoring based on env var
+function getInstanaScripts() {
+  const instanaReportingUrl = process.env.INSTANA_REPORTING_URL;
+  const instanaKey = process.env.INSTANA_KEY;
+
+  return Boolean(instanaReportingUrl) && Boolean(instanaKey)
+    ? `<script type="text/javascript">
+      (function(s,t,a,n){s[t]||(s[t]=a,n=s[a]=function(){n.q.push(arguments)},
+      n.q=[],n.v=2,n.l=1*new Date)})(window,"InstanaEumObject","ineum");
+      ineum('reportingUrl', ${instanaReportingUrl});
+      ineum('key', ${instanaKey});
+      ineum('trackSessions');
+      </script>
+      <script defer crossorigin="anonymous" src="https://eum.instana.io/eum.min.js"></script>`
+    : "";
 }
 
 module.exports = createBoomerangServer;

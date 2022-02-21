@@ -10,6 +10,9 @@ Provide a consistent way to deploy Boomerang React SPAs with client-side routing
 - Logging with [@boomerang-io/logger-middleware](https://github.com/boomerang-io/webapp-packages/src/packages/logger-middleware)
 - Cloud native health checking with [Cloud Native Health Connect](@cloudnative/health-connect)
 - New Relic monitoring
+- Instana monitoring
+- Google Anayltics
+- BeeHeard survey
 
 ## Design
 
@@ -68,7 +71,7 @@ The following env variables are assumed to exist either from a local `.env` file
 
 ## Defaults
 
-Some of the values, both config and environment variables have defaults in the server that make deploying to the IBM Cloud Private work out-of-the-box.
+Some of the values, both config and environment variables have defaults in the server that make deploying to the RedHat OpenShift work out-of-the-box.
 
 APP_ROOT
 

@@ -11,11 +11,13 @@
 
   <body>
     <main id="app">Welcome to Boomerang Webapp Server!</main>
-    <p id="header">Injected Data:</p>
+    <p id="message1">Open dev tools to see the added scripts</p>
+    <p id="message2">Injected data available client-side:</p>
+    <p id=""></p>
     <script>
-      var main = document.getElementById("header");
+      var main = document.getElementById("message2");
       var child = main.appendChild(document.createElement("div"));
-      child.innerText = JSON.stringify(window._SERVER_DATA);
+      child.innerText = JSON.stringify(window._SERVER_DATA, null, 2);
     </script>
   </body>
 </html>
