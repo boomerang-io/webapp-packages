@@ -63,11 +63,15 @@ The following env variables are assumed to exist either from a local `.env` file
 | :--------------------------: | :-----------------------------------------------------------------------: | :------------------: |
 |           APP_ROOT           |                      Root context of the application                      |        string        |
 |          BUILD_DIR           |      directory relative to the exeuction where app files are located      |        string        |
+|             PORT             |                         Port for server to run on                         |        number        |
 | HTML_HEAD_INJECTED_DATA_KEYS |          Environment variables to inject into the HTML document           | comma delimited list |
 |  HTML_HEAD_INJECTED_SCRIPTS  | Scripts to inject into HTML document. Files need to be in the `BUILD_DIR` | comma delimited list |
-|      NEW_RELIC_APP_NAME      |                          App name for monitoring                          |        string        |
-|    NEW_RELIC_LICENSE_KEY     |                        License key for monitoring                         |        string        |
-|             PORT             |                         Port for server to run on                         |        number        |
+|      NEW_RELIC_APP_NAME      |                     App name for New Relic monitoring                     |        string        |
+|    NEW_RELIC_LICENSE_KEY     |                   License key for New Relic monitoring                    |        string        |
+|    INSTANA_REPORTING_URL     |                   Reporting URL for Instana monitoring                    |        string        |
+|         INSTANA_KEY          |                    License key for Instana monitoring                     |        string        |
+|          GA_SITE_ID          |                       Site ID for Goolge Analytics                        |        string        |
+|    ENABLE_BEEHEARD_SURVEY    |                          Enable BeeHeard survey                           |       boolean        |
 
 ## Defaults
 
