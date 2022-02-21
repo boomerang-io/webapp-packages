@@ -11,7 +11,7 @@ Provide a consistent way to deploy Boomerang React SPAs with client-side routing
 - Cloud native health checking with [Cloud Native Health Connect](@cloudnative/health-connect)
 - New Relic monitoring
 - Instana monitoring
-- Google Anayltics
+- Google Analytics
 - BeeHeard survey
 
 ## Design
