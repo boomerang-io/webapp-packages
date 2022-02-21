@@ -75,7 +75,7 @@ The following env variables are assumed to exist either from a local `.env` file
 
 ## Defaults
 
-Some of the values, both config and environment variables have defaults in the server that make deploying to the RedHat OpenShift work out-of-the-box.
+Some of the values, both config and environment variables have defaults in the server for deploying to the IBM Consulting Essentials platform.
 
 APP_ROOT
 
