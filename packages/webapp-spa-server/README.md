@@ -10,6 +10,9 @@ Provide a consistent way to deploy Boomerang React SPAs with client-side routing
 - Logging with [@boomerang-io/logger-middleware](https://github.com/boomerang-io/webapp-packages/src/packages/logger-middleware)
 - Cloud native health checking with [Cloud Native Health Connect](@cloudnative/health-connect)
 - New Relic monitoring
+- Instana monitoring
+- Google Analytics
+- BeeHeard survey
 
 ## Design
 
@@ -60,15 +63,19 @@ The following env variables are assumed to exist either from a local `.env` file
 | :--------------------------: | :-----------------------------------------------------------------------: | :------------------: |
 |           APP_ROOT           |                      Root context of the application                      |        string        |
 |          BUILD_DIR           |      directory relative to the exeuction where app files are located      |        string        |
+|             PORT             |                         Port for server to run on                         |        number        |
 | HTML_HEAD_INJECTED_DATA_KEYS |          Environment variables to inject into the HTML document           | comma delimited list |
 |  HTML_HEAD_INJECTED_SCRIPTS  | Scripts to inject into HTML document. Files need to be in the `BUILD_DIR` | comma delimited list |
-|      NEW_RELIC_APP_NAME      |                          App name for monitoring                          |        string        |
-|    NEW_RELIC_LICENSE_KEY     |                        License key for monitoring                         |        string        |
-|             PORT             |                         Port for server to run on                         |        number        |
+|      NEW_RELIC_APP_NAME      |                     App name for New Relic monitoring                     |        string        |
+|    NEW_RELIC_LICENSE_KEY     |                   License key for New Relic monitoring                    |        string        |
+|    INSTANA_REPORTING_URL     |                   Reporting URL for Instana monitoring                    |        string        |
+|         INSTANA_KEY          |                    License key for Instana monitoring                     |        string        |
+|          GA_SITE_ID          |                       Site ID for Goolge Analytics                        |        string        |
+|    ENABLE_BEEHEARD_SURVEY    |                          Enable BeeHeard survey                           |       boolean        |
 
 ## Defaults
 
-Some of the values, both config and environment variables have defaults in the server that make deploying to the IBM Cloud Private work out-of-the-box.
+Some of the values, both config and environment variables have defaults in the server for deploying to the IBM Consulting Essentials platform.
 
 APP_ROOT
 

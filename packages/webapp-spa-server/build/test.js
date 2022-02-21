@@ -1,1 +1,1 @@
-console.log("I, test.js, was imported");
+console.log(`"test.js" was added and executed`);
