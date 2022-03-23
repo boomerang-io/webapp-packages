@@ -232,8 +232,8 @@ function getInstanaScripts() {
     ? `<script type="text/javascript">
       (function(s,t,a,n){s[t]||(s[t]=a,n=s[a]=function(){n.q.push(arguments)},
       n.q=[],n.v=2,n.l=1*new Date)})(window,"InstanaEumObject","ineum");
-      ineum('reportingUrl', ${instanaReportingUrl});
-      ineum('key', ${instanaKey});
+      ineum('reportingUrl', '${instanaReportingUrl}');
+      ineum('key', '${instanaKey}');
       ineum('trackSessions');
       </script>
       <script defer crossorigin="anonymous" src="https://eum.instana.io/eum.min.js"></script>`

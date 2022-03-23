@@ -1,7 +1,7 @@
 {
   "name": "@boomerang-io/webapp-spa-server",
   "description": "Webapp Server for React-based SPA w/ client-side routing",
-  "version": "1.1.0-beta.0",
+  "version": "1.1.0-beta.1",
   "author": {
     "name": "Tim Bula",
     "email": "timrbula@gmail.com"
