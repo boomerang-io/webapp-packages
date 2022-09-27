@@ -87,15 +87,17 @@ function createBoomerangServer({
    * Do NOT return index.html file by default if `disableInjectHTMLHeadData = true`. We need append data to it.
    * It will be returned on the second route
    * https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#serving-apps-with-client-side-routing
+   * Cache assets "forever" aka max recommended value of one year
    */
   if (!disableInjectHTMLHeadData) {
     appRouter.use(
       "/",
       express.static(path.join(process.cwd(), BUILD_DIR), {
+        maxAge: 31536000,
         index: false,
       })
     );
-    appRouter.get("/*", (req, res) =>
+    appRouter.get("/*", (_, res) =>
       injectEnvDataAndScriptsIntoHTML({
         res,
         appRoot: APP_ROOT,
@@ -145,7 +147,7 @@ function injectEnvDataAndScriptsIntoHTML({ res, buildDir, appRoot, injectedDataK
   const localScriptTags = injectedScripts
     ? injectedScripts
         .split(",")
-        .reduce((acc, currentValue) => `${acc}<script src="${appRoot}/${currentValue}"></script>`, "")
+        .reduce((acc, currentValue) => `${acc}<script async src="${appRoot}/${currentValue}"></script>`, "")
     : "";
   // Set the response type so browser interprets it as an html file
   res.type(".html");
@@ -219,7 +221,7 @@ function getGAScripts() {
           }
         };
       </script>
-      <script src="https://1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript" crossorigin></script>`
+      <script async src="https://1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript" crossorigin></script>`
     : "";
 }
 
@@ -236,7 +238,7 @@ function getInstanaScripts() {
       ineum('key', '${instanaKey}');
       ineum('trackSessions');
       </script>
-      <script defer crossorigin="anonymous" src="https://eum.instana.io/eum.min.js"></script>`
+      <script async crossorigin="anonymous" src="https://eum.instana.io/eum.min.js"></script>`
     : "";
 }
 

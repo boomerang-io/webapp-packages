@@ -3,21 +3,23 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-
     <title>Boomerang Webapp Server Test</title>
     <meta name="description" content="Boomerang Webapp Server Test" />
     <meta name="author" content="trbula@us.ibm.com" />
+    <script src="./test-sync.js"></script>
   </head>
-
   <body>
-    <main id="app">Welcome to Boomerang Webapp Server!</main>
-    <p id="message1">Open dev tools to see the added scripts</p>
-    <p id="message2">Injected data available client-side:</p>
-    <p id=""></p>
+    <main id="app">
+      <h1>Welcome to Boomerang Webapp Server!</h1>
+      <h2 id="message1">Open dev tools to see the added scripts and server data</h2>
+      <section>
+        <h2 id="message2">Injected data available client-side:</h2>
+        <p id="server-data"></p>
+      </section>
+    </main>
     <script>
-      var main = document.getElementById("message2");
-      var child = main.appendChild(document.createElement("div"));
-      child.innerText = JSON.stringify(window._SERVER_DATA, null, 2);
+      var serverData = document.getElementById("server-data");
+      serverData.innerText = JSON.stringify(window._SERVER_DATA, null, 2);
     </script>
   </body>
 </html>
