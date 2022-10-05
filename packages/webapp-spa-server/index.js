@@ -93,7 +93,7 @@ function createBoomerangServer({
     appRouter.use(
       "/",
       express.static(path.join(process.cwd(), BUILD_DIR), {
-        maxAge: 31536000,
+        maxAge: 31536000000,
         index: false,
       })
     );
