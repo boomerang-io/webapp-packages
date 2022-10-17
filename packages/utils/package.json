@@ -1,6 +1,6 @@
 {
   "name": "@boomerang-io/utils",
-  "version": "1.0.3",
+  "version": "1.1.0-beta.0",
   "author": {
     "name": "Tim Bula",
     "email": "timrbula@gmail.com"
@@ -16,12 +16,14 @@
     "url": "https://github.com/boomerang-io/webapp-packages/issues"
   },
   "main": "lib/index.js",
+  "modules": "es/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:commonjs",
-    "build:commonjs": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --ignore ./**/*.test.js",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./lib --ignore ./**/*.test.js",
+    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./es --ignore ./**/*.test.js",
     "lint": "eslint src",
     "precommit": "lint-staged",
     "prebuild": "rimraf lib es",
@@ -40,7 +42,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "axios": ">=0.24.0",
+    "axios": "0.27.2",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.10",
     "@babel/eslint-parser": "7.16.5",
