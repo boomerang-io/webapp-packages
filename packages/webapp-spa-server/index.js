@@ -17,6 +17,7 @@ const logger = boomerangLogger.logger;
  */
 
 function createBoomerangServer({
+  corsConfig,
   disableInjectHTMLHeadData,
 }) {
   /**
@@ -34,7 +35,7 @@ function createBoomerangServer({
     CORS_CONFIG,
   } = process.env;
 
-  const appCorsConfig = parseJSONString(CORS_CONFIG);
+  const appCorsConfig = corsConfig || parseJSONString(CORS_CONFIG);
 
   // Monitoring
   if (NEW_RELIC_APP_NAME && NEW_RELIC_LICENSE_KEY) {
