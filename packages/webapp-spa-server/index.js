@@ -17,11 +17,7 @@ const logger = boomerangLogger.logger;
  */
 
 function createBoomerangServer({
-  corsConfig = {
-    origin: "*",
-    allowedHeaders: "Content-Type, Authorization, Content-Length, X-Requested-With",
-    methods: "DELETE,GET,OPTIONS,PATCH,POST,PUT",
-  },
+  corsConfig,
   disableInjectHTMLHeadData,
 }) {
   /**
@@ -39,7 +35,7 @@ function createBoomerangServer({
     CORS_CONFIG,
   } = process.env;
 
-  const appCorsConfig = parseJSONString(CORS_CONFIG) || corsConfig;
+  const appCorsConfig = corsConfig || parseJSONString(CORS_CONFIG);
 
   // Monitoring
   if (NEW_RELIC_APP_NAME && NEW_RELIC_LICENSE_KEY) {
@@ -71,7 +67,7 @@ function createBoomerangServer({
     })
   );
   app.disable("x-powered-by");
-  app.use(cors(appCorsConfig));
+  appCorsConfig && app.use(cors(appCorsConfig));
 
   // Parsing
   const bodyParser = require("body-parser");
