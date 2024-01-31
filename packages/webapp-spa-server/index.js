@@ -17,11 +17,7 @@ const logger = boomerangLogger.logger;
  */
 
 function createBoomerangServer({
-  corsConfig = {
-    origin: "*",
-    allowedHeaders: "Content-Type, Authorization, Content-Length, X-Requested-With",
-    methods: "DELETE,GET,OPTIONS,PATCH,POST,PUT",
-  },
+  corsConfig,
   disableInjectHTMLHeadData,
 }) {
   /**
@@ -36,7 +32,10 @@ function createBoomerangServer({
     NEW_RELIC_LICENSE_KEY,
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
+    CORS_CONFIG,
   } = process.env;
+
+  const appCorsConfig = corsConfig || parseJSONString(CORS_CONFIG);
 
   // Monitoring
   if (NEW_RELIC_APP_NAME && NEW_RELIC_LICENSE_KEY) {
@@ -68,7 +67,7 @@ function createBoomerangServer({
     })
   );
   app.disable("x-powered-by");
-  app.use(cors(corsConfig));
+  appCorsConfig && app.use(cors(appCorsConfig));
 
   // Parsing
   const bodyParser = require("body-parser");
@@ -241,5 +240,16 @@ function getInstanaScripts() {
       <script async crossorigin="anonymous" src="https://eum.instana.io/eum.min.js"></script>`
     : "";
 }
+
+//Check if a CORS_CONFIG from env is a valid JSON object and return it if so
+function parseJSONString(jsonString) {
+  try {
+    const parseJSON = Boolean(jsonString) && JSON.parse(jsonString);
+    return typeof parseJSON === "object" ? parseJSON : false;
+  } catch (e) {
+    console.log(`JSON Parse error: ${e}`);
+    return false;
+  }
+};
 
 module.exports = createBoomerangServer;
