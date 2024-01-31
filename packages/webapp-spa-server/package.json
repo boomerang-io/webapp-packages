@@ -33,7 +33,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "helmet": "^6.0.0",
-    "newrelic": "^9.2.0",
+    "newrelic": "^9.15.0",
     "serialize-javascript": "^6.0.0",
     "yargs": "^17.6.0"
   },
