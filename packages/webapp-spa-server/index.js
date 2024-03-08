@@ -210,7 +210,7 @@ function getGAScripts() {
         digitalData = {
           page: {
             pageInfo: {
-              pageID: ${ibmInstrumentationId},
+              pageID: "ibm_consulting_advantage_test",
               productTitle: "IBM Consulting Advantage",
               analytics: {
                 category: 'Offering Interface'
