@@ -193,8 +193,8 @@ function getBeeheardSurveyScripts() {
 
 // Include Google Analytics based on env var
 function getGAScripts() {
-  const gaSiteId = process.env.GA_SITE_ID;
-  return Boolean(gaSiteId)
+  const ibmInstrumentationId = process.env.GA_SITE_ID;
+  return Boolean(ibmInstrumentationId)
     ? `<script type="text/javascript">
         window.idaPageIsSPA = true;
         window._ibmAnalytics = {
@@ -210,16 +210,17 @@ function getGAScripts() {
         digitalData = {
           page: {
             pageInfo: {
-              ibm: {
-                siteID: '${gaSiteId}',
+              pageID: ${ibmInstrumentationId},
+              productTitle: "IBM Consulting Advantage",
+              analytics: {
+                category: 'Offering Interface'
               }
-            },
-            category: {
-              primaryCategory: 'PC100'
             }
           }
         };
       </script>
+      <script type="text/javascript"> window._analytics = { "segment_key" : "BdBQtVrGbCxBumrCuR2MYAARD8CA3VQp", "coremetrics" : false, "optimizely" : false, "googleAddServices": false, "fullStory" : false}; </script>
+      <script src="https://console.test.cloud.ibm.com/analytics/build/bluemix-analytics.min.js"></script>
       <script async src="https://1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript" crossorigin></script>`
     : "";
 }
