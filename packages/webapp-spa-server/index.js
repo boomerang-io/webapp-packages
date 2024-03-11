@@ -209,7 +209,7 @@ function getGAScripts() {
         };
       </script>
       <script type="text/javascript"> window._analytics = { "segment_key" : "BdBQtVrGbCxBumrCuR2MYAARD8CA3VQp", "coremetrics" : false, "optimizely" : false, "googleAddServices": false, "fullStory" : false}; </script>
-      <script src="https://console.test.cloud.ibm.com/analytics/build/bluemix-analytics.min.js"></script>`
+      <script src="https://console.test.cloud.ibm.com/analytics/build/bluemix-analytics.min.js" crossorigin></script>`
     : "";
 }
 
