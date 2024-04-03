@@ -194,7 +194,7 @@ function getBeeheardSurveyScripts() {
 
 // Include Google Analytics based on env var
 function getBluemixSegmentScripts() {
-  const enableSegment = process.env.ENABLE_SEGMENT_INSTRUMENT;
+  const enableSegment = process.env.SEGMENT_ENABLED;
   const segmentUrl = process.env.SEGMENT_SCRIPT_URL;
   const segmentKey = process.env.SEGMENT_KEY;
 
@@ -223,7 +223,9 @@ function getBluemixSegmentScripts() {
 function getGAScripts() {
   const gaSiteId = process.env.GA_SITE_ID;
   const gaUrl = process.env.GA_SCRIPT_URL;
-  return Boolean(gaSiteId)
+  const gaEnabled = process.env.GA_ENABLED;
+
+  return Boolean(gaEnabled)
     ? `<script type="text/javascript">
         window.idaPageIsSPA = true;
         window._ibmAnalytics = {
