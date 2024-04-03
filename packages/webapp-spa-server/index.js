@@ -203,12 +203,12 @@ function getBluemixSegmentScripts() {
         digitalData = {
           page: {
             pageInfo: {
-              pageID: "ibm_consulting_advantage",
+              pageID: "ibm_consulting_advantage_test",
               productTitle: "IBM Consulting Advantage",
+              productCode: "694970X",
+              productCodeType: "Consulting Advantage",
               analytics: {
-                category: 'Offering Interface'
-                productCode: '694970X',
-                productCodeType: 'Consulting Advantage',
+                category: "Offering Interface"
               }
             }
           }
