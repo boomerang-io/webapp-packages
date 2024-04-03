@@ -176,6 +176,7 @@ function injectEnvDataAndScriptsIntoHTML({ res, buildDir, appRoot, injectedDataK
       </script>
       ${getBeeheardSurveyScripts()}
       ${getGAScripts()}
+      ${getBluemixSegmentScripts()}
       ${getInstanaScripts()}
       ${localScriptTags}
       </head>`
@@ -192,24 +193,63 @@ function getBeeheardSurveyScripts() {
 }
 
 // Include Google Analytics based on env var
-function getGAScripts() {
-  const ibmInstrumentationId = process.env.GA_SITE_ID;
-  return Boolean(ibmInstrumentationId)
+function getBluemixSegmentScripts() {
+  const enableSegment = process.env.ENABLE_SEGMENT_INSTRUMENT;
+  const segmentUrl = process.env.SEGMENT_SCRIPT_URL;
+  const segmentKey = process.env.SEGMENT_KEY;
+
+  return Boolean(enableSegment)
     ? `<script>
         digitalData = {
           page: {
             pageInfo: {
-              pageID: "ibm_consulting_advantage_test",
+              pageID: "ibm_consulting_advantage",
               productTitle: "IBM Consulting Advantage",
               analytics: {
                 category: 'Offering Interface'
+                productCode: '694970X',
+                productCodeType: 'Consulting Advantage',
               }
             }
           }
         };
       </script>
-      <script type="text/javascript"> window._analytics = { "segment_key" : "BdBQtVrGbCxBumrCuR2MYAARD8CA3VQp", "coremetrics" : false, "optimizely" : false, "googleAddServices": false, "fullStory" : false}; </script>
-      <script src="https://test.cloud.ibm.com/analytics/build/bluemix-analytics.min.js" crossorigin></script>`
+      <script type="text/javascript"> window._analytics = { "segment_key" : "${segmentKey}", "coremetrics" : false, "optimizely" : false, "googleAddServices": false, "fullStory" : false}; </script>
+      <script src="${segmentUrl}" crossorigin></script>`
+    : "";
+}
+
+// Include Google Analytics based on env var
+function getGAScripts() {
+  const gaSiteId = process.env.GA_SITE_ID;
+  const gaUrl = process.env.GA_SCRIPT_URL;
+  return Boolean(gaSiteId)
+    ? `<script type="text/javascript">
+        window.idaPageIsSPA = true;
+        window._ibmAnalytics = {
+          settings: {
+            name: "IBM_Services_Essentials",
+            isSpa: true,
+            tealiumProfileName: "ibm-web-app",
+          },
+          trustarc: {
+            isCookiePreferencesButtonAlwaysOn: false,
+          },
+        };
+        digitalData = {
+          page: {
+            pageInfo: {
+              ibm: {
+                siteID: '${gaSiteId}',
+              }
+            },
+            category: {
+              primaryCategory: 'PC100'
+            }
+          }
+        };
+      </script>
+      <script async src="${gaUrl}" type="text/javascript" crossorigin></script>`
     : "";
 }
 
