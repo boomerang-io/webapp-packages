@@ -206,16 +206,23 @@ function getBluemixSegmentScripts() {
               pageID: "ibm_consulting_advantage_test",
               productTitle: "IBM Consulting Advantage",
               analytics: {
-                category: "Offering Interface",
-                productCode: "694970X",
-                productCodeType: "Consulting Advantage",
+                category: "Offering Interface"
               }
             }
           }
         };
       </script>
       <script type="text/javascript"> window._analytics = { "segment_key" : "${segmentKey}", "coremetrics" : false, "optimizely" : false, "googleAddServices": false, "fullStory" : false}; </script>
-      <script src="${segmentUrl}" crossorigin></script>`
+      <script src="${segmentUrl}" crossorigin></script>
+      <script>
+        window._analytics = {
+          "pageProperties": {
+            "productCode": "694970X",
+            "productCodeType": "Consulting Advantage",
+          },
+        };
+      </script>
+      `
     : "";
 }
 
