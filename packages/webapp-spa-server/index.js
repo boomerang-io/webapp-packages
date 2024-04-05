@@ -217,8 +217,9 @@ function getBluemixSegmentScripts() {
       <script>
         window._analytics = {
           "pageProperties": {
+            "platformTitle": "IBM Consulting Advantage",
             "productCode": "694970X",
-            "productCodeType": "Consulting Advantage",
+            "productCodeType": "IBM Consulting Advantage",
           },
         };
       </script>
