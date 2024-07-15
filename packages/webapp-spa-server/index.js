@@ -176,6 +176,7 @@ function injectEnvDataAndScriptsIntoHTML({ res, buildDir, appRoot, injectedDataK
       </script>
       ${getBeeheardSurveyScripts()}
       ${getGAScripts()}
+      ${getBluemixSegmentScripts()}
       ${getInstanaScripts()}
       ${localScriptTags}
       </head>`
@@ -192,9 +193,47 @@ function getBeeheardSurveyScripts() {
 }
 
 // Include Google Analytics based on env var
+function getBluemixSegmentScripts() {
+  const enableSegment = process.env.SEGMENT_ENABLED;
+  const segmentUrl = process.env.SEGMENT_SCRIPT_URL;
+  const segmentKey = process.env.SEGMENT_KEY;
+
+  return Boolean(enableSegment)
+    ? `<script>
+        digitalData = {
+          page: {
+            pageInfo: {
+              pageID: "ibm_consulting_advantage_test",
+              productTitle: "IBM Consulting Advantage",
+              analytics: {
+                category: "Offering Interface"
+              }
+            }
+          }
+        };
+      </script>
+      <script type="text/javascript"> window._analytics = { "segment_key" : "${segmentKey}", "coremetrics" : false, "optimizely" : false, "googleAddServices": false, "fullStory" : false}; </script>
+      <script src="${segmentUrl}" crossorigin></script>
+      <script>
+        window._analytics = {
+          "pageProperties": {
+            "platformTitle": "IBM Consulting Advantage",
+            "productCode": "694970X",
+            "productCodeType": "IBM Consulting Advantage",
+          },
+        };
+      </script>
+      `
+    : "";
+}
+
+// Include Google Analytics based on env var
 function getGAScripts() {
   const gaSiteId = process.env.GA_SITE_ID;
-  return Boolean(gaSiteId)
+  const gaUrl = process.env.GA_SCRIPT_URL;
+  const gaEnabled = process.env.GA_ENABLED;
+
+  return Boolean(gaEnabled)
     ? `<script type="text/javascript">
         window.idaPageIsSPA = true;
         window._ibmAnalytics = {
@@ -220,7 +259,7 @@ function getGAScripts() {
           }
         };
       </script>
-      <script async src="https://1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript" crossorigin></script>`
+      <script async src="${gaUrl}" type="text/javascript" crossorigin></script>`
     : "";
 }
 
