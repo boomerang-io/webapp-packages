@@ -204,6 +204,8 @@ function getBluemixSegmentScripts() {
           page: {
             pageInfo: {
               pageID: "ibm_consulting_advantage_test",
+              productCode: "694970X",
+              productCodeType: "Consulting Assistants",
               productTitle: "IBM Consulting Advantage",
               analytics: {
                 category: "Offering Interface"
