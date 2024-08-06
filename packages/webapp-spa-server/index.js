@@ -218,10 +218,10 @@ function getBluemixSegmentScripts() {
       <script src="${segmentUrl}" crossorigin></script>
       <script>
         window._analytics = {
-          "pageProperties": {
+          "commonProperties": {
             "platformTitle": "IBM Consulting Advantage",
             "productCode": "694970X",
-            "productCodeType": "IBM Consulting Advantage",
+            "productCodeType": "IBM Consulting Advantage",,
           },
         };
       </script>
