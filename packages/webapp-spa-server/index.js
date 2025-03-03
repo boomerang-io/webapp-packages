@@ -109,6 +109,15 @@ function createBoomerangServer({
     appRouter.use("/", express.static(path.join(process.cwd(), BUILD_DIR)));
   }
 
+  // Make sure that files with .css has a type="text/css" since they were throwing errors related to MIME check
+  app.use(express.static(APP_ROOT, {
+    setHeaders: function (res, path) {
+      if (path.endsWith(".css")) {
+        res.set("Content-Type", "text/css");
+      }
+    }
+  }));
+
   app.use(APP_ROOT, appRouter);
 
   // Start server on the specified port and binding host
