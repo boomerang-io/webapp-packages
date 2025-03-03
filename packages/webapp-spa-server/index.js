@@ -109,6 +109,14 @@ function createBoomerangServer({
     appRouter.use("/", express.static(path.join(process.cwd(), BUILD_DIR)));
   }
 
+  app.use(express.static(APP_ROOT, {
+    setHeaders: function (res, path) {
+      if (path.endsWith(".css")) {
+        res.set("Content-Type", "text/css");
+      }
+    }
+  }));
+
   app.use(APP_ROOT, appRouter);
 
   // Start server on the specified port and binding host
