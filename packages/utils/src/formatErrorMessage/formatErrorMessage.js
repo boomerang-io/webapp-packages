@@ -21,17 +21,19 @@ export default function formatErrorMessage({ error, defaultTitle = "Request Fail
       title = errorObj.message;
     }
   } else {
-    if (data.status && data.error) {
-      title = `${data.status} - ${data.error}`;
+    const errorTitle = data.error || data.title;
+    if (data.status && errorTitle) {
+      title = `${data.status} - ${errorTitle}`;
     } else if (data.status) {
       title = `${data.status} - ${defaultTitle}`;
-    } else if (data.error) {
-      title = data.error;
+    } else if (errorTitle) {
+      title = errorTitle;
     }
 
     // set message if its there
-    if (data.message) {
-      message = data.message;
+    const errorMessage = data.detail || data.message;
+    if (errorMessage) {
+      message = errorMessage;
     }
   }
 
