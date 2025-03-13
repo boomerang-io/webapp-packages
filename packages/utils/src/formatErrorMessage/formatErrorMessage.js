@@ -1,6 +1,6 @@
 import isPlainObject from "lodash/isPlainObject";
 
-export default function formatErrorMessage({ error, defaultTitle = "Request Failed", defaultMessage = "Try again." }) {
+export default function formatErrorMessage({ error, defaultTitle = "Request Failed", defaultMessage = "Please try again" }) {
   let title = defaultTitle;
   let message = defaultMessage;
   const data = error?.response?.data;
@@ -13,27 +13,25 @@ export default function formatErrorMessage({ error, defaultTitle = "Request Fail
   // if returning an object for the title
   if (isPlainObject(data.error)) {
     const errorObj = data.error;
-    if (errorObj.code && errorObj.message) {
-      title = `${errorObj.code} - ${errorObj.message}`;
-    } else if (errorObj.code) {
-      title = `${errorObj.code} - ${defaultTitle}`;
-    } else if (errorObj.message) {
+    if (errorObj.message) {
       title = errorObj.message;
     }
+
   } else {
-    if (data.status && data.error) {
-      title = `${data.status} - ${data.error}`;
-    } else if (data.status) {
-      title = `${data.status} - ${defaultTitle}`;
-    } else if (data.error) {
-      title = data.error;
+    const errorTitle = data.error || data.title;
+    if (errorTitle) {
+      title = errorTitle;
     }
 
     // set message if its there
-    if (data.message) {
-      message = data.message;
+    const errorMessage = data.detail || data.message;
+    if (errorMessage) {
+      message = errorMessage;
     }
   }
+
+  title = `${title}.`;
+  message = `${message}.`;
 
   return { title, message };
 }
