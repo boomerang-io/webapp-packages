@@ -76,22 +76,22 @@ function createBoomerangServer({
 
   // Initialize healthchecker and add routes
   const healthchecker = new health.HealthChecker();
-  app.use("/health", (req, res, next) => {
-    healthchecker.getLivenessStatus().then((status) => {
-      logger.debug(status);
-      switch (status.status) {
-        case "STARTING":
-        case "UP":          
-          next();
-          break;
-        default:        
-          res.statusCode = 503;
-          res.write(JSON.stringify(status));
-          break;
-      }
-      res.end();
-    }).catch((err) => {res.end()});
-  });
+  // app.use("/health", (req, res, next) => {
+  //   healthchecker.getLivenessStatus().then((status) => {
+  //     logger.debug(status);
+  //     switch (status.status) {
+  //       case "STARTING":
+  //       case "UP":          
+  //         next();
+  //         break;
+  //       default:        
+  //         res.statusCode = 503;
+  //         res.write(JSON.stringify(status));
+  //         break;
+  //     }
+  //     res.end();
+  //   }).catch((err) => {res.end()});
+  // });
   app.use("/ready", health.ReadinessEndpoint(healthchecker));
 
   // Create endpoint for the app serve static assets
