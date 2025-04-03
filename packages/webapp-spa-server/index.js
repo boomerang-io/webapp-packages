@@ -75,7 +75,10 @@ function createBoomerangServer({
 
   // Initialize healthchecker and add routes
   const healthchecker = new health.HealthChecker();
-  app.use("/health", health.LivenessEndpoint(healthchecker));
+  app.use("/health", health.LivenessEndpoint(healthchecker).then(middleware => {
+    logger.info("Testing");
+    logger.info(middleware);
+  }));
   app.use("/ready", health.ReadinessEndpoint(healthchecker));
 
   // Create endpoint for the app serve static assets
