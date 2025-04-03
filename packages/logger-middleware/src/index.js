@@ -9,7 +9,7 @@ const appRoot = require("app-root-path");
  * @param {string} [callingModulePath=""] - path to the module calling
  * @return {object} log4j logger and middleware functions
  */
-module.exports = function (callingModulePath = "") {
+module.exports = function (callingModulePath = "", ) {
   /**
    * Format filename to remove the path to the app.
    * It will isolate the path to the file from the root of the project if
@@ -29,17 +29,29 @@ module.exports = function (callingModulePath = "") {
     categories: {
       default: { appenders: ["default"], level: "all" },
       http: { appenders: ["default"], level: "all" },
+      warn: { appenders: ["default"], level: "warn" },
+      debug: { appenders: ["default"], level: "debug" },
     },
   });
   const logger = log4js.getLogger("app");
   const httpLogger = log4js.getLogger("http");
+  const warnLogger = log4js.getLogger("warn");
+  const debugLogger = log4js.getLogger("debug");
 
   /** Add context so the correct filename is returned when calling either logger*/
   logger.addContext("filename", filename);
   httpLogger.addContext("filename", filename);
+  warnLogger.addContext("filename", filename);
+  debugLogger.addContext("filename", filename);
 
   const middleware = log4js.connectLogger(httpLogger, {
     level: "auto",
   });
-  return { logger, middleware };
+  const warnMiddleware = log4js.connectLogger(warnLogger, {
+    level: "warn",
+  });
+  const debugMiddleware = log4js.connectLogger(debugLogger, {
+    level: "debug",
+  });
+  return { logger, middleware, warnMiddleware, debugMiddleware };
 };
