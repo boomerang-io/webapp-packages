@@ -4,6 +4,7 @@
 const path = require("path");
 const fs = require("fs");
 const cors = require("cors");
+const http = require("http");
 const serialize = require("serialize-javascript");
 const boomerangLogger = require("@boomerang-io/logger-middleware")("webapp-spa-server/index.js");
 const health = require("@cloudnative/health-connect");
@@ -53,7 +54,7 @@ function createBoomerangServer({
   app.use(compression());
 
   // Logging
-  app.use(boomerangLogger.warnMiddleware);
+  app.use(boomerangLogger.middleware);
 
   // Security
   const helmet = require("helmet");
@@ -75,7 +76,22 @@ function createBoomerangServer({
 
   // Initialize healthchecker and add routes
   const healthchecker = new health.HealthChecker();
-  app.use("/health", health.LivenessEndpoint(healthchecker));
+  app.use("/health", (req, res, next) => {
+    healthchecker.getLivenessStatus().then((status) => {
+      logger.debug(status);
+      switch (status.status) {
+        case "STARTING":
+        case "UP":          
+          // res.statusCode = 200; break;
+          break;
+        default:        
+          res.statusCode = 503;
+          res.write(JSON.stringify(status));
+          break;
+      }
+      res.end();
+    }).catch((err) => {res.end()});
+  });
   app.use("/ready", health.ReadinessEndpoint(healthchecker));
 
   // Create endpoint for the app serve static assets
