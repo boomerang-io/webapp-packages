@@ -82,7 +82,7 @@ function createBoomerangServer({
       switch (status.status) {
         case "STARTING":
         case "UP":          
-          // res.statusCode = 200; break;
+          next();
           break;
         default:        
           res.statusCode = 503;
