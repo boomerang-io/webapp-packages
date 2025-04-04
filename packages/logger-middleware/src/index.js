@@ -16,7 +16,6 @@ module.exports = function (callingModulePath = "", ) {
    * the entire path to file is passed as an argument. Only take last 40 characters and pad if shorter to match log4j format
    */
   const filename = callingModulePath.replace(appRoot, "").slice(-40).padEnd(40, " ");
-  const infoFilename = callingModulePath.replace(appRoot, "").slice(-40).padEnd(40, " ");
   log4js.configure({
     appenders: {
       default: {
@@ -26,32 +25,56 @@ module.exports = function (callingModulePath = "", ) {
           pattern: "[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p] [%z] [%c] %X{filename} : %m%n",
         },
       },
+      // filter INFO logs that contains 'health' on the message
+      infoFilter: {
+        type: "logLevelFilter",
+        appender: "default",
+        level: "info",
+        maxLevel : "info",
+      },
       filtered: {
         type: "noLogFilter",
         exclude: ["health"],
+        appender: "infoFilter",
+      },
+      errorFilter: {
+        type: "logLevelFilter",
         appender: "default",
+        level: "error",
+      },
+      debugFilter: {
+        type: "logLevelFilter",
+        appender: "default",
+        level: "debug",
+        maxLevel: "debug"
       },
     },
     categories: {
       default: { appenders: ["default"], level: "all" },
       http: { appenders: ["default"], level: "all" },
-      health: { appenders: ["filtered"], level: "info" },
+      health: { appenders: ["errorFilter", "filtered"], level: "all" },
+      debugHealth: { appenders: ["debugFilter", "errorFilter", "filtered"], level: "all" },
     },
   });
   const logger = log4js.getLogger("app");
   const httpLogger = log4js.getLogger("http");
   const healthLogger = log4js.getLogger("health");
+  const debugHealthLogger = log4js.getLogger("debugHealth");
 
   /** Add context so the correct filename is returned when calling either logger*/
   logger.addContext("filename", filename);
   httpLogger.addContext("filename", filename);
   healthLogger.addContext("filename", filename);
+  debugHealthLogger.addContext("filename", filename);
 
   const middleware = log4js.connectLogger(httpLogger, {
     level: "auto",
   });
   const healthMiddleware = log4js.connectLogger(healthLogger, {
-    level: "debug",
+    level: "auto",
   });
-  return { logger, middleware, healthMiddleware };
+  const debugHealthMiddleware = log4js.connectLogger(debugHealthLogger, {
+    level: "auto",
+  });
+  return { logger, middleware, healthMiddleware, debugHealthMiddleware };
 };
