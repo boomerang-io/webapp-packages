@@ -16,6 +16,7 @@ module.exports = function (callingModulePath = "", ) {
    * the entire path to file is passed as an argument. Only take last 40 characters and pad if shorter to match log4j format
    */
   const filename = callingModulePath.replace(appRoot, "").slice(-40).padEnd(40, " ");
+  const infoFilename = callingModulePath.replace(appRoot, "").slice(-40).padEnd(40, " ");
   log4js.configure({
     appenders: {
       default: {
@@ -25,33 +26,32 @@ module.exports = function (callingModulePath = "", ) {
           pattern: "[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p] [%z] [%c] %X{filename} : %m%n",
         },
       },
+      filtered: {
+        type: "noLogFilter",
+        exclude: ["health"],
+        appender: "default",
+      },
     },
     categories: {
       default: { appenders: ["default"], level: "all" },
       http: { appenders: ["default"], level: "all" },
-      warn: { appenders: ["default"], level: "warn" },
-      debug: { appenders: ["default"], level: "debug" },
+      health: { appenders: ["filtered"], level: "info" },
     },
   });
   const logger = log4js.getLogger("app");
   const httpLogger = log4js.getLogger("http");
-  const warnLogger = log4js.getLogger("warn");
-  const debugLogger = log4js.getLogger("debug");
+  const healthLogger = log4js.getLogger("health");
 
   /** Add context so the correct filename is returned when calling either logger*/
   logger.addContext("filename", filename);
   httpLogger.addContext("filename", filename);
-  warnLogger.addContext("filename", filename);
-  debugLogger.addContext("filename", filename);
+  healthLogger.addContext("filename", filename);
 
   const middleware = log4js.connectLogger(httpLogger, {
     level: "auto",
   });
-  const warnMiddleware = log4js.connectLogger(warnLogger, {
+  const healthMiddleware = log4js.connectLogger(warnLogger, {
     level: "warn",
   });
-  const debugMiddleware = log4js.connectLogger(debugLogger, {
-    level: "debug",
-  });
-  return { logger, middleware, warnMiddleware, debugMiddleware };
+  return { logger, middleware, healthMiddleware };
 };

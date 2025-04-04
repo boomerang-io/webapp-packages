@@ -74,9 +74,9 @@ function createBoomerangServer({
   app.use(bodyParser.urlencoded({ extended: true }));
 
   // Initialize healthchecker and add routes
-  // const healthchecker = new health.HealthChecker();
-  // app.use("/health", health.LivenessEndpoint(healthchecker));
-  // app.use("/ready", health.ReadinessEndpoint(healthchecker));
+  const healthchecker = new health.HealthChecker();
+  app.use("/health", health.LivenessEndpoint(healthchecker));
+  app.use("/ready", health.ReadinessEndpoint(healthchecker));
 
   // Create endpoint for the app serve static assets
   const appRouter = express.Router();
