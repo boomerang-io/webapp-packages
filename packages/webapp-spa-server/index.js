@@ -53,7 +53,7 @@ function createBoomerangServer({
   app.use(compression());
 
   // Logging
-  app.use(boomerangLogger.middleware);
+  app.use(boomerangLogger.healthMiddleware);
 
   // Security
   const helmet = require("helmet");
