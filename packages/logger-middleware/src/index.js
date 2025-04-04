@@ -50,7 +50,7 @@ module.exports = function (callingModulePath = "", ) {
   const middleware = log4js.connectLogger(httpLogger, {
     level: "auto",
   });
-  const healthMiddleware = log4js.connectLogger(warnLogger, {
+  const healthMiddleware = log4js.connectLogger(healthLogger, {
     level: "debug",
   });
   return { logger, middleware, healthMiddleware };
