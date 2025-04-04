@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@boomerang-io/logger-middleware':
-        specifier: 1.0.1-beta.0
-        version: 1.0.1-beta.0
+        specifier: 1.0.1-beta.1
+        version: 1.0.1-beta.1
       '@cloudnative/health-connect':
         specifier: ^2.1.0
         version: 2.1.0
@@ -48,8 +48,8 @@ importers:
 
 packages:
 
-  '@boomerang-io/logger-middleware@1.0.1-beta.0':
-    resolution: {integrity: sha512-qpL1WD2OuFqSSR+xk1mD0EtIa6o97HNmexZ9Wh0QGK3XMY0IJzS7ZqqxSluHy3Rh0N0QY4ERi/mSrJqfMQSPUQ==}
+  '@boomerang-io/logger-middleware@1.0.1-beta.1':
+    resolution: {integrity: sha512-6BsVA/mO4hnjukircuntQ3O7sGQXhi+8vn2MbfDn6rQqlFVkKS/Sw+Q+wBaSvUCb7yGFV+uMGMTTVVncWsgXVA==}
 
   '@cloudnative/health-connect@2.1.0':
     resolution: {integrity: sha512-GieeiusY64i1Q5LdAf70n5W08MF5uom3qdVvnwIed/asBqpNPv7hlC6FGSH20lTYvyujF3wV5oBDcTa4SS/cbA==}
@@ -747,7 +747,7 @@ packages:
 
 snapshots:
 
-  '@boomerang-io/logger-middleware@1.0.1-beta.0':
+  '@boomerang-io/logger-middleware@1.0.1-beta.1':
     dependencies:
       app-root-path: 3.0.0
       log4js: 6.9.1
