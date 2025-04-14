@@ -33,6 +33,7 @@ function createBoomerangServer({
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
     CORS_CONFIG,
+    DEBUG_ENABLED = false
   } = process.env;
 
   const appCorsConfig = corsConfig || parseJSONString(CORS_CONFIG);
@@ -53,7 +54,7 @@ function createBoomerangServer({
   app.use(compression());
 
   // Logging
-  app.use(boomerangLogger.middleware);
+  app.use(DEBUG_ENABLED ? boomerangLogger.debugHealthMiddleware : boomerangLogger.healthMiddleware);
 
   // Security
   const helmet = require("helmet");
