@@ -1,7 +1,7 @@
 {
   "name": "@boomerang-io/webapp-spa-server",
   "description": "Webapp Server for React-based SPA w/ client-side routing",
-  "version": "1.3.4-beta.8",
+  "version": "1.3.4-beta.9",
   "author": {
     "name": "Tim Bula",
     "email": "timrbula@gmail.com"
@@ -25,7 +25,7 @@
     "start": "node tester.js"
   },
   "dependencies": {
-    "@boomerang-io/logger-middleware": "1.0.1-beta.4",
+    "@boomerang-io/logger-middleware": "1.0.1-beta.5",
     "@cloudnative/health-connect": "^2.1.0",
     "body-parser": "^1.20.3",
     "compression": "^1.7.4",
