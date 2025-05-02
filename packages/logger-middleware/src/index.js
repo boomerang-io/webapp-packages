@@ -34,7 +34,7 @@ module.exports = function (callingModulePath = "", ) {
       },
       filtered: {
         type: "noLogFilter",
-        exclude: ["health"],
+        exclude: [".*"],
         appender: "infoFilter",
       },
       errorFilter: {
