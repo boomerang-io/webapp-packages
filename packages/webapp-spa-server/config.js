@@ -17,4 +17,5 @@ exports.defaultHtmlHeadInjectDataKeys = [
   "PRODUCT_SERVICE_ENV_URL",
   "PRODUCT_APPS_ENV_URL",
   "PRODUCT_ENV_URL",
+  "ICA_ENABLE_MACS",
 ];
