@@ -1,6 +1,6 @@
 {
   "name": "@boomerang-io/utils",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "author": {
     "name": "Tim Bula",
     "email": "timrbula@gmail.com"
@@ -33,17 +33,16 @@
     "test:ci": "jest --findRelatedTests"
   },
   "peerDependencies": {
-    "axios": "^1.6.5",
-    "lodash": "^4.17.21",
+    "axios": "^1.13.5",
+    "lodash": "^4.17.23",
     "query-string": "^6.14.1",
-    "react": "^17.0.0 || ^16.14.0",
-    "react-dom": "^17.0.0 || ^16.14.0",
-    "react-query": "^3.39.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^5.3.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "axios": "^1.6.5",
+    "axios": "^1.13.5",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.10",
     "@babel/eslint-parser": "7.16.5",
@@ -56,11 +55,10 @@
     "lodash": "^4.17.21",
     "promise": "^8.1.0",
     "query-string": "^7.1.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-query": "^3.34.1",
-    "react-router-dom": "^5.3.0",
-    "rimraf": "2.6.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^5.3.4",
+    "rimraf": "^6.1.2",
     "yup": "^0.32.11"
   },
   "keywords": [
