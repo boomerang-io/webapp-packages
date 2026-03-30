@@ -97,7 +97,7 @@ function createBoomerangServer({
         index: false,
       })
     );
-    appRouter.get("/*path", (_, res) =>
+    appRouter.get("/{*path}", (_, res) =>
       injectEnvDataAndScriptsIntoHTML({
         res,
         appRoot: APP_ROOT,
