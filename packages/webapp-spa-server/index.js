@@ -28,8 +28,6 @@ function createBoomerangServer({
     APP_ROOT = "/",
     PORT = 3000,
     HTML_HEAD_INJECTED_DATA_KEYS = defaultHtmlHeadInjectDataKeys.join(),
-    NEW_RELIC_APP_NAME,
-    NEW_RELIC_LICENSE_KEY,
     HTML_HEAD_INJECTED_SCRIPTS,
     BUILD_DIR = "build",
     CORS_CONFIG,
@@ -38,10 +36,11 @@ function createBoomerangServer({
 
   const appCorsConfig = corsConfig || parseJSONString(CORS_CONFIG);
 
+  // not using new relic for now
   // Monitoring
-  if (NEW_RELIC_APP_NAME && NEW_RELIC_LICENSE_KEY) {
-    require("newrelic");
-  }
+  // if (NEW_RELIC_APP_NAME && NEW_RELIC_LICENSE_KEY) {
+  //   require("newrelic");
+  // }
 
   /**
    * Start Express app
