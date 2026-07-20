@@ -14,3 +14,7 @@ yarn-error.log
 .vscode
 .project
 .settings
+
+# Bob AI assistant files
+AGENTS.md
+.bob/
