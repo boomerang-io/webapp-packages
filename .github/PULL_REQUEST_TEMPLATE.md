@@ -1,21 +1,8 @@
-Closes #
+## Context
 
-{{short description}}
+Feature/Issue:
 
-#### Changelog
+Packages:
 
-**New**
+Version Number:
 
-- {{new thing}}
-
-**Changed**
-
-- {{change thing}}
-
-**Removed**
-
-- {{removed thing}}
-
-#### Testing / Reviewing
-
-{{ Add descriptions, steps or a checklist for how reviewers can verify this PR works or not }}
